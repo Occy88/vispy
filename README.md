@@ -1,9 +1,9 @@
-# qr_db
+# ai_secure
 
 
 Project structure under project root:<br>
 Temporary directory is for all temporary files suc as html testing/design e.t.c. <br>
-qr_db directory is required to be named like the root because it contains the 
+ai_secure directory is required to be named like the root because it contains the 
 most important files controlling the project<br>
 The other directories are apps <br>
 requirements.txt is a list of the dependencies which are automatically installed<br>
