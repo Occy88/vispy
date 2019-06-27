@@ -166,7 +166,7 @@ EMAIL_HOST_PASSWORD = 'ai_secure@2019'
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
-STATIC_URL = 'ai_secure.herokuapp.com/'
+STATIC_URL = 'ai-secure.herokuapp.com/'
 # STATIC_URL = 'http://127.0.0.1:8080/'
 STATICFILES_DIRS = ['dist']
 
