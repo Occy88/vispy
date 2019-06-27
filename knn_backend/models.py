@@ -16,6 +16,9 @@ class Label(models.Model):
 
 
 class Item(models.Model):
+    """
+    Item representing data point
+    """
     hash = models.TextField(primary_key=True)
     label = models.ForeignKey(Label, on_delete=models.CASCADE, null=False)
     # relation to multiple other items (many to many field?)
