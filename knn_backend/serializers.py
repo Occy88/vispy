@@ -11,13 +11,13 @@ class LabelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Label
-        fields = ('id', 'name')
+        fields = ('hash', 'name')
 
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('id', 'data', 'k_nearest')
+        fields = ('hash', 'data', 'k_nearest','label')
 
 
 
@@ -29,4 +29,4 @@ class ItemSerializerWithRelations(serializers.ModelSerializer):
     # print(items)
     class Meta:
         model = Item
-        fields = ('id', 'data', 'k_nearest')
+        fields = ('hash', 'data', 'k_nearest','label')

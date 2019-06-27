@@ -90,7 +90,7 @@ export default class KnnService extends React.Component {
      */
     static registerLabels(item_list) {
         console.log("registering");
-        return fetch(`${KNN_BACKEND_URL}/labels`, {
+        return fetch(`${KNN_BACKEND_URL}/label`, {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',

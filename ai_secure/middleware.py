@@ -26,22 +26,6 @@ class LoginRequiredMiddleware:
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         assert hasattr(request, 'user')
-        path = request.path_info.lstrip('/')
-        # if not request.user.is_authenticated:
-        #     if not any(url.match(path) for url in EXEMPT_URLS):
-        #         return redirect(settings.LOGIN_URL)
-
-
-        url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
-        url_is_for_staff_only = any(url.match(path) for url in STAFF_URLS)
-
-        if path == reverse('accounts:logout').lstrip('/'):
-            logout(request)
-        # if not request.user.is_staff and url_is_for_staff_only:
-        #     return views.company_manager_redirect(request)
-
-        if not request.user.is_authenticated and not url_is_exempt:
-            return views.login_redirect(request)
 
 # class FactoryGroupMiddleware:
 #     def __init__(self, get_response):

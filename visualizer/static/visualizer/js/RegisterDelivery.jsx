@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestStuff from './TestStuff.jsx'
+
 /**
  * Register a Delivery to a selected company
  * @param props
@@ -15,4 +16,4 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(<App/>, document.getElementById("register_delivery_form"));
+ReactDOM.render(<App/>, document.getElementById("entry_point"));
