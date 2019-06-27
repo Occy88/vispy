@@ -1,11 +1,9 @@
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
     mode: 'production',
     entry: './visualizer/static/visualizer/js/RegisterDelivery.jsx',
     output: {
         publicPath: 'https://127.0.0.1:8080/'
     },
-    plugins: [new BundleAnalyzerPlugin()],
     module: {
         rules: [
             {
