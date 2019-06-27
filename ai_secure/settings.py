@@ -166,11 +166,11 @@ EMAIL_HOST_PASSWORD = 'ai_secure@2019'
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
-# STATIC_URL = 'ai_secure.herokuapp.com/'
-STATIC_URL = 'http://127.0.0.1:8080/'
+STATIC_URL = 'ai_secure.herokuapp.com/'
+# STATIC_URL = 'http://127.0.0.1:8080/'
 STATICFILES_DIRS = ['dist']
 
 # for deployment: unhash the bellow,
 # unhash the above
 # and all is good.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
