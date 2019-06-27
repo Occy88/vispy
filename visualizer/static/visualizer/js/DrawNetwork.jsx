@@ -14,10 +14,10 @@ export default class DrawNetwork extends React.Component {
             nodes: props.nodes,
             edges: props.edges
         };
+        this.constructNetwork=this.constructNetwork.bind(this)
         // console.log(props)
 
     }
-
     handleClick(properties) {
         console.log(properties);
     }
@@ -33,6 +33,9 @@ export default class DrawNetwork extends React.Component {
         }
         return true
     }
+    componentDidMount() {
+        this.constructNetwork()
+    }
 
     componentWillReceiveProps(nextProps, nextContext) {
         if (DrawNetwork.compareItems(nextProps.nodes, this.state.nodes) && DrawNetwork.compareItems(nextProps.edges, this.state.edges)) {
@@ -42,6 +45,12 @@ export default class DrawNetwork extends React.Component {
             nodes: nextProps.nodes,
             edges: nextProps.edges,
         })
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (DrawNetwork.compareItems(prevState.nodes, this.state.nodes) && DrawNetwork.compareItems(prevState.edges, this.state.edges)) {
+            return
+        }
+        this.constructNetwork();
     }
 
     constructNetwork() {
@@ -81,7 +90,7 @@ export default class DrawNetwork extends React.Component {
         };
         return (
             <div style={{backgroundColor: 'rgba(100,100,100,0.8)', height: '700px', width: '700px'}}>
-                <button onClick={this.constructNetwork.bind(this)}>Show Network</button>
+                <button onClick={this.constructNetwork}>Show Network</button>
                 <div style={{height: '700px', width: '700px'}} ref={this.network}>
                     <canvas style={canvStyle}></canvas>
                     <div className={"vis-network"} style={style}></div>

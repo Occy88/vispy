@@ -6,10 +6,11 @@ import DrawNetwork from "./DrawNetwork.jsx";
 export default class TestStuff extends React.Component {
     constructor(props) {
         super(props);
-        this.items = [];
         this.state = {
             nodes: [],
             edges: [],
+            items: [],
+            item_id_list:[],
             node: 0
         };
         this.constructNetwork = this.constructNetwork.bind(this);
@@ -36,7 +37,14 @@ export default class TestStuff extends React.Component {
             API_KEY: 'ti^$0ys%1m0ys%n601$rhk!*q#q1$rhk!6m2#&m0ys%'
         }).then(d => this.constructNetwork(d));
     }
-
+    checkItemExists(dict){
+        for(let i=0;i<this.state.items.length;i+=1){
+            if(dict.hash===this.state.items[i].hash){
+                return true;
+            }
+        }
+        return false;
+    }
     constructNetwork(data) {
         /**
          * This should be constructed out of set nodes rather than
@@ -49,16 +57,26 @@ export default class TestStuff extends React.Component {
          * @type {*[]}
          */
         console.log("DATA RECIEVED:");
-        console.log(data);
+        let items = this.state.items;
+        for(let dict of data){
+            if(!this.checkItemExists(dict)){
+                items.push(dict)
+            }
+        }
         let nodes = [];
         let edges = [];
-        // console.log(data);
-        for (let dict of data) {
-            // console.log(JSON.stringify(dict));
-            nodes.push({id: dict.hash, label: dict.hash, group: dict.label});
+        //keep a list of already added nodes to prevent duplicates.
+        let id_list = [];
+        for (let dict of items) {
+            if (!id_list.includes(dict.hash)) {
+                id_list.push(dict.hash);
+                nodes.push({id: dict.hash, label: dict.hash, group: dict.label});
+            }
             for (let n of dict["k_nearest"]) {
-                console.log(n);
-                nodes.push({id: n.hash, label: n.hash, group: n.label});
+                if (!id_list.includes(n.hash)) {
+                    id_list.push(n.hash);
+                    nodes.push({id: n.hash, label: n.hash, group: n.label});
+                }
 
                 edges.push({from: dict.hash, to: n.hash})
             }
@@ -66,10 +84,9 @@ export default class TestStuff extends React.Component {
 
         this.setState({
             nodes: nodes,
-            edges: edges
+            edges: edges,
+            items: items
         });
-        console.log("constructor Network End");
-        // console.log(nodes)
 
     }
 
