@@ -15,6 +15,12 @@ class LabelSerializer(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ('hash', 'data', 'k_nearest', 'label')
+
+
+class ItemSerializerWithLabel(serializers.ModelSerializer):
     label = LabelSerializer(many=False)
 
     class Meta:
@@ -25,7 +31,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class ItemSerializerWithRelations(serializers.ModelSerializer):
     # item_module = locate(settings.STOCK_ITEM_INSTANCE)
     # items = serializers.PrimaryKeyRelatedField(many=True, queryset=item_module.objects.filter(is_active=True))
-    k_nearest = ItemSerializer(many=True)
+    k_nearest = ItemSerializerWithLabel(many=True)
     label = LabelSerializer(many=False)
 
     # print(items  )

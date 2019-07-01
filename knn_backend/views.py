@@ -73,7 +73,7 @@ class ItemList(generics.ListCreateAPIView):
         # set the product to the oneDjangoModelPermissions that was verified in the url to avoid shinanigans
         # print(request.data['items'])
         serializer = self.get_serializer(data=request.data["items"], many=isinstance(request.data["items"], list))
-
+        # print(serializer)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -138,6 +138,7 @@ class LabelList(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         # set the product to the oneDjangoModelPermissions that was verified in the url to avoid shinanigans
         serializer = self.get_serializer(data=request.data['labels'], many=isinstance(request.data['labels'], list))
+
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)

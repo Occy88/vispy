@@ -5,6 +5,7 @@ import DrawNetwork from "./DrawNetwork.jsx";
 
 export default class TestStuff extends React.Component {
     constructor(props) {
+        console.log("CONSTRUCTOR CALLED");
         super(props);
         this.state = {
             nodes: [],
@@ -44,6 +45,7 @@ export default class TestStuff extends React.Component {
         for (let dict of selected.k_nearest) {
             let selectedDiv = document.createElement("div");
             selectedDiv.style.display = "inline-block";
+            console.log(dict);
             selectedDiv.innerText = "K_Nearest Node: " + dict.hash + "\n" + "label:" + dict.label.name+"\n";
             selectedDiv.appendChild(TestStuff.createImage(JSON.parse(dict.data)));
             this.canvases.current.appendChild(selectedDiv);
@@ -129,6 +131,7 @@ export default class TestStuff extends React.Component {
          * and the id is obviously the hash...
          * @type {*[]}
          */
+        console.log(data);
         console.log("DATA RECIEVED:");
         let items = this.state.items;
         for (let dict of data) {
