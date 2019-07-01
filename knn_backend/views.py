@@ -37,9 +37,9 @@ class ItemListWithRelations(generics.ListAPIView):
         if self.request.method == "GET":
             data = query_to_dict_clean(self.request.query_params)
             data.pop('API_KEY')
-            print(data)
+            # print(data)
             if 'hash' in data:
-                data['hash']=data['hash'].__str__().split('.')[0]
+                data['hash'] = data['hash'].__str__().split('.')[0]
             queryset = queryset.filter(**data)
             print(queryset)
         print("RETURNING THe DATA")
@@ -62,19 +62,18 @@ class ItemList(generics.ListCreateAPIView):
             print("GETTING THE SHIT YOU WANTED")
             data = query_to_dict_clean(self.request.query_params)
             data.pop('API_KEY')
-            print(data)
+            # print(data)
             queryset = queryset.filter(**data)
             print(queryset)
 
         print("RETURNING THE SHIT YOU WANTED")
         return queryset
 
-
-
     def create(self, request, *args, **kwargs):
         # set the product to the oneDjangoModelPermissions that was verified in the url to avoid shinanigans
-
+        # print(request.data['items'])
         serializer = self.get_serializer(data=request.data["items"], many=isinstance(request.data["items"], list))
+
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)

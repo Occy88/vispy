@@ -19,7 +19,7 @@ export default class DrawNetwork extends React.Component {
 
     }
     handleClick(properties) {
-        console.log(properties);
+        this.props.handleClick(properties)
     }
 
     static compareItems(arr1, arr2) {
@@ -89,7 +89,7 @@ export default class DrawNetwork extends React.Component {
             height: '100%',
         };
         return (
-            <div style={{backgroundColor: 'rgba(100,100,100,0.8)', height: '700px', width: '700px'}}>
+            <div style={{backgroundColor: 'rgba(0,0,0,1)', height: '700px', width: '700px'}}>
                 <button onClick={this.constructNetwork}>Show Network</button>
                 <div style={{height: '700px', width: '700px'}} ref={this.network}>
                     <canvas style={canvStyle}></canvas>

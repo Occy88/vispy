@@ -6,7 +6,7 @@ from . import views
 app_name = 'visualizer'
 urlpatterns = [
     # path('stock_detail/', views.StockList.as_view()),
-    path('register', views.RegisterDelivery.as_view()),
+    path('', views.RegisterDelivery.as_view()),
 
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

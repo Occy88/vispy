@@ -21,7 +21,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),  # new
-    path('deliveries/',include('visualizer.urls')),
+    path('visualizer/',include('visualizer.urls')),
     path('knn_backend/', include('knn_backend.urls')),
 
 ]

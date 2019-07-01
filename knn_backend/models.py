@@ -25,4 +25,4 @@ class Item(models.Model):
     k_nearest = models.ManyToManyField('self', symmetrical=False, null=True)
     # Data can be whatever the person decides, just made it text for now
     # but it can be an image e.t.c.
-    data = models.TextField(max_length=1000)
+    data = models.TextField(max_length=5000)

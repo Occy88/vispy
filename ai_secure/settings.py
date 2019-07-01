@@ -21,7 +21,7 @@ MASTER_BASE_DIR = os.path.dirname(__file__)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'v8ojti^$1m0ys%*q#qv*b9(+6)am3)^t1n601$rhk!6m2#&rmi'
-
+API_KEY_SECRET = 'ti^$0ys%1m0ys%n601$rhk!*q#q1$rhk!6m2#&m0ys%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # for later when we get to deployment
@@ -31,10 +31,10 @@ DEBUG = True
 #     DEBUG = True
 #     TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['ai_secure.herokuapp.com','*']
+ALLOWED_HOSTS = ['ai_secure.herokuapp.com', '*']
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False# Application definition
+SECURE_SSL_REDIRECT = False  # Application definition
 ADMINS = (('octavio', 'octavio.delser@gmail.com'),)
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
@@ -165,12 +165,11 @@ EMAIL_HOST_PASSWORD = 'ai_secure@2019'
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
-
-# STATIC_URL = 'ai_secure.herokuapp.com/'
-STATIC_URL = 'http://127.0.0.1:8080/'
+STATIC_URL = 'ai_secure.herokuapp.com/'
+# STATIC_URL = 'http://127.0.0.1:8080/'
 STATICFILES_DIRS = ['dist']
 
 # for deployment: unhash the bellow,
 # unhash the above
 # and all is good.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
