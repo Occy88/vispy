@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{# Objects expected: #}
+{#category_list -- see explanation in load_category_items in menu/js/menu.js#}
+
+{#{% extends 'templates/base.html' %}#}
+{% load static %}
+{#add a supplier, add a truck, generate the codes.#}
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>RegisterTest</title>
+</head>
+<body>
+<script>
+  {#    DECLARE THE STATIC URL TO BE USED WITHIN THE APPLICATION WHEN LOADING SERVER SAVED PERMANENT MEDIA (Not much for this project so it's enough#}
+    let STATIC_URL = "{% get_static_prefix %}";
+</script>
+<div id="root">
+
+</div>
+<script src="{% static 'main.js' %}"></script>
+</body>
+</html>

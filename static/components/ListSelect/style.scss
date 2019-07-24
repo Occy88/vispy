@@ -1,0 +1,49 @@
+$demo-blue: #005BA6;
+$demo-gray: #D6D6D6;
+$demo-placeholder: #C7C7C7;
+$demo-border: #E6E6E6;
+
+$border-width: 3px;
+
+// Make sure you set all padding, borders on this select and not the parent div.
+// this is mainly for :focus and tabbing.
+
+select {
+  border: $border-width solid $demo-border;
+  border-radius: 0;
+  font-weight: 400;
+  color: inherit;
+  line-height: normal;
+  transition: border-color 0.2s ease,
+  outline 0.2s ease;
+  height: 40px;
+  width: 150px;
+
+
+  // we really need this for the tabbers
+  // causes double borders though
+
+  // we use invalid like a placeholder
+  // 2019-03-05 added not selector for firefox and ie
+  &:not(:focus):invalid {
+    color: $demo-placeholder;
+  }
+
+}
+
+select:hover {
+  box-shadow: 0 3px 4px rgba($demo-blue, 0.3) inset;
+  // outline is critical for usability
+  outline: $border-width solid $demo-blue;
+  outline-offset: -#{$border-width}; //offset vs width
+}
+
+.input {
+  width: 100px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  border-width: 1px;
+  text-align: center;
+
+}

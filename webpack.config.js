@@ -1,17 +1,21 @@
 module.exports = {
     mode: 'development',
-    entry: './visualizer/static/visualizer/js/RegisterDelivery.jsx',
+    entry: './visualizer/static/visualizer/components/Root/Root.jsx',
     output: {
         publicPath: 'https://127.0.0.1:8080/'
     },
     module: {
         rules: [
             {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.mp3$/,
+                test: /\.(mp3|png|jpe?g|gif)$/,
                 loader: 'file-loader'
             },
             {

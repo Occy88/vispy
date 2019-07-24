@@ -16,5 +16,5 @@ class RegisterDelivery(View):
         #     Profile.objects.create(user=request.user)
         #     print("User had no profile, new created")
         print(request.user)
-        return render(request, 'visualizer/templates/RegisterDelivery.html',
+        return render(request, 'visualizer/templates/root.html',
                       context={"language": "en-us", "choices": ["en-us", "it", "fr"]})

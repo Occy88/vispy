@@ -1,5 +1,5 @@
 {
-  "name": "ai_secure",
+  "name": "hpr_questionaire",
   "version": "1.0.0",
   "description": "This is an app to manage a stock with qr codes",
   "main": "index.js",
@@ -11,28 +11,29 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "bootstrap": "^4.3.1",
+    "compass": "^0.1.1",
     "css-loader": "^1.0.0",
-    "d3-force": "^2.0.1",
     "file-loader": "^4.0.0",
     "jquery": "^3.4.1",
     "jsbarcode": "^3.11.0",
-    "prop-types": "^15.7.2",
+    "node-sass": "^4.12.0",
     "qrcode": "^1.3.3",
     "qrcode-decoder": "^0.1.1",
     "react": "^16.5.2",
+    "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.5.2",
     "react-hot-loader": "^4.3.11",
+    "react-router-dom": "^5.0.1",
     "react-sound": "^1.2.0",
-    "react-vis": "^1.11.7",
     "react-webcam": "^1.1.1",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    "vis": "^4.21.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4",
-    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^3.1.9"
   },
   "scripts": {
@@ -43,12 +44,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Occy88/ai_secure.git"
+    "url": "git+https://github.com/Occy88/hpr_questionaire.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Occy88/ai_secure/issues"
+    "url": "https://github.com/Occy88/hpr_questionaire/issues"
   },
-  "homepage": "https://github.com/Occy88/ai_secure#readme"
+  "homepage": "https://github.com/Occy88/hpr_questionaire#readme"
 }
