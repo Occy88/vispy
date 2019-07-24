@@ -1,7 +1,7 @@
-import '../../css/RegisterDelivery.css'
 import React from "react";
 import DrawNetwork from "../DrawNetwork/DrawNetwork.jsx";
 import KnnService from '../../../../../knn_backend/static/knn_backend/components/KnnService/KnnService.jsx'
+import './style.css'
 
 export default class NetworkController extends React.Component {
     constructor(props) {
@@ -34,7 +34,7 @@ export default class NetworkController extends React.Component {
             this.canvases.current.removeChild(this.canvases.current.firstChild);
         }
         let selectedDiv = document.createElement("div");
-        selectedDiv.innerText = "Selected Node: " + selected.hash + "\n" + "label:" + selected.label.name+"\n";
+        selectedDiv.innerText = "Selected Node: " + selected.hash + "\n" + "label:" + selected.label.name + "\n";
 
         let img = NetworkController.createImage(JSON.parse(selected.data));
         selectedDiv.appendChild(img);
@@ -45,8 +45,8 @@ export default class NetworkController extends React.Component {
         for (let dict of selected.k_nearest) {
             let selectedDiv = document.createElement("div");
             selectedDiv.style.display = "inline-block";
-            console.log(dict);
-            selectedDiv.innerText = "K_Nearest Node: " + dict.hash + "\n" + "label:" + dict.label.name+"\n";
+            // console.log(dict);
+            selectedDiv.innerText = "K_Nearest Node: " + dict.hash + "\n" + "label:" + dict.label.name + "\n";
             selectedDiv.appendChild(NetworkController.createImage(JSON.parse(dict.data)));
             this.canvases.current.appendChild(selectedDiv);
 
@@ -131,7 +131,7 @@ export default class NetworkController extends React.Component {
          * and the id is obviously the hash...
          * @type {*[]}
          */
-        console.log(data);
+        // console.log(data);
         console.log("DATA RECIEVED:");
         let items = this.state.items;
         for (let dict of data) {
@@ -161,7 +161,6 @@ export default class NetworkController extends React.Component {
                 edges.push({from: dict.hash, to: n.hash})
             }
         }
-        console.log("LOADED AND SAVED: ");
         this.setState({
             nodes: nodes,
             edges: edges,
@@ -173,12 +172,21 @@ export default class NetworkController extends React.Component {
     render() {
 
         return (
-            <div>
-                <input type={"number"} onChange={this.enterNumber.bind(this)} value={this.state.node}/>
-                <button onClick={this.updateNetwork}>update network</button>
-                <DrawNetwork handleClick={this.handleClick.bind(this)} nodes={this.state.nodes}
-                             edges={this.state.edges}/>
-                <div ref={this.canvases}>Canvases:</div>
+            <div style={{width: '1750px'}}>
+                <div style={{width: '1000px', display: 'block'}}>
+
+                    <input className={"node_input"} type={"number"} onChange={this.enterNumber.bind(this)}
+                           value={this.state.node}/>
+                    <button className={"node_input_submit"} onClick={this.updateNetwork}>update network</button>
+                </div>
+                <div style={{'verticalAlign':'top',width: '600px', display: 'inline-block'}}>
+                    <DrawNetwork handleClick={this.handleClick.bind(this)} nodes={this.state.nodes}
+                                 edges={this.state.edges}/>
+                </div>
+                <div style={{width: '1000px', display: 'inline-block'}}>
+
+                    <div ref={this.canvases}>Canvases:</div>
+                </div>
             </div>
 
 

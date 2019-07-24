@@ -5,10 +5,7 @@ import vis from 'vis'
 
 export default class DrawNetwork extends React.Component {
     constructor(props) {
-        console.log("======================");
-        console.log(props);
         super(props);
-        console.log(props);
         this.network = React.createRef();
         this.state = {
             nodes: props.nodes,
@@ -89,9 +86,9 @@ export default class DrawNetwork extends React.Component {
             height: '100%',
         };
         return (
-            <div style={{backgroundColor: 'rgba(0,0,0,1)', height: '700px', width: '700px'}}>
-                <button onClick={this.constructNetwork}>Show Network</button>
-                <div style={{height: '700px', width: '700px'}} ref={this.network}>
+            <div style={{backgroundColor: 'rgba(0,0,0,1)', height: '500px', width: '500px'}}>
+                {/*<button onClick={this.constructNetwork}>Show Network</button>*/}
+                <div style={{height: '500px', width: '500px'}} ref={this.network}>
                     <canvas style={canvStyle}></canvas>
                     <div className={"vis-network"} style={style}></div>
                 </div>
