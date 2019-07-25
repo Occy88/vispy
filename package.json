@@ -1,5 +1,5 @@
 {
-  "name": "ai_secure",
+  "name": "ai-secure",
   "version": "1.0.0",
   "description": "This is an app to manage a stock with qr codes",
   "main": "index.js",
