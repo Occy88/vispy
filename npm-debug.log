@@ -63,7 +63,7 @@
 35 verbose get saving fsevents to /home/caramel/.npm/registry.npmjs.org/fsevents/.cache.json
 36 silly resolveWithNewModule fsevents@1.2.9 checking installable status
 37 silly loadAllDepsIntoIdealTree Finishing
-38 silly idealTree:prePrune hpr_questionaire@1.0.0
+38 silly idealTree:prePrune ai_secure@1.0.0
 38 silly idealTree:prePrune ├── @babel/code-frame@7.5.5
 38 silly idealTree:prePrune ├── @babel/core@7.5.5
 38 silly idealTree:prePrune ├── @babel/generator@7.5.5
@@ -1090,7 +1090,7 @@
 38 silly idealTree:prePrune ├── yargs-parser@13.1.1
 38 silly idealTree:prePrune └── yargs@13.3.0
 39 silly loadIdealTree Finishing
-40 silly currentTree hpr_questionaire@1.0.0
+40 silly currentTree ai_secure@1.0.0
 40 silly currentTree ├── @babel/code-frame@7.5.5
 40 silly currentTree ├── @babel/core@7.5.5
 40 silly currentTree ├── @babel/generator@7.5.5
@@ -2116,7 +2116,7 @@
 40 silly currentTree ├── yallist@3.0.3
 40 silly currentTree ├── yargs-parser@13.1.1
 40 silly currentTree └── yargs@13.3.0
-41 silly idealTree hpr_questionaire@1.0.0
+41 silly idealTree ai_secure@1.0.0
 41 silly idealTree ├── @babel/code-frame@7.5.5
 41 silly idealTree ├── @babel/core@7.5.5
 41 silly idealTree ├── @babel/generator@7.5.5
@@ -3168,28 +3168,28 @@
 65 silly rollbackFailedOptional Finishing
 66 silly runTopLevelLifecycles Starting
 67 silly install runTopLevelLifecycles
-68 silly preinstall hpr_questionaire@1.0.0 /home/caramel/PycharmProjects/ai_secure/hpr_questionaire-2ae2fbec
-69 info lifecycle hpr_questionaire@1.0.0~preinstall: hpr_questionaire@1.0.0
-70 silly lifecycle hpr_questionaire@1.0.0~preinstall: no script for preinstall, continuing
-71 silly build hpr_questionaire@1.0.0
-72 info linkStuff hpr_questionaire@1.0.0
-73 silly linkStuff hpr_questionaire@1.0.0 has /home/caramel/PycharmProjects as its parent node_modules
-74 verbose linkBins hpr_questionaire@1.0.0
-75 verbose linkMans hpr_questionaire@1.0.0
-76 silly install hpr_questionaire@1.0.0 /home/caramel/PycharmProjects/ai_secure/hpr_questionaire-2ae2fbec
-77 info lifecycle hpr_questionaire@1.0.0~install: hpr_questionaire@1.0.0
-78 silly lifecycle hpr_questionaire@1.0.0~install: no script for install, continuing
-79 silly postinstall hpr_questionaire@1.0.0 /home/caramel/PycharmProjects/ai_secure/hpr_questionaire-2ae2fbec
-80 info lifecycle hpr_questionaire@1.0.0~postinstall: hpr_questionaire@1.0.0
-81 verbose lifecycle hpr_questionaire@1.0.0~postinstall: unsafe-perm in lifecycle true
-82 verbose lifecycle hpr_questionaire@1.0.0~postinstall: PATH: /usr/share/npm/bin/node-gyp-bin:/home/caramel/PycharmProjects/ai_secure/node_modules/.bin:/home/caramel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
-83 verbose lifecycle hpr_questionaire@1.0.0~postinstall: CWD: /home/caramel/PycharmProjects/ai_secure
-84 silly lifecycle hpr_questionaire@1.0.0~postinstall: Args: [ '-c', 'npm run build' ]
-85 silly lifecycle hpr_questionaire@1.0.0~postinstall: Returned: code: 1  signal: null
-86 info lifecycle hpr_questionaire@1.0.0~postinstall: Failed to exec postinstall script
+68 silly preinstall ai_secure@1.0.0 /home/caramel/PycharmProjects/ai_secure/ai_secure-2ae2fbec
+69 info lifecycle ai_secure@1.0.0~preinstall: ai_secure@1.0.0
+70 silly lifecycle ai_secure@1.0.0~preinstall: no script for preinstall, continuing
+71 silly build ai_secure@1.0.0
+72 info linkStuff ai_secure@1.0.0
+73 silly linkStuff ai_secure@1.0.0 has /home/caramel/PycharmProjects as its parent node_modules
+74 verbose linkBins ai_secure@1.0.0
+75 verbose linkMans ai_secure@1.0.0
+76 silly install ai_secure@1.0.0 /home/caramel/PycharmProjects/ai_secure/ai_secure-2ae2fbec
+77 info lifecycle ai_secure@1.0.0~install: ai_secure@1.0.0
+78 silly lifecycle ai_secure@1.0.0~install: no script for install, continuing
+79 silly postinstall ai_secure@1.0.0 /home/caramel/PycharmProjects/ai_secure/ai_secure-2ae2fbec
+80 info lifecycle ai_secure@1.0.0~postinstall: ai_secure@1.0.0
+81 verbose lifecycle ai_secure@1.0.0~postinstall: unsafe-perm in lifecycle true
+82 verbose lifecycle ai_secure@1.0.0~postinstall: PATH: /usr/share/npm/bin/node-gyp-bin:/home/caramel/PycharmProjects/ai_secure/node_modules/.bin:/home/caramel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+83 verbose lifecycle ai_secure@1.0.0~postinstall: CWD: /home/caramel/PycharmProjects/ai_secure
+84 silly lifecycle ai_secure@1.0.0~postinstall: Args: [ '-c', 'npm run build' ]
+85 silly lifecycle ai_secure@1.0.0~postinstall: Returned: code: 1  signal: null
+86 info lifecycle ai_secure@1.0.0~postinstall: Failed to exec postinstall script
 87 warn optional Skipping failed optional dependency /chokidar/fsevents:
 88 warn notsup Not compatible with your operating system or architecture: fsevents@1.2.9
-89 verbose stack Error: hpr_questionaire@1.0.0 postinstall: `npm run build`
+89 verbose stack Error: ai_secure@1.0.0 postinstall: `npm run build`
 89 verbose stack Exit status 1
 89 verbose stack     at EventEmitter.<anonymous> (/usr/share/npm/lib/utils/lifecycle.js:232:16)
 89 verbose stack     at emitTwo (events.js:126:13)
@@ -3199,24 +3199,24 @@
 89 verbose stack     at ChildProcess.emit (events.js:214:7)
 89 verbose stack     at maybeClose (internal/child_process.js:925:16)
 89 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
-90 verbose pkgid hpr_questionaire@1.0.0
+90 verbose pkgid ai_secure@1.0.0
 91 verbose cwd /home/caramel/PycharmProjects/ai_secure
 92 error Linux 5.1.12-050112-generic
 93 error argv "/usr/bin/node" "/usr/bin/npm" "install"
 94 error node v8.10.0
 95 error npm  v3.5.2
 96 error code ELIFECYCLE
-97 error hpr_questionaire@1.0.0 postinstall: `npm run build`
+97 error ai_secure@1.0.0 postinstall: `npm run build`
 97 error Exit status 1
-98 error Failed at the hpr_questionaire@1.0.0 postinstall script 'npm run build'.
+98 error Failed at the ai_secure@1.0.0 postinstall script 'npm run build'.
 98 error Make sure you have the latest version of node.js and npm installed.
-98 error If you do, this is most likely a problem with the hpr_questionaire package,
+98 error If you do, this is most likely a problem with the ai_secure package,
 98 error not with npm itself.
 98 error Tell the author that this fails on your system:
 98 error     npm run build
 98 error You can get information on how to open an issue for this project with:
-98 error     npm bugs hpr_questionaire
+98 error     npm bugs ai_secure
 98 error Or if that isn't available, you can get their info via:
-98 error     npm owner ls hpr_questionaire
+98 error     npm owner ls ai_secure
 98 error There is likely additional logging output above.
 99 verbose exit [ 1, true ]

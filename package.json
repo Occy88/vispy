@@ -1,5 +1,5 @@
 {
-  "name": "hpr_questionaire",
+  "name": "ai_secure",
   "version": "1.0.0",
   "description": "This is an app to manage a stock with qr codes",
   "main": "index.js",
@@ -44,12 +44,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Occy88/hpr_questionaire.git"
+    "url": "git+https://github.com/Occy88/ai_secure.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Occy88/hpr_questionaire/issues"
+    "url": "https://github.com/Occy88/ai_secure/issues"
   },
-  "homepage": "https://github.com/Occy88/hpr_questionaire#readme"
+  "homepage": "https://github.com/Occy88/ai_secure#readme"
 }
