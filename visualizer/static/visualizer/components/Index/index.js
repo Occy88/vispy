@@ -9,10 +9,9 @@ let lang = languages[document.documentElement.lang];
 
 const app_url_prefix = '/visualizer';
 
-export default class Routes extends React.Component {
+export default class Index extends React.Component {
     constructor(props) {
         super(props);
-        //keep company in global state as all modules want to be aware of it. company is updated by the header
         this.state = {
             example_state: "something?",
         }
@@ -23,19 +22,21 @@ export default class Routes extends React.Component {
         return (
             <div className="app">
                 <div className="content">
-                        <Router {...this.props}>
+                    <Router>
+                        <Switch {...this.props}>
                             <Route path={app_url_prefix + "/knn"} render={(routeProps) => (
                                 <NetworkController {...routeProps} />
                             )}/>
                             <Route path={app_url_prefix + "/deep-learning"} render={(routeProps) => (
                                 <DeepLearningController {...routeProps} />
                             )}/>
-                            <Route render={() => {
+                            <Route path="*" render={() => {
                                 return (
                                     <h2 style={{"textAlign": "center", "padding": "30px"}}>Page Not Found</h2>
                                 )
                             }}/>
-                        </Router>
+                        </Switch>
+                    </Router>
                 </div>
             </div>
         )
