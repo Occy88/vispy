@@ -27,6 +27,7 @@
     "react-router-dom": "^5.0.1",
     "react-sound": "^1.2.0",
     "react-webcam": "^1.1.1",
+    "react-vis": "^1.11.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "vis": "^4.21.0",
