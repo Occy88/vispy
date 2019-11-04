@@ -1,5 +1,5 @@
 import React from "react";
-import DrawNetwork from "../DrawNetwork/DrawNetwork.jsx";
+import DrawNetwork from "../DrawNetwork";
 import KnnService from '../../../../../knn_backend/static/knn_backend/components/KnnService/KnnService.jsx'
 import './style.css'
 
