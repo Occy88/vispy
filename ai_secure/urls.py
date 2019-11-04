@@ -23,5 +23,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),  # new
     path('visualizer/',include('visualizer.urls')),
     path('knn_backend/', include('knn_backend.urls')),
+    path('general_backend/', include('general_backend.urls')),
 
 ]

@@ -23,23 +23,42 @@ MASTER_BASE_DIR = os.path.dirname(__file__)
 SECRET_KEY = 'v8ojti^$1m0ys%*q#qv*b9(+6)am3)^t1n601$rhk!6m2#&rmi'
 API_KEY_SECRET = 'ti^$0ys%1m0ys%n601$rhk!*q#q1$rhk!6m2#&m0ys%'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# for later when we get to deployment
-# DEBUG = False
-# TEMPLATE_DEBUG = DEBUG
-# if ENV_ROLE == 'development':
-#     DEBUG = True
-#     TEMPLATE_DEBUG = DEBUG
+# ENV_ROLE = 'production'
+ENV_ROLE = 'development'
+if ENV_ROLE == 'production':
+    print("PRODUCTION")
+    BASE_URL = 'http://localhost:8080/staticfiles/'
+    DEBUG = False
+    HEROKU = True
+else:
+    print("DEVELOPMENT")
+    # BASE_URL = 'http://localhost:8080/staticfiles/'
+    BASE_URL = 'http://localhost:8080/'
 
-ALLOWED_HOSTS = ['ai_secure.herokuapp.com', '*']
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False  # Application definition
+    DEBUG = True
+    HEROKU = False
+TEMPLATE_DEBUG = DEBUG
+if HEROKU:
+    BASE_URL = "https://machaon.herokuapp.com/"
+
+    print("SETTING SSL SECURE REDIRECT")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+else:
+
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+ALLOWED_HOSTS = ['*']
+# Application definition
 ADMINS = (('octavio', 'octavio.delser@gmail.com'),)
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'visualizer.apps.RegisterTruckDeliveryConfig',
     'knn_backend.apps.StockManagerConfig',
+    'general_backend.apps.GeneralBackendConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -165,11 +184,14 @@ EMAIL_HOST_PASSWORD = 'ai_secure@2019'
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
-STATIC_URL = 'ai_secure.herokuapp.com/'
-    # STATIC_URL = 'http://127.0.0.1:8080/'
+# STATICFILES_DIRS = ['dist']
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = ['dist']
-
-# for deployment: unhash the bellow,
-# unhash the above
-# and all is good.
-django_heroku.settings(locals())
+STATIC_URL = BASE_URL
+if HEROKU:
+    print("HEROKU  ")
+    django_heroku.settings(locals())
