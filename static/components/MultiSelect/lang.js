@@ -6,18 +6,18 @@ const languages = {
     },
     'fr': {
         filter: "filtre",
-        all:"all",
-        invert:"invert",
+        all:"tout",
+        invert:"inverser",
     },
     'it': {
         filter: "filtro",
-        all:"all",
-        invert:"invert",
+        all:"tutti",
+        invert:"invertire",
     },
     'es': {
         filter: "filtro",
-        all:"all",
-        invert:"invert",
+        all:"todo",
+        invert:"invertir",
     },
 
 };

@@ -12,7 +12,7 @@ let lang = languages[document.documentElement.lang];
  */
 class ListSelect extends React.Component {
     /**
-     * Props should set the variables for the list ( objects should be a string and an id)
+     * object_list: [ {str:'display string',sort:'var by which to sort', id:'id of object',other_keys...}]
      * Props should send api_url (url to get objects from)
      * @param props : object_list, handleSelect (function)
      */
@@ -20,18 +20,19 @@ class ListSelect extends React.Component {
         super(props);
         this.reverse = props.reverse;
         let temp_list = [...props.object_list];
-        temp_list = this.sortList(temp_list);
-        if (props.default) {
-            temp_list = this.setDefault(props.default, temp_list)
-        }
-
+        temp_list = ListSelect.sortList(temp_list);
         if (this.reverse) {
             temp_list.reverse()
         }
+        if (props.default) {
+            temp_list = ListSelect.setDefault(props.default, temp_list);
+        }
+
 
         this.state = {
             object_list: props.object_list,
             temp_list: temp_list,
+            selected_option: 0
         };
         this.options = React.createRef();
         this.filterList = this.filterList.bind(this);
@@ -59,6 +60,7 @@ class ListSelect extends React.Component {
 
     componentDidMount() {
         //select the first item if there is one.
+
         this.state.temp_list[0] ? this.props.handleSelect(this.state.temp_list[0]) : this.props.handleSelect(null)
 
     }
@@ -71,9 +73,16 @@ class ListSelect extends React.Component {
         //pre process the props (make sure they go through sorting and adding default (as in the constructor)
         let data = props.object_list;
 
+        if (props.select_object) {
+            let index = ListSelect.getIndex(props.select_object, this.state.temp_list);
+            if (index !== this.state.selected_option) {
+                this.handleSelect(index);
+            }
+
+        }
 
         if ("object_list" in props && !ListSelect.test_array_equal(data, this.state.object_list)) {
-            let temp_list = this.sortList([...data]);
+            let temp_list = ListSelect.sortList([...data]);
             if (this.reverse) {
                 temp_list.reverse();
             }
@@ -82,22 +91,29 @@ class ListSelect extends React.Component {
                 temp_list: temp_list,
             });
             temp_list[0] ? this.props.handleSelect(temp_list[0]) : this.props.handleSelect(null);
+
         }
+    }
+
+    static getIndex(object, list) {
+        let index = 0;
+        for (var i = 1; i < list.length; i += 1) {
+            if (list[i].id === object.id) {
+                index = i
+            }
+        }
+        return index
     }
 
     /**
      * If there is a default set it
      */
-    setDefault(object, list) {
+    static setDefault(object, list) {
         //  find and remove it from the current list
+        let id_pop = ListSelect.getIndex(object, list);
+
         list.unshift(object);
-        let id_pop = 0;
-        for (var i = 1; i < list.length; i += 1) {
-            if (list[i].id === object.id) {
-                id_pop = i
-            }
-        }
-        list.splice(id_pop, 1);
+        list.splice(id_pop + 1, 1);
         return list;
 
         //    set it as the first element in the list
@@ -108,30 +124,29 @@ class ListSelect extends React.Component {
      *
      * @param {String} property Key of the object to sort.
      */
-
-
     static dynamicSort(property) {
         var sortOrder = 1;
-
         if (property[0] === "-") {
             sortOrder = -1;
             property = property.substr(1);
         }
 
         return function (a, b) {
-            if (sortOrder == -1) {
-                return b[property].localeCompare(a[property]);
-            } else {
-                return a[property].localeCompare(b[property]);
+            let c = +a[property];
+            let d = +b[property];
+            if (c && d) {
+                return sortOrder === -1 ? c < d ? 1 : -1 : d < c ? 1 : -1;
             }
+            return sortOrder === -1 ? b[property] > a[property] ? 1 : -1 : a[property] > b[property] ? 1 : -1;
+
         }
     }
 
     /**
      * sort the list into alphabetical by the str attribute
      */
-    sortList(list) {
-        list.sort(ListSelect.dynamicSort("str"));
+    static sortList(list) {
+        list.sort(ListSelect.dynamicSort("sort"));
         return list;
     }
 
@@ -146,50 +161,59 @@ class ListSelect extends React.Component {
             return item.str.toLowerCase().search(
                 event.target.value.toLowerCase()) !== -1;
         });
-        all_data = this.sortList(all_data);
+        all_data = ListSelect.sortList(all_data);
         if (this.reverse) {
             all_data.reverse();
         }
-
         this.setState({temp_list: all_data});
-        all_data[0] ? this.props.handleSelect(all_data[0]) : this.props.handleSelect(null);
-        this.options.current.value =0;
+
+        if (all_data[0]) {
+            this.props.handleSelect(all_data[0]);
+            this.setState({
+                selected_option: 0
+            })
+        } else {
+            this.props.handleSelect(null);
+        }
 
     }
 
 
-    handleSelect(event) {
-        this.props.handleSelect(this.state.temp_list[event.target.value]);
+    handleSelect(index) {
+        this.setState({
+            selected_option: index
+        });
+        this.props.handleSelect(this.state.temp_list[index]);
     }
 
     /**
-     * Render the list with an on click to send the id to the parent,
+     * Render the list witall_datah an on click to send the id to the parent,
      * and the filter event.
      * @return {*}
      */
     render() {
-
         if (!this.state.temp_list) return <div style={{display: 'inline-block'}}>N/A</div>;
         let select =
-            <select ref={this.options} onChange={(event) => this.handleSelect(event)}>
+            <select value={this.state.selected_option} ref={this.options}
+                    onChange={(event) => this.handleSelect(event.target.value)}>
                 {
                     this.state.temp_list.map((item, index) => <option value={index}
                                                                       key={item.id}> {item.str}</option>)
                 }
             </select>;
 
-        let filter = <input className={"input"} type="text" placeholder={lang.filter}
+        let filter = <input type="text" placeholder={lang.filter}
                             onChange={this.filterList}/>;
         if (this.props.filter === undefined || this.props.filter === true) {
             return (
-                <div style={{display: "inline-block"}}>
+                <div className={'ListSelect'}>
                     {filter}
                     {select}
                 </div>
             )
         } else {
             return (
-                <div style={{display: "inline-block"}}>
+                <div className={'ListSelect'}>
                     {select}
                 </div>
             )

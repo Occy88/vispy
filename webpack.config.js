@@ -1,6 +1,6 @@
 module.exports = {
     mode: 'development',
-    entry: './visualizer/static/visualizer/components/Root/Root.jsx',
+    entry: './visualizer/static/visualizer/components/App/App.jsx',
     output: {
         publicPath: 'https://127.0.0.1:8080/'
     },
@@ -15,7 +15,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(mp3|png|jpe?g|gif)$/,
+                test: /\.(mp3|png|jpeg|gif|mp4)$/,
                 loader: 'file-loader'
             },
             {
@@ -29,7 +29,7 @@ module.exports = {
                 },
             },
             {
-                test: /.jsx?$/,
+                test: /.jsx$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {

@@ -1,6 +1,7 @@
 import React from 'react';
-import './MultiSelect.css'
+import './style.scss'
 import languages from "./lang.js"
+import Dropdown from "../Dropdown/Dropdown.jsx";
 
 let lang = languages[document.documentElement.lang];
 
@@ -85,7 +86,6 @@ export default class MultiSelect extends React.Component {
     }
 
     handleClick(object) {
-        console.log("Handelling click");
         let list_sel = this.state.list_selected;
         let list_n = this.state.list_not_selected;
         if (MultiSelect.testObjectInArray(object, list_sel)) {
@@ -103,30 +103,29 @@ export default class MultiSelect extends React.Component {
             list_not_selected: list_n
         });
         list_sel[0] ? this.props.handleSelect(list_sel) : this.props.handleSelect(null);
-        console.log("click handled")
     }
+
 
     /**
      * Function to sort alphabetically an array of objects by some specific key.
      *
      * @param {String} property Key of the object to sort.
      */
-
-
     static dynamicSort(property) {
         var sortOrder = 1;
-
         if (property[0] === "-") {
             sortOrder = -1;
             property = property.substr(1);
         }
 
         return function (a, b) {
-            if (sortOrder == -1) {
-                return b[property].localeCompare(a[property]);
-            } else {
-                return a[property].localeCompare(b[property]);
+            let c = +a[property];
+            let d = +b[property];
+            if (c && d) {
+                return sortOrder === -1 ? c < d ? 1 : -1 : d < c ? 1 : -1;
             }
+            return sortOrder === -1 ? b[property] > a[property] ? 1 : -1 : a[property] > b[property] ? 1 : -1;
+
         }
     }
 
@@ -170,16 +169,16 @@ export default class MultiSelect extends React.Component {
         let values = event.target.value.toLowerCase().split(",");
         let all_data = [];
         for (let val of values) {
-            all_data=all_data.concat(this.state.object_list.filter(function (item) {
+            all_data = all_data.concat(this.state.object_list.filter(function (item) {
                 return item.str.toLowerCase().search(val) !== -1;
             }));
         }
         let temp_d = {};
         let all_data_unique = [];
         for (let obj of all_data) {
-            if (! (obj.id in temp_d)) {
+            if (!(obj.id in temp_d)) {
                 all_data_unique.push(obj);
-                temp_d[obj.id]=obj.id;
+                temp_d[obj.id] = obj.id;
             }
         }
         all_data = all_data_unique;
@@ -234,19 +233,24 @@ export default class MultiSelect extends React.Component {
     render() {
         if (!this.state.temp_list) return <div style={{display: 'inline-block'}}>N/A</div>;
         return (
-            <div className={"list_select_container"}>
-                <button onClick={this.selectAll.bind(this)}>{lang.all}</button>
-                <button onClick={this.invertSelection.bind(this)}>{lang.invert}</button>
-                <input className={"list_select_input"} type="text" placeholder={lang.filter}
+            <div className={'MultiSelect'}>
+                <div className={'option_buttons'}>
+                    <button onClick={this.selectAll.bind(this)}>{lang.all}</button>
+                    <button onClick={this.invertSelection.bind(this)}>{lang.invert}</button>
+                </div>
+                <input type="text" placeholder={lang.filter}
                        onChange={this.filterList}/>
-                <div className={"list_select_select"}>
-                    {
+                <Dropdown
+                    hide_on_mouse_leave={false}
+                    hide_on_scroll={false}
+                    item_list={
                         this.state.temp_list.map(item => <option
+                            style={MultiSelect.testObjectInArray(item, this.state.list_selected) ? null : {backgroundColor: item.backgroundColor}}
                             className={MultiSelect.testObjectInArray(item, this.state.list_selected) ? "selected" : "not_selected"}
                             onClick={() => this.handleClick(item)}
                             key={item.id}> {item.str}</option>)
-                    }
-                </div>
+                    }/>
+
             </div>
         )
     }
