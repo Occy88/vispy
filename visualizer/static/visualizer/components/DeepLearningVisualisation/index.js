@@ -3,7 +3,7 @@ import  {XYPlot, VerticalBarSeries} from "react-vis";
 import {XAxis, YAxis, VerticalGridLines, HorizontalGridLines} from 'react-vis';
 import DeepLearningService
     from "../../../../../deep_learning_backend/static/deep_learning_backend/components/DeepLearningService/DeepLearningService.jsx";
-import './style.css'
+// import './style.css'
 
 export default class DeepLearningVisualisation extends React.Component {
     constructor(props) {

@@ -6,9 +6,9 @@ list of groups
 register users to groups
 (group creation is done in admin?)
 """
-from .models import Profile
+from .models import Profile, User
 from .serializers import ProfileSerializer, UserSerializer, GroupSerializer
-from .models import User, Profile
+# from .forms import SendEmailForm
 from django.contrib.auth.models import Group
 from rest_framework import generics, permissions
 from rest_framework.response import Response
@@ -20,6 +20,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import PermissionDenied
 from django.http import JsonResponse
 from django.views import View
+from django.views.generic.edit import FormView
+
 import json
 
 UNSUCCESSFUL_RESPONSE = {
@@ -61,7 +63,6 @@ class UserList(generics.ListCreateAPIView):
         Only returns the query set for said company
         :return:
         """
-        print("WE GOT THE FKING QUERY SET :D")
         object_perm_groups = get_objects_for_user(self.request.user, settings.USER_OBJECT_PERMISSION)
         groups = self.request.user.groups.all()
         users = User.objects.filter(
@@ -101,7 +102,6 @@ class GroupList(generics.ListCreateAPIView):
         :return:
         """
 
-        print("+++++++++++++++++++++++++++++++++")
         return self.request.user.groups.all()
 
         # return Company.objects.all()
@@ -134,9 +134,42 @@ class CurrentLanguage(View):
         if "language" in data and "code" in data:
             for choice in settings.LANGUAGES:
                 if data["code"] == choice[0]:
-                    print("CHANGING LANGUAGE")
-                    print(choice[0])
                     request.user.profile.language = choice[0]
                     request.user.profile.save()
                     return JsonResponse(SUCCESSFUL_RESPONSE)
         return JsonResponse(UNSUCCESSFUL_RESPONSE)
+
+
+class CurrentCompany(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        if "id" in data:
+            if request.user.has_perm(settings.COMPANY_OBJECT_PERMISSION,
+                                     locate(settings.COMPANY_INSTANCE).objects.get(pk=data['id'])):
+                request.user.profile.company_id = data['id']
+                request.user.profile.save()
+                print("SUCCESSFULLY CHANGED COMPANY")
+                return JsonResponse(SUCCESSFUL_RESPONSE)
+            else:
+                print("FAIL TO CHANGED COMPANY")
+
+                raise PermissionDenied({"message": "You are not authenticated with the company of this stock",
+                                        "company_pk": data['id']})
+
+        return JsonResponse(UNSUCCESSFUL_RESPONSE)
+
+
+# SendUserEmails view class
+# class SendUserEmails(IsStaff, FormView):
+#     template_name = 'accounts/templates/registration/send_email.html'
+#     form_class = SendEmailForm
+#     success_url = reverse_lazy('admin:users_user_changelist')
+#
+#     def form_valid(self, form):
+#         users = form.cleaned_data['users']
+#         subject = form.cleaned_data['subject']
+#         message = form.cleaned_data['message']
+#         email_users.delay(users, subject, message)
+#         user_message = '{0} users emailed successfully!'.format(form.cleaned_data['users'].count())
+#         messages.success(self.request, user_message)
+#         return super(SendUserEmails, self).form_valid(form)

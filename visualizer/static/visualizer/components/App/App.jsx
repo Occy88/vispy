@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Index from "../Index";
-
+import Routes from "../Routes";
+import Header from '../Header'
+import Footer from '../Footer'
 /**
  *
  * @param props
@@ -11,7 +12,10 @@ import Index from "../Index";
 class App extends React.Component {
     render() {
         return (
-                <Index/>
+            <div className="app">
+                <Routes/>
+
+            </div>
         );
     }
 }

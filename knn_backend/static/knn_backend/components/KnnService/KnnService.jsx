@@ -10,10 +10,17 @@ import csrftoken from '../../../../../static/js/csrf.js'
  * @constructor
  */
 
+
 /**
  *  Manages the product manager api.
  */
 const KNN_BACKEND_URL = '/knn_backend';
+
+const HEADERS = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'X-CSRFToken': csrftoken
+};
 
 export default class KnnService extends React.Component {
     /**
@@ -25,6 +32,8 @@ export default class KnnService extends React.Component {
     static getItems(filter_param_dict) {
         return fetch(`${KNN_BACKEND_URL}/items?${jQuery.param(filter_param_dict)}`, {
             method: 'GET',
+            headers: HEADERS,
+
         }).then(d => d.json())
     }
 
@@ -39,11 +48,7 @@ export default class KnnService extends React.Component {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-            },
+            headers: HEADERS,
             body: JSON.stringify(updated_field_dict)
         }).then(d => d.json())
     }
@@ -58,6 +63,8 @@ export default class KnnService extends React.Component {
     static getItemsRelations(filter_param_dict) {
         return fetch(`${KNN_BACKEND_URL}/items/with_relations?${jQuery.param(filter_param_dict)}`, {
             method: 'GET',
+            headers: HEADERS,
+
         }).then(d => d.json())
     }
 
@@ -74,14 +81,11 @@ export default class KnnService extends React.Component {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-            },
+            headers: HEADERS,
             body: JSON.stringify(stock)
         }).then(d => d.json())
     }
+
     /**
      * Registers one or more labels specified in a given list
      * for now the data should be in string format this can be changed later.
@@ -94,11 +98,7 @@ export default class KnnService extends React.Component {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-            },
+            headers: HEADERS,
             body: JSON.stringify(stock)
         }).then(d => d.json())
     }
@@ -112,6 +112,8 @@ export default class KnnService extends React.Component {
     static getLabels(filter_param_dict) {
         return fetch(`${KNN_BACKEND_URL}/labels?${jQuery.param(filter_param_dict)}`, {
             method: 'GET',
+            headers: HEADERS,
+
         }).then(d => d.json())
     }
 
@@ -126,11 +128,7 @@ export default class KnnService extends React.Component {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-            },
+            headers: HEADERS,
             body: JSON.stringify(updated_field_dict)
         }).then(d => d.json())
     }

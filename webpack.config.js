@@ -1,9 +1,18 @@
+var path = require("path");
+var webpack = require('webpack');
+var BundleTracker = require('webpack-bundle-tracker');
+
 module.exports = {
     mode: 'development',
-    entry: './visualizer/static/visualizer/components/App/App.jsx',
-    output: {
-        publicPath: 'https://127.0.0.1:8080/'
+    entry: {
+        main: './visualizer/static/visualizer/components/App/App.jsx',
     },
+    output: {
+        publicPath: ""
+    },
+    plugins: [
+        new BundleTracker({filename: './webpack-stats.json'}),
+    ],
     module: {
         rules: [
             {
@@ -15,7 +24,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(mp3|png|jpeg|gif|mp4)$/,
+                test: /\.(mp3|png|jpeg|gif|svg|mp4)$/,
                 loader: 'file-loader'
             },
             {
@@ -29,7 +38,7 @@ module.exports = {
                 },
             },
             {
-                test: /.jsx$/,
+                test: /.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {

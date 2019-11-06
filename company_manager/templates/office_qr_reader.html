@@ -1,0 +1,53 @@
+{# Objects expected: #}
+{#category_list -- see explanation in load_category_items in menu/js/menu.js#}
+<html lang="en">
+
+{% extends 'company_manager/templates/base.html' %}
+{% load staticfiles %}
+{#add a supplier, add a truck, generate the codes.#}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'company_manager/css/company_manager_qr_reader.css' %}" type="text/css"/>
+    <script src="{% static 'company_manager/js/external_libraries/qr_packed.js' %}">
+    </script>
+    <form onsubmit="return false">
+        {% csrf_token %}
+        <div id=main_container class="main_container">
+            <input id="qr_json" type=text size=16 placeholder="Tracking Code" class=qrcode-text><label
+                class=qrcode-text-btn>
+            <input
+                type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1></label>
+            <select id="select_mode" onchange="scan_mode_select('select_mode')">
+                <option value="auto">auto</option>
+                <option value="manual">manual</option>
+            </select>
+            <div id="date_container">
+                <input id="date_submitted" type="date">
+                <input id="time_submitted" type="time" value="00:00">
+                <div style="display: inline-block">
+                    <button onclick="decrement('time_submitted')">-</button>
+                    <button style="display: inline-block" onclick="increment('time_submitted')">+</button>
+                </div>
+
+            </div>
+
+            <div class="select">
+                <label for="videoSource">Video source: </label><select id="videoSource"></select>
+            </div>
+
+            <video id="video" muted autoplay></video>
+        </div>
+        <div>
+            <canvas style="display: none" id="canvas" width="1000px" height="1000px"></canvas>
+        </div>
+    </form>
+    <audio id="success_audio">
+        <source src="{% static 'company_manager/media/successful.mp3' %}" type="audio/mpeg">
+    </audio>
+    <script src="{% static 'company_manager/js/company_manager_qr_reader.js' %}"></script>
+    <script type="text/javascript">
+        scan_mode_select()
+    </script>
+
+{% endblock %}
+</html>

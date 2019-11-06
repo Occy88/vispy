@@ -1,19 +1,19 @@
 const languages = {
     'en-us': {
-        MainPage: "Register Delivery",
+        RegisterDelivery: "Register Delivery",
         scan:"scan",
         stock:"stock",
     },
     'fr': {
-MainPage: "Register Delivery",
+RegisterDelivery: "Register Delivery",
         scan:"scan",
         stock:"stock",    },
     'it': {
-MainPage: "Register Delivery",
+RegisterDelivery: "Register Delivery",
         scan:"scan",
         stock:"stock",    },
     'es': {
-MainPage: "Register Delivery",
+RegisterDelivery: "Register Delivery",
         scan:"scan",
         stock:"stock",    },
 

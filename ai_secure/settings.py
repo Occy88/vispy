@@ -39,7 +39,7 @@ else:
     HEROKU = False
 TEMPLATE_DEBUG = DEBUG
 if HEROKU:
-    BASE_URL = "https://machaon.herokuapp.com/"
+    BASE_URL = "https://ai_secure.herokuapp.com/"
 
     print("SETTING SSL SECURE REDIRECT")
     SESSION_COOKIE_SECURE = True
@@ -55,19 +55,28 @@ ALLOWED_HOSTS = ['*']
 ADMINS = (('octavio', 'octavio.delser@gmail.com'),)
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
-    'visualizer.apps.RegisterTruckDeliveryConfig',
+    'company_manager.apps.CompanyManagerConfig',
+    'visualizer.apps.VisualizerConfig',
     'knn_backend.apps.StockManagerConfig',
     'general_backend.apps.GeneralBackendConfig',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'rest_framework',
-    'guardian'
+    'guardian',
+    'webpack_loader',
+
 ]
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': '',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
 
 MIDDLEWARE = [
     'ai_secure.middleware.LoginRequiredMiddleware',
@@ -176,6 +185,17 @@ REST_FRAMEWORK = {
     #     'rest_framework.authentication.SessionAuthentication',
     # )
 }
+# CONSTANTS FOR DIFFERENT APPS
+COMPANY_OBJECT_PERMISSION = "company_manager.company_employee"
+COMPANY_IN_APP_PERMISSION = "company_employee"
+# models
+COMPANY_MODEL = "company_manager.Company"
+COMPANY_INSTANCE = "company_manager.models.Company"
+
+
+
+
+
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

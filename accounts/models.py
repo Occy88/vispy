@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
+from pydoc import locate
+from django.conf import settings
+
 
 # admin.site.register(Truck)
 # admin.site.register(Product)
@@ -13,3 +16,4 @@ class Profile(models.Model):
     language = models.CharField(max_length=10,
                                 choices=settings.LANGUAGES,
                                 default=settings.LANGUAGE_CODE)
+    company = models.ForeignKey(locate(settings.COMPANY_INSTANCE), default=0,on_delete=models.SET_NULL, null=True)

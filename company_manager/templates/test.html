@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+{# Objects expected: #}
+{#category_list -- see explanation in load_category_items in menu/js/menu.js#}
+<html lang="en">
+
+{% extends 'company_manager/templates/base.html' %}
+{% load bootstrap %}
+{% load staticfiles %}
+{#add a supplier, add a truck, generate the codes.#}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'company_manager/css/company_manager.css' %}" type="text/css"/>
+    {{ TruckForm|bootstrap }}
+{% endblock %}
+</html>

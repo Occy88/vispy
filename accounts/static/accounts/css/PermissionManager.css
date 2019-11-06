@@ -1,8 +1,0 @@
-.permission_management_container_element{
-    max-width: 200px;
-    max-height: 100px;
-    background-color: red;
-}
-.permission_management_container_element:hover{
-    background-color: #B1B4B6;
-}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+{# Objects expected: #}
+{#category_list -- see explanation in load_category_items in menu/js/menu.js#}
+<html lang="en">
+
+{% extends 'company_manager/templates/base.html' %}
+{% load staticfiles %}
+{#add a supplier, add a truck, generate the codes.#}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'company_manager/css/company_manager.css' %}" type="text/css"/>
+    <script src="{% static 'company_manager/js/class_files/Supplier.js' %}"></script>
+    <script src="{% static 'company_manager/js/class_files/StorageZone.js' %}"></script>
+    <script src="{% static 'company_manager/js/class_files/StorageZoneUnit.js' %}"></script>
+    <script src="{% static 'company_manager/js/class_files/SupplierSite.js' %}"></script>
+    <script src="{% static 'company_manager/js/class_files/StockManagementTable.js' %}"></script>
+    <script src="http://www.labelwriter.com/software/dls/sdk/js/DYMO.Label.Framework.2.0.2.js"></script>
+
+    <script src="{% static 'company_manager/js/company_manager.js' %}"></script>
+    <script src="{% static 'company_manager/js/company_manager_ajax.js' %}"></script>
+    <script src="{% static 'company_manager/js/company_manager_jquery.js' %}"></script>
+
+
+
+    <div class="main_container">
+        <div class="row">
+
+            <h5>Supplier: </h5>
+            <p style="font-size: 10px;"> supplier code | supplier name</p>
+            <input class="filter" id="supplier_filter"
+                   onchange="update_supplier_site_filter('supplier_site_filter','supplier_list')" style="width:50px;"
+                   placeholder="Filter" type="text">
+
+            <select onchange="update_supplier_site_filter('supplier_site_filter','supplier_list');" class="dropdown" name="supplier_list" id="supplier_list">
+            </select>
+            <form class="generic_form" onsubmit="return false">
+                {% csrf_token %}
+                <button style="margin-right: 100px" class="generic_delete_button"
+                        onclick="delete_supplier('supplier_list')">Delete
+                </button>
+            </form>
+            <form style="float: right" class="generic_form" onsubmit="return false">
+                {% csrf_token %}
+                <input class="text_input" id="new_supplier" name="Supplier Name" type="text"
+                       placeholder="<new supplier>" value="">
+                <button id="button_new_supplier" class="generic_submit_button"
+                        onclick="add_supplier('new_supplier')">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="row">
+
+            <h5>SupplierSite: </h5>
+            <p style="font-size: 10px;">supplier code | supplier_site code | supplier_site name</p>
+            <input class="filter" id="supplier_site_filter" style="width:50px;" placeholder="Filter"
+                   type="text">
+            <select class="dropdown" id="supplier_site_list">
+            </select>
+            <form class="generic_form" onsubmit="return false">
+                {% csrf_token %}
+                <button style="margin-right: 100px" class="generic_delete_button"
+                        onclick="delete_supplier_site('supplier_site_list')">Delete
+                </button>
+            </form>
+            <form style="float: right;" class="generic_form" onsubmit="return false">
+                {% csrf_token %}
+                <input class="filter" placeholder="Filter" id="supplier_filter_1" type="text">
+                <select id="supplier_list_1">
+                </select>
+                <input class="text_input" id="supplier_site_name" name="supplier_site Name" type="text" placeholder="<new supplier_site>"
+                       value="">
+                <button id="button_new_supplier_site" class="generic_submit_button"
+                        onclick="add_supplier_site('supplier_list_1','supplier_site_name')">Submit
+                </button>
+            </form>
+        </div>
+
+
+        <div class="row">
+            <h5>Truck Weight: </h5>
+            <p style="font-size: 10px;">0 => 30,000 kg</p>
+
+            <input class="text_input" id="product_weight" name="product_weight" type="number"
+                   placeholder="<weight kg>" value="">
+        </div>
+        <div class="row">
+            <h5>Number of Balls</h5>
+            <p style="font-size: 10px;">0 => 100</p>
+
+            <input onchange="update_capacity_to_fill('product_quantity')" class="text_input" id="product_quantity"
+                   name="product_quantity" type="number"
+                   placeholder="<Balls>"
+                   value="">
+        </div>
+        <div class="row">
+            <h5>Quality</h5>
+            <select class="dropdown" id="product_quality" name="product_quality" type="number"
+                    placeholder="<enter quality>"
+                    value="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="row">
+            <h5>Choose storage location:</h5>
+            <p style="display: inline-block;">Capacity left to fill:</p>
+            <input id="capacity_to_fill" type="text" style="width:50px;display: inline-block;" readonly>
+            <select style="display: inline-block;" class="dropdown" id="cell_click_event_action" name="product_quality"
+                    type="number"
+                    placeholder="<Select event on cell click>"
+                    value="">
+                <option value="add">Add</option>
+                <option value="delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="storage_container" id="stock_table">
+
+
+        </div>
+
+
+        <div class="row">
+            <form onsubmit="return false">
+                {% csrf_token %}
+                <button style="margin-top:20px" class="generic_submit_button"
+                        onclick="add_truck('supplier_site_list','supplier_list','product_quality','product_quantity','product_weight')">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+
+    </div>
+    <script type="text/javascript">
+        load_data({{ supplier_list|safe }}, {{ supplier_site_list|safe }}, {{ zone_list|safe }}, {{unit_list|safe  }});
+        trigger_keys();
+        update_supplier_site_filter('supplier_site_filter','supplier_list');
+
+
+    </script>
+{% endblock %}
+</html>

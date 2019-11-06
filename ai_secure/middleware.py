@@ -15,6 +15,22 @@ if hasattr(settings, 'STAFF_URLS'):
     STAFF_URLS += [re.compile(url) for url in settings.STAFF_URLS]
 
 
+# # ---PREVENT USER FROM ACCESSING UNWANTED PAGES IF NOT LOGGED IN
+# class LoginRequiredMiddleware:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+#
+#     def __call__(self, request):
+#         response = self.get_response(request)
+#         return response
+#
+#     def process_view(self, request, view_func, view_args, view_kwargs):
+#         assert hasattr(request, 'user')
+#
+#
+
+
+
 # ---PREVENT USER FROM ACCESSING UNWANTED PAGES IF NOT LOGGED IN
 class LoginRequiredMiddleware:
     def __init__(self, get_response):
@@ -26,27 +42,19 @@ class LoginRequiredMiddleware:
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         assert hasattr(request, 'user')
+        path = request.path_info.lstrip('/')
+        # if not request.user.is_authenticated:
+        #     if not any(url.match(path) for url in EXEMPT_URLS):
+        #         return redirect(settings.LOGIN_URL)
 
-# class FactoryGroupMiddleware:
-#     def __init__(self, get_response):
-#         self.get_response = get_response
-#
-#     def __call__(self, request):
-#         response = self.get_response(request)
-#         return response
-#
-#     def process_view(self, request, view_func, view_args, view_kwargs):
-#         # Assume the second argument if the first is company_manager, represents the factory
-#         # then test if the user is in the group associated with the factory
-#         assert hasattr(request, 'user')
-#         path = request.path_info
-#         arr = path.split("/")
-#         if arr[0] == "company_manager" and arr[1] is not None:
-#             # >> > OBJECT_TO_CHECK.has_perm('PERMISSION', OBJECT_ASSOCIATED_WITH_PERMISSION)
-#             try:
-#                 request.user.has_perm("factory_permission",Factory.objects.get(id=arr[1]))
-#             except Exception as e:
-#                 raise Http404(
-#                     "you are not registered for this factory please talk to an administrator provide: factory_id: " +
-#                     arr[1] + " User id: " + request.user.id + " Error Message: " + e.__str__())
-#
+
+        url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
+        url_is_for_staff_only = any(url.match(path) for url in STAFF_URLS)
+
+        if path == reverse('accounts:logout').lstrip('/'):
+            logout(request)
+        # if not request.user.is_staff and url_is_for_staff_only:
+        #     return views.company_manager_redirect(request)
+
+        if not request.user.is_authenticated and not url_is_exempt:
+            return views.login_redirect(request)

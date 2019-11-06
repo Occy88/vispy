@@ -1,4 +1,3 @@
-import '../../css/RegisterDelivery.css'
 import React from "react";
 // import ForceDirectedGraph from "../../../../knn_backend/static/knn_backend/js/KnnGraph.jsx";
 import vis from 'vis'

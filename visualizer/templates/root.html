@@ -5,17 +5,28 @@
 
 {#{% extends 'templates/base.html' %}#}
 {% load static %}
+{% load render_bundle from webpack_loader %}
 {#add a supplier, add a truck, generate the codes.#}
-<html lang="en-us">
+<html lang={{ language|safe }}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>RegisterTest</title>
+    <title>Main</title>
 </head>
 <body>
 <script>
-  {#    DECLARE THE STATIC URL TO BE USED WITHIN THE APPLICATION WHEN LOADING SERVER SAVED PERMANENT MEDIA (Not much for this project so it's enough#}
+    {#    DECLARE THE STATIC URL TO BE USED WITHIN THE APPLICATION WHEN LOADING SERVER SAVED PERMANENT MEDIA (Not much for this project so it's enough#}
     let STATIC_URL = "{% get_static_prefix %}";
+    let languages = {{ choices|safe }};
+    let serve_scan_page_only = {{ serve_scan_page_only|safe }};
+    let DEFAULT_COMPANY = {{ company|safe }};
+    if (DEFAULT_COMPANY !== null) {
+        DEFAULT_COMPANY['str'] = DEFAULT_COMPANY.fields.name;
+        DEFAULT_COMPANY.logo = DEFAULT_COMPANY.fields.logo;
+        DEFAULT_COMPANY.name = DEFAULT_COMPANY.fields.name;
+        DEFAULT_COMPANY['sort'] = DEFAULT_COMPANY.fields.name;
+    }
+    console.log(DEFAULT_COMPANY)
 </script>
 <div id="app">
 
