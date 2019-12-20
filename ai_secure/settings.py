@@ -169,7 +169,7 @@ STAFF_URLS = {
     r'^accounts/manager/[\s\S]*',
 }
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/ai_secure/'
+LOGIN_REDIRECT_URL = '/visualizer/'
 LOGIN_EXEMPT_URLS = {
 }
 
