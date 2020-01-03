@@ -6,6 +6,7 @@ import NetworkController from "../NetworkController";
 import DeepLearningVisualisation from "../DeepLearningVisualisation";
 import Header from "../Header";
 import Footer from "../Footer";
+import Dashboard from '../Dashboard';
 
 let lang = languages[document.documentElement.lang];
 
@@ -29,6 +30,9 @@ export default class Routes extends React.Component {
                     <Route path={app_url_prefix + "/deep-learning"} render={(routeProps) => (
                         <DeepLearningVisualisation {...routeProps} />
                     )}/>
+                    <Route path={app_url_prefix + "/dashboard"} render={(routeProps) => (
+                        <Dashboard {...routeProps} />
+                    )} />
                     <Route path="*" render={() => {
                         return (
                             <h2 style={{"textAlign": "center", "padding": "30px"}}>Page Not Found</h2>

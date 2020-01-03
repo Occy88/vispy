@@ -31,6 +31,7 @@ class Header extends React.Component {
             links: [
                 {'url': '/knn', id: 1, 'text': 'knn'},
                 {'url': '/deep-learning', id: 2, 'text': 'deep_learning'},
+                {'url': '/dashboard', id: 3, 'text': 'dashboard'},
             ]
         };
         console.log(this.state.company);
