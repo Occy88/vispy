@@ -25,7 +25,7 @@ urlpatterns = [
     path('visualizer/', include('visualizer.urls')),
     path('knn_backend/', include('knn_backend.urls')),
     path('general_backend/', include('general_backend.urls')),
-    path('', include('visualizer.urls')),
+    # path('', include('visualizer.urls')),
 
 ]
 handler404 = 'ai_secure.views.view_404'
