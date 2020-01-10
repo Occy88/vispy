@@ -5,6 +5,9 @@ from accounts.models import Profile
 import json
 from pydoc import locate
 from django.core import serializers
+from rest_framework import generics
+from .serializers import ToolSerializer
+from .models import Tool
 
 
 # Create your views here.
@@ -33,3 +36,36 @@ class ServeApp(View):
                           "language": json.dumps(request.user.profile.language),
                           "choices": json.dumps(settings.LANGUAGES),
                           "company": json.dumps(company_obj)})
+
+
+class ToolList(generics.ListCreateAPIView):
+    """
+    This returns the serialized list of companies to which the user
+    has permission, i.e. user checked against each company
+
+    """
+    serializer_class = ToolSerializer
+    queryset = Tool.objects.all()
+    # permission_classes = (permissions.DjangoModelPermissions,)
+
+    # def get_queryset(self):
+    #     """
+    #     Only returns the query set for said company
+    #     :return:
+    #     """
+    #     # can order and stuff here.
+    #     # also can have permissions.
+    #     return Tool.objects.all()
+
+
+class ToolDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    This returns the list of shipments for a shipment site of a given supplier
+    for a given company
+    """
+    queryset = Tool.objects.all()
+    serializer_class = ToolSerializer
+    # permission_classes = (CompanyPermissions, permissions.DjangoModelPermissions,)
+    # parser_class = (FileUploadParser,)
+
+
