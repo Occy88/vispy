@@ -2,6 +2,7 @@ import React from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import { Paper } from "@material-ui/core";
 import ExampleWidget from '../ExampleWidget';
+import DecisionOverviewWidget from '../DecisionOverviewWidget';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 /**
@@ -9,7 +10,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
  * The widget must exist in this list to be accessed by the DashboardToolbar
  */
 
-const AllWidgets = [ExampleWidget];
+const AllWidgets = [ExampleWidget, DecisionOverviewWidget];
 
 /**
  * Component that handles the grid system of widgets

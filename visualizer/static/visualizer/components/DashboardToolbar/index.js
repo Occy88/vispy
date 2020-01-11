@@ -32,11 +32,25 @@ const DashboardToolbar = ({ handleCreateWidget }) => {
     );
   };
 
+    const ToolbarButton_Decision = () => {
+    return (
+      <Button
+        style={{ margin: "2%" }}
+        variant="contained"
+        color="primary"
+        onClick={() => handleCreateWidget(1)}
+      >
+        Decision
+      </Button>
+    );
+  };
+
   // Render the toolbar with the buttons
   return (
     <Paper elevation={3} style={style_toolbar}>
       {/* Add toolbar buttons here */}
       <ToolbarButton_Example />
+      <ToolbarButton_Decision />
     </Paper>
   );
 };

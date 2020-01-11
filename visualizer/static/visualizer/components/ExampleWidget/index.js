@@ -1,5 +1,6 @@
 import React from "react";
 import BaseWidget from "../../../../../static/components/BaseWidget";
+import ListSelect from "../../../../../static/components/ListSelect";
 
 /**
  * An Example of a simple widget to be used in the grid.

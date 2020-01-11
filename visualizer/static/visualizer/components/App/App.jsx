@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from "../Routes";
-import Header from '../Header'
-import Footer from '../Footer'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 /**
  *
  * @param props
@@ -14,7 +14,6 @@ class App extends React.Component {
         return (
             <div className="app">
                 <Routes/>
-
             </div>
         );
     }
