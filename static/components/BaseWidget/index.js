@@ -14,7 +14,7 @@ const BaseWidget = ({ handleRemove, i, header, children }) => {
     position: "absolute",
     right: "3%",
     top: 0,
-    curesor: "pointer"
+    cursor: "pointer"
   };
 
   const style_interior = {
@@ -40,8 +40,7 @@ const BaseWidget = ({ handleRemove, i, header, children }) => {
           style={style_removeButton}
           onClick={() => {
             handleRemove(i);
-          }}
-        >
+          }}>
           x
         </span>
       </div>
