@@ -30,7 +30,7 @@ class BaseWidget extends React.Component {
                     }}>
                     x
                 </Button>
-                <div>{this.props.children}</div>
+                {this.props.children}
             </div>
         );
     };

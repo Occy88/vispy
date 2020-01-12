@@ -1,6 +1,8 @@
 import React from "react";
 import BaseWidget from "../../../../../static/components/BaseWidget";
-import ResponsiveHeatmap from "@nivo/heatmap";
+import ResponsiveHeatMap from "nivo/lib/components/charts/heatmap/ResponsiveHeatMap";
+import WidgetHeader from "../WidgetHeader";
+import WidgetBody from "../WidgetBody";
 
 /**
  * An Example of a simple widget to be used in the grid.
@@ -17,24 +19,28 @@ const RelevanceVisWidget = (handleRemove, i) => {
 
   // these would be fetched.
   const data = [
-      {row:0, 0: 0.2, 1: 0.1, 2: 0.4, 3: 0.1},
-      {row:1, 0: 0.2, 1: 0.1, 2: 0.4, 3: 0.1},
-      {row:2, 0: 0.2, 1: 0.1, 2: 0.4, 3: 0.1},
-      {row:3, 0: 0.2, 1: 0.1, 2: 0.4, 3: 0.1}
+      {row:0, '0': 0.3, '1': 0.1, '2': 0.4, '3': 0.1},
+      {row:1, '0': 0.7, '1': 0.1, '2': 0.6, '3': 0.1},
+      {row:2, '0': 0.2, '1': 0.01, '2': 0.4, '3': 0.1},
+      {row:3, '0': 0.9, '1': 0.1, '2': 0.4, '3': 0.1}
   ];
 
   // Create the content using the BaseWidget component.
   const content = (
-    <BaseWidget handleRemove={handleRemove} i={i} header="Pending Decisions">
+    <BaseWidget handleRemove={handleRemove} i={i}>
       {/* The children contained within the component will be displayed within */}
-        <ResponsiveHeatmap
+      <WidgetHeader>
+          Something
+      </WidgetHeader>
+      <WidgetBody>
+        <ResponsiveHeatMap
             data={data}
-            keys={}
+            keys={['0', '1', '2', '3']}
             indexBy="row"
             forceSquare={true}
             colors="RdBu"
         />
-
+      </WidgetBody>
     </BaseWidget>
   );
 
@@ -50,6 +56,7 @@ const RelevanceVisWidget = (handleRemove, i) => {
     }
   */
   return {
+    text: "Relevance",
     content: content,
     w: defaultDimen.w,
     h: defaultDimen.h

@@ -6,6 +6,8 @@ import TableHeader from "../../../../../static/components/TableHeader";
 import TableBody from "../../../../../static/components/TableBody";
 import TableRow from "../../../../../static/components/TableRow";
 import TableCell from "../../../../../static/components/TableCell";
+import WidgetHeader from "../WidgetHeader";
+import WidgetBody from "../WidgetBody";
 
 /**
  * An Example of a simple widget to be used in the grid.
@@ -32,24 +34,29 @@ const DecisionOverviewWidget = (handleRemove, i) => {
     const content = (
         <BaseWidget handleRemove={handleRemove} i={i} header="Decisions to Review">
             {/* The children contained within the component will be displayed within */}
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Decision</TableCell>
-                        <TableCell>Wait</TableCell>
-                        <TableCell>System</TableCell>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {decisions.map((decision) => <TableRow key={decision.id}>
-                        <TableCell>{decision.id}</TableCell>
-                        <TableCell>{decision.decision}</TableCell>
-                        <TableCell>{decision.wait}</TableCell>
-                        <TableCell>{decision.system}</TableCell>
-                    </TableRow>)}
-                </TableBody>
-            </Table>
+            <WidgetHeader>
+                Something
+            </WidgetHeader>
+            <WidgetBody>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Decision</TableCell>
+                            <TableCell>Wait</TableCell>
+                            <TableCell>System</TableCell>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {decisions.map((decision) => <TableRow key={decision.id}>
+                            <TableCell>{decision.id}</TableCell>
+                            <TableCell>{decision.decision}</TableCell>
+                            <TableCell>{decision.wait}</TableCell>
+                            <TableCell>{decision.system}</TableCell>
+                        </TableRow>)}
+                    </TableBody>
+                </Table>
+            </WidgetBody>
         </BaseWidget>
     );
 
