@@ -2,6 +2,7 @@ import React from "react";
 import {WidthProvider, Responsive} from "react-grid-layout";
 // import { Paper } from "react-bootstrap";
 import {Paper} from "@material-ui/core";
+import './style.scss'
 import ExampleWidget from '../ExampleWidget';
 import DecisionOverviewWidget from '../DecisionOverviewWidget';
 
@@ -26,65 +27,24 @@ class DashboardGrid extends React.Component {
 
     // Generate all the widgets as children of a ReponsiveGridLayout
     render() {
-        const AllWidgets = [ExampleWidget];
         console.log("here");
         return (
-            <ResponsiveGridLayout>
-                {this.props.items.map(item => {
-                    console.log(item);
-                    let widget = AllWidgets[item.type](this.props.handleRemove,item.i);
-                    let grid_data = {
-                        i: item.i,
-                        x: item.x,
-                        y: item.y,
-                        w: widget.w,
-                        h: widget.h
-                    };
-                    return <Paper
-                        itemevation={3}
-                        key={item.i}
-                        data-grid={grid_data}>
-                        {widget.content}
-                    </Paper>
+            <div className={'DashboardGrid'}>
+                <ResponsiveGridLayout>
+                    {this.props.items.map(item => {
+                        return <Paper
+                            itemevation={3}
+                            key={item.i}
+                            data-grid={item.grid_data}>
+                            {item.content}
+                        </Paper>
 
-                })}
-            </ResponsiveGridLayout>
-
+                    })}
+                </ResponsiveGridLayout>
+            </div>
         );
     }
 }
 
-// /**
-//  * Generator function that handles the creation of a widget based on its descriptor
-//  *
-//  * @param {{i: string, x: number, y: number, type: number}} item descriptor of a widget
-//  * @param {function} handleRemove callback to remove a widget
-//  */
-// class WidgetGenerator extends React.Component {
-//     // Get the widget from the WidgetList, and pass required parameters
-//     constructor(props) {
-//         super(props)
-//     }
-//
-//     // Create the grid data with relevant information
-//     grid_data = {
-//         i: item.i,
-//         x: item.x,
-//         y: item.y,
-//         w: widget.w,
-//         h: widget.h
-//     };
-//
-//     // Generate the widget as a child of a Paper component (improves appearance)
-//     render() {
-//         return (
-//             <Paper itemevation={3} key={item.i} data-grid={grid_data}>
-//                 {widget.content}
-//             </Paper>
-//         );
-//     }
-//
-//
-// }
 
 export default DashboardGrid;

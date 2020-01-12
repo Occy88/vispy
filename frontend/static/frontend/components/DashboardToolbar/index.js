@@ -11,12 +11,6 @@ class DashboardToolbar extends React.Component {
     // Toolbar style
     constructor(props) {
         super(props);
-        this.state = {
-            buttons: [
-                {id: 0, text: 'Example',widget:'the import'},
-                {id: 1, text: 'Decision'}
-            ]
-        }
 
     }
 
@@ -25,12 +19,14 @@ class DashboardToolbar extends React.Component {
      *  IMPORTANT: the index of the widget in the WidgetList is passed
      *    as the argument to handleCreateWidget.
      **/
-        console.log(this.state.buttons);
+        // console.log(this.state.buttons);
         return (
             <div className='DashboardToolbar'>
                 {
-                    this.state.buttons.map(d => {
-                        return <Button text={d.text} onClick={()=>this.props.handleCreateWidget(d.id)}/>
+                    this.props.widgets.map((d,index) => {
+                        console.log(d);
+                        let d_=d(null,null);
+                        return <Button text={d_.text} onClick={()=>this.props.handleCreateWidget(index)}/>
                     })
                 }
             </div>

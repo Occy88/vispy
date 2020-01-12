@@ -36,6 +36,7 @@ const ExampleWidget = (handleRemove, i) => {
     }
   */
   return {
+    text:'Example Button',
     content: content,
     w: defaultDimen.w,
     h: defaultDimen.h
