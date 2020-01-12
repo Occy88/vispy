@@ -26,13 +26,13 @@ class DashboardGrid extends React.Component {
 
     // Generate all the widgets as children of a ReponsiveGridLayout
     render() {
-        const AllWidgets = [ExampleWidget(this.props.handleRemove,this.props.i)];
+        const AllWidgets = [ExampleWidget];
         console.log("here");
         return (
             <ResponsiveGridLayout>
                 {this.props.items.map(item => {
-                    let widget = AllWidgets[item.type];
-                    console.log(widget);
+                    console.log(item);
+                    let widget = AllWidgets[item.type](this.props.handleRemove,item.i);
                     let grid_data = {
                         i: item.i,
                         x: item.x,
