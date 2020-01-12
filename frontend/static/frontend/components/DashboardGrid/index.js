@@ -17,7 +17,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
  * Component that handles the grid system of widgets
  *
  * @param {[{i: string, x: number, y: number, type: number}]} items descriptors of all the widgets
- * @param {function} onRemoveItem callback to remove a widget
+ * @param {function} handleRemove callback to remove a widget
  */
 class DashboardGrid extends React.Component {
     constructor(props) {
@@ -26,12 +26,13 @@ class DashboardGrid extends React.Component {
 
     // Generate all the widgets as children of a ReponsiveGridLayout
     render() {
-        const AllWidgets = [ExampleWidget];
-        console.log("here")
+        const AllWidgets = [ExampleWidget(this.props.handleRemove,this.props.i)];
+        console.log("here");
         return (
             <ResponsiveGridLayout>
                 {this.props.items.map(item => {
-                    let widget = AllWidgets[item.type](handleRemove, item.i)
+                    let widget = AllWidgets[item.type];
+                    console.log(widget);
                     let grid_data = {
                         i: item.i,
                         x: item.x,

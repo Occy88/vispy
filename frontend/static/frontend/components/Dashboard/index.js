@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
      * Function to remove a widget from the list of items
      * @param {string} i the unique id of the widget.
      */
-    onRemoveItem(i) {
+    handleRemove(i) {
         this.setState({
             items: _.reject(this.state.items, {i: i})
         })
@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
             <div className='Dashboard'>
                 <DashboardToolbar handleCreateWidget={this.createWidget.bind(this)}/>
                 <div className='gridContainer'>
-                    <DashboardGrid items={this.state.items} onRemoveItem={this.onRemoveItem.bind(this)}/>
+                    <DashboardGrid items={this.state.items} handleRemove={this.handleRemove.bind(this)}/>
                 </div>
             </div>
         );
