@@ -20,7 +20,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
  * @param {[{i: string, x: number, y: number, type: number}]} items descriptors of all the widgets
  * @param {function} handleRemove callback to remove a widget
  */
-class DashboardGrid extends React.Component {
+export default class DashboardGrid extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -45,6 +45,3 @@ class DashboardGrid extends React.Component {
         );
     }
 }
-
-
-export default DashboardGrid;

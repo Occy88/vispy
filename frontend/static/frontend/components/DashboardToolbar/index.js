@@ -7,19 +7,14 @@ import Button from "../../../../../static/components/Button";
  * Button toolbar that handles user adding a widget to the grid
  * @param {function} handleCreateWidget callback used to determine when and which widget to create
  */
-class DashboardToolbar extends React.Component {
+export default class DashboardToolbar extends React.Component {
     // Toolbar style
     constructor(props) {
         super(props);
 
     }
 
-
-    render() {/** Example button to add the ExampleWidget
-     *  IMPORTANT: the index of the widget in the WidgetList is passed
-     *    as the argument to handleCreateWidget.
-     **/
-        // console.log(this.state.buttons);
+    render() {
         return (
             <div className='DashboardToolbar'>
                 {
@@ -32,9 +27,4 @@ class DashboardToolbar extends React.Component {
             </div>
         );
     }
-
-    // Render the toolbar with the buttons
-
 }
-
-export default DashboardToolbar;

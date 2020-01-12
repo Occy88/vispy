@@ -7,14 +7,13 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import ExampleWidget from "../ExampleWidget";
 import DecisionOverviewWidget from "../DecisionOverviewWidget";
-import {Paper} from "@material-ui/core";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
  * Maintains the createdWidgets to be displayed on the grid.
  */
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
     // State
     // Current createdWidgets on the grid
     constructor(props) {
@@ -24,7 +23,7 @@ class Dashboard extends React.Component {
             counter: 0
         };
         console.log('constructor Dashboard');
-        this.widgets = [ExampleWidget,DecisionOverviewWidget];
+        this.widgets = [ExampleWidget, DecisionOverviewWidget];
         this.handleRemove=this.handleRemove.bind(this)
     }
 
@@ -61,20 +60,12 @@ class Dashboard extends React.Component {
      * @param {string} i the unique id of the widget.
      */
     handleRemove(i) {
-        console.log(i)
-        console.log('removing')
-        console.log(this.state.createdWidgets);
         this.setState({
             createdWidgets: _.reject(this.state.createdWidgets, {i: i})
         })
     };
 
     render() {
-
-        // Render the Navigation bar, grid and toolbar.
-        console.log("something working?");
-        console.log(this.state.createdWidgets);
-
         return (
             <div className='Dashboard'>
                 <DashboardToolbar widgets={this.widgets} handleCreateWidget={this.handleCreate.bind(this)}/>
@@ -85,7 +76,3 @@ class Dashboard extends React.Component {
     }
 
 }
-
-export default Dashboard;
-// Styles
-
