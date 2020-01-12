@@ -13,7 +13,7 @@ class DashboardToolbar extends React.Component {
         super(props);
         this.state = {
             buttons: [
-                {id: 0, text: 'Example',widget:'the import'},
+                {id: 0, text: 'Example'},
                 {id: 1, text: 'Decision'}
             ]
         }

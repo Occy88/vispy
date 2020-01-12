@@ -30,7 +30,7 @@ const DecisionOverviewWidget = (handleRemove, i) => {
 
   // Create the content using the BaseWidget component.
   const content = (
-    <BaseWidget handleRemove={handleRemove} i={i} header="Decisions to Review">
+    <BaseWidget handleRemove={handleRemove} i={i} header="Pending Decisions">
       {/* The children contained within the component will be displayed within */}
       <Table>
           <TableHeader>
@@ -39,6 +39,7 @@ const DecisionOverviewWidget = (handleRemove, i) => {
                   <TableCell>Decision</TableCell>
                   <TableCell>Wait</TableCell>
                   <TableCell>System</TableCell>
+                  {/*<TableCell>Review</TableCell>*/}
               </TableRow>
           </TableHeader>
           <TableBody>
