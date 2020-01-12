@@ -14,7 +14,7 @@ import CompanyList from "../../../../../company_manager/static/company_manager/c
 
 let lang = languages[document.documentElement.lang];
 
-const app_url_prefix = "/visualizer";
+const app_url_prefix = "/";
 
 //THIS FILE REQUIRES A STATIC_URL to be defined in the base html file.
 if (STATIC_URL === undefined) {
@@ -29,9 +29,9 @@ class Header extends React.Component {
             company: DEFAULT_COMPANY,
 
             links: [
-                {'url': '/knn', id: 1, 'text': 'knn'},
-                {'url': '/deep-learning', id: 2, 'text': 'deep_learning'},
-                {'url': '/dashboard', id: 3, 'text': 'dashboard'},
+                {'url': 'knn', id: 1, 'text': 'knn'},
+                {'url': 'deep-learning', id: 2, 'text': 'deep_learning'},
+                {'url': 'dashboard', id: 3, 'text': 'dashboard'},
             ]
         };
         console.log(this.state.company);

@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
             items: [],
             counter: 0
         };
-
+        console.log('constructor Dashboard')
     }
 
 
@@ -52,14 +52,6 @@ class Dashboard extends React.Component {
     };
 
     render() {
-        const style_window = {
-            margin: "",
-            paddingTop: "30px",
-            height: "100vh",
-            backgroundColor: "#F0F5F6",
-            overflowX: "hidden"
-        };
-        console.log(this.state.items);
 
         // Render the Navigation bar, grid and toolbar.
         console.log("something working?");
@@ -73,7 +65,7 @@ class Dashboard extends React.Component {
         );
     }
 
-};
+}
 
 export default Dashboard;
 // Styles

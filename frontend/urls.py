@@ -6,7 +6,7 @@ from django.conf.urls import url
 
 
 # ----------URL'S AVAILABLE FOR ACTIVITIES RELATED TO USER MODEL SPECIFICALLY-------------
-app_name = 'visualizer'
+app_name = 'frontend'
 urlpatterns = [
     path('tools/', views.ToolList.as_view()),
     path('tools/<int:pk>', views.ToolDetail.as_view()),

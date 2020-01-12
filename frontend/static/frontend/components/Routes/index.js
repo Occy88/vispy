@@ -10,11 +10,12 @@ import Dashboard from '../Dashboard';
 
 let lang = languages[document.documentElement.lang];
 
-const app_url_prefix = '/visualizer';
+const app_url_prefix = '/';
 
 export default class Routes extends React.Component {
     constructor(props) {
         super(props);
+        console.log("hello")
 
     }
 
@@ -24,13 +25,13 @@ export default class Routes extends React.Component {
             <Router>
                 <Header/>
                 <Switch {...this.props}>
-                    <Route path={app_url_prefix + "/knn"} render={(routeProps) => (
+                    <Route path={app_url_prefix + "knn"} render={(routeProps) => (
                         <NetworkController {...routeProps} />
                     )}/>
-                    <Route path={app_url_prefix + "/deep-learning"} render={(routeProps) => (
+                    <Route path={app_url_prefix + "deep-learning"} render={(routeProps) => (
                         <DeepLearningVisualisation {...routeProps} />
                     )}/>
-                    <Route path={app_url_prefix + "/dashboard"} render={(routeProps) => (
+                    <Route path={app_url_prefix + "dashboard"} render={(routeProps) => (
                         <Dashboard {...routeProps} />
                     )} />
                     <Route path="*" render={() => {

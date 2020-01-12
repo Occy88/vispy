@@ -13,33 +13,20 @@ import ListSelect from "../../../../../static/components/ListSelect";
  * @param {function} handleRemove callback used to remove this widget
  * @param {string} i unique identity of this widget.
  */
-const ExampleWidget = (handleRemove, i) => {
-  // Create the content using the BaseWidget component.
-  const content = (
-    <BaseWidget handleRemove={handleRemove} i={i} header="Example 1">
-      {/* The children contained within the component will be displayed within */}
-      <div>
-        <p>This is an example of some content for a widget</p>
-      </div>
-    </BaseWidget>
-  );
-
-  // The default dimensions in terms of the grid system
-  const defaultDimen = { w: 2, h: 2 };
-
-  /*
-    Any widget MUST have the following return object structure:
-    {
-      content: The content to be displayed within the widget,
-      w: the default width of this widget (in terms of the grid system),
-      h: the default height of this widget (in terms of the grid system)
+class ExampleWidget extends React.Component {
+    // Create the content using the BaseWidget component.
+    constructor(props) {
+        super(props)
     }
-  */
-  return {
-    content: content,
-    w: defaultDimen.w,
-    h: defaultDimen.h
-  };
-};
+    render() {
+        const params = {w: 2, h: 2};
+        return (
+            <BaseWidget params={params} handleRemove={this.props.handleRemove} i={this.props.i} header="Example 1">
+                <div>
+                    <p>This is an example of some content for a widget</p>
+                </div>
+            </BaseWidget>)
+    }
+}
 
 export default ExampleWidget;

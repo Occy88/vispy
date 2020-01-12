@@ -1,53 +1,44 @@
 import React from "react";
-import {Button} from 'react-bootstrap'
 import {Paper} from "@material-ui/core";
+import './style.scss'
+import Button from "../../../../../static/components/Button";
 
 /**
  * Button toolbar that handles user adding a widget to the grid
  * @param {function} handleCreateWidget callback used to determine when and which widget to create
  */
-const DashboardToolbar = ({ handleCreateWidget }) => {
-  // Toolbar style
-  const style_toolbar = {
-    width: "10vw",
-    height: "80%",
-    position: "fixed",
-    paddingTop: "2%",
-    textAlign: 'center',
-  };
+class DashboardToolbar extends React.Component {
+    // Toolbar style
+    constructor(props) {
+        super(props);
+        this.state = {
+            buttons: [
+                {id: 0, text: 'Example',widget:'the import'},
+                {id: 1, text: 'Decision'}
+            ]
+        }
 
-  /** Example button to add the ExampleWidget
-   *  IMPORTANT: the index of the widget in the WidgetList is passed
-   *    as the argument to handleCreateWidget.
-   **/
-  const ToolbarButton_Example = () => {
-    return (
-      <Button
-        onClick={() => handleCreateWidget(0)}
-      >
-        Example
-      </Button>
-    );
-  };
+    }
 
-    const ToolbarButton_Decision = () => {
-    return (
-      <Button
-        onClick={() => handleCreateWidget(1)}
-      >
-        Decision
-      </Button>
-    );
-  };
 
-  // Render the toolbar with the buttons
-  return (
-    <Paper elevation={3} style={style_toolbar}>
-      {/* Add toolbar buttons here */}
-      <ToolbarButton_Example />
-      <ToolbarButton_Decision />
-    </Paper>
-  );
-};
+    render() {/** Example button to add the ExampleWidget
+     *  IMPORTANT: the index of the widget in the WidgetList is passed
+     *    as the argument to handleCreateWidget.
+     **/
+        console.log(this.state.buttons);
+        return (
+            <div className='DashboardToolbar'>
+                {
+                    this.state.buttons.map(d => {
+                        return <Button text={d.text} onClick={()=>this.props.handleCreateWidget(d.id)}/>
+                    })
+                }
+            </div>
+        );
+    }
+
+    // Render the toolbar with the buttons
+
+}
 
 export default DashboardToolbar;
