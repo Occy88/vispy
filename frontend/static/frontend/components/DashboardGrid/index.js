@@ -1,7 +1,6 @@
 import React from "react";
 import {WidthProvider, Responsive} from "react-grid-layout";
-// import { Paper } from "react-bootstrap";
-import {Paper} from "@material-ui/core";
+// import {Paper} from "@material-ui/core";
 import './style.scss'
 import ExampleWidget from '../ExampleWidget';
 import DecisionOverviewWidget from '../DecisionOverviewWidget';
@@ -32,13 +31,12 @@ class DashboardGrid extends React.Component {
             <div className={'DashboardGrid'}>
                 <ResponsiveGridLayout>
                     {this.props.items.map(item => {
-                        return <Paper
+                        return <div className={'widget'}
                             itemevation={3}
                             key={item.i}
-                            data-grid={item.grid_data}>
+                            data-grid={item.gridData}>
                             {item.content}
-                        </Paper>
-
+                        </div>
                     })}
                 </ResponsiveGridLayout>
             </div>

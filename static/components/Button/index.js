@@ -31,7 +31,7 @@ class Button extends React.Component {
 
         return (
             <div onClick={this.props.onClick} className={'Button'} style={this.props.style}>
-                {this.props.text}
+                {this.props.text?this.props.text:this.props.children}
             </div>
         )
     }

@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../Button";
+import './style.scss'
 
 /**
  * The skeleton of any widget to be displayed on the grid.
@@ -17,38 +19,17 @@ class BaseWidget extends React.Component {
 
     render() {
 
-        const style_removeButton = {
-            position: "absolute",
-            right: "3%",
-            top: 0,
-            cursor: "pointer"
-        };
-
-        const style_interior = {
-            margin: "2% 5%",
-            fontFamily: "Montserrat"
-        };
-
-        const style_header = {
-            textAlign: "left",
-            fontSize: "0.8em",
-            fontWeight: "bold",
-            letterSpacing: "0.2em",
-            paddingBottom: "2%"
-        };
 
         // Create the interior of any given widget to be displayed.
         return (
-            <div style={style_interior}>
-                <div style={style_header}>{this.props.header}</div>
-                <span
+            <div className={'BaseWidget'}>
+                <Button
                     className="remove"
-                    style={style_removeButton}
                     onClick={() => {
                         this.props.handleRemove(this.props.i);
                     }}>
-          x
-        </span>
+                    x
+                </Button>
                 <div>{this.props.children}</div>
             </div>
         );

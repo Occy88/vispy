@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
 
     createWidget(type) {
         let widget = this.widgets[type](this.handleRemove, this.state.counter);
-        let grid_data = {
+        let gridData = {
             i: 'n'+this.state.counter,
             x: (this.state.createdWidgets.length * 2) % 12,
             y: Infinity,
@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
         };
         return {
             content: widget.content,
-            grid_data: grid_data,
+            gridData: gridData,
             i: this.state.counter
         }
     }

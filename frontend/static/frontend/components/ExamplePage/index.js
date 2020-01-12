@@ -25,7 +25,6 @@ export default class ExamplePage extends React.Component {
             <div>
                 Now serving the example page, Project is online and functional
             </div>
-
         )
     }
 }
