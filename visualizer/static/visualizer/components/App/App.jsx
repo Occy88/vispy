@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from "../Routes";
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import './style.scss'
 /**
  *
  * @param props
@@ -12,9 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 class App extends React.Component {
     render() {
         return (
-            <div className="app">
                 <Routes/>
-            </div>
         );
     }
 }

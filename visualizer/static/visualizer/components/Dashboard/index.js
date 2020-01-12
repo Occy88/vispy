@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 import _ from "lodash";
 import DashboardToolbar from "../DashboardToolbar";
 import DashboardGrid from "../DashboardGrid";
-
+import React from 'react'
 import "./style.scss";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -11,58 +10,71 @@ import "react-resizable/css/styles.css";
  * High level component that handles the connection between the toolbar and the grid.
  * Maintains the items to be displayed on the grid.
  */
-const Dashboard = () => {
-  // State
-  // Current items on the grid
-  const [items, setItems] = useState([]);
-  // Counter to generate unique IDs
-  const [counter, setCounter] = useState(0);
 
-  // Styles
-  const style_window = {
-    margin: "3% 2% 2% 2%",
-    paddingTop: "30px",
-    height: "100vh",
-    backgroundColor: "#F0F5F6",
-    overflowX: "hidden"
-  };
-  const style_gridContainer = { width: "85vw", marginLeft: "12vw" };
+class Dashboard extends React.Component {
+    // State
+    // Current items on the grid
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [],
+            counter: 0
+        };
 
-  /**
-   * Function to create a specific widget
-   * @param {number} type index of the widget in the WidgetList
-   */
-  const createWidget = type => {
-    setItems(
-      items.concat({
-        i: "n" + counter,
-        x: (items.length * 2) % 12,
-        y: Infinity,
-        type: type
-      })
-    );
-    setCounter(counter + 1);
-  };
+    }
 
-  /**
-   * Function to remove a widget from the list of items
-   * @param {string} i the unique id of the widget.
-   */
-  const onRemoveItem = i => {
-    setItems(_.reject(items, { i: i }));
-  };
 
-  // Render the Navigation bar, grid and toolbar.
-  return (
-    <div style={{width: '100%', backgroundColor: '#F0F5F6'}}>
-    <div style={style_window}>
-      <DashboardToolbar handleCreateWidget={createWidget} />
-      <div style={style_gridContainer}>
-        <DashboardGrid items={items} onRemoveItem={onRemoveItem} />
-      </div>
-    </div>
-    </div>
-  );
+    /**
+     * Function to create a specific widget
+     * @param {number} type index of the widget in the WidgetList
+     */
+    createWidget(type) {
+        this.setState({
+            counter: this.state.counter + 1,
+            items: this.state.items.concat({
+                i: "n" + this.state.counter,
+                x: (this.state.items.length * 2) % 12,
+                y: Infinity,
+                type: type
+            })
+        });
+
+    };
+
+    /**
+     * Function to remove a widget from the list of items
+     * @param {string} i the unique id of the widget.
+     */
+    onRemoveItem(i) {
+        this.setState({
+            items: _.reject(this.state.items, {i: i})
+        })
+    };
+
+    render() {
+        const style_window = {
+            margin: "",
+            paddingTop: "30px",
+            height: "100vh",
+            backgroundColor: "#F0F5F6",
+            overflowX: "hidden"
+        };
+        console.log(this.state.items);
+
+        // Render the Navigation bar, grid and toolbar.
+        console.log("something working?");
+        return (
+            <div className='Dashboard'>
+                <DashboardToolbar handleCreateWidget={this.createWidget.bind(this)}/>
+                <div className='gridContainer'>
+                    <DashboardGrid items={this.state.items} onRemoveItem={this.onRemoveItem.bind(this)}/>
+                </div>
+            </div>
+        );
+    }
+
 };
 
 export default Dashboard;
+// Styles
+

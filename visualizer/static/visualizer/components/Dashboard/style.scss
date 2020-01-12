@@ -1,1 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+.Dashboard {
+  width: 100%;
+  height: 100%;
+  top:50px;
+  background-color: #F0F5F6;
+
+  .gridContainer {
+    width: 85vw;
+    margin-left: 12vw
+  }
+}

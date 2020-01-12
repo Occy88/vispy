@@ -19,7 +19,7 @@ class ServeApp(View):
         except Exception as e:
             profile=Profile.objects.create(user=request.user)
         if (profile.company == None):
-            company_obj = locate(settings.COMPANY_INSTANCE).objects.get(id=1)
+            company_obj = locate(settings.COMPANY_INSTANCE).objects.get(name='Seclea')
             profile.company=company_obj
             profile.save()
         else:

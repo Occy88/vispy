@@ -1,6 +1,7 @@
 import React from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
-import { Paper } from "@material-ui/core";
+// import { Paper } from "react-bootstrap";
+import {Paper} from "@material-ui/core";
 import ExampleWidget from '../ExampleWidget';
 import DecisionOverviewWidget from '../DecisionOverviewWidget';
 const ResponsiveGridLayout = WidthProvider(Responsive);

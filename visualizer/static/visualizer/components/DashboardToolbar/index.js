@@ -1,5 +1,6 @@
 import React from "react";
-import { Paper, Button } from "@material-ui/core";
+import {Button} from 'react-bootstrap'
+import {Paper} from "@material-ui/core";
 
 /**
  * Button toolbar that handles user adding a widget to the grid
@@ -22,9 +23,6 @@ const DashboardToolbar = ({ handleCreateWidget }) => {
   const ToolbarButton_Example = () => {
     return (
       <Button
-        style={{ margin: "2%" }}
-        variant="contained"
-        color="primary"
         onClick={() => handleCreateWidget(0)}
       >
         Example
@@ -35,9 +33,6 @@ const DashboardToolbar = ({ handleCreateWidget }) => {
     const ToolbarButton_Decision = () => {
     return (
       <Button
-        style={{ margin: "2%" }}
-        variant="contained"
-        color="primary"
         onClick={() => handleCreateWidget(1)}
       >
         Decision

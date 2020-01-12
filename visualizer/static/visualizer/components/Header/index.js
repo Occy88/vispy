@@ -124,7 +124,7 @@ class Header extends React.Component {
 
 
         return (
-            <div className={'Header'}>
+            <div className='Header'>
                 <div className={'nav-bar'}>
                     {/*companylogo maximum widht needed is 100px*/}
                     {/*custom nav is the rest*/}
