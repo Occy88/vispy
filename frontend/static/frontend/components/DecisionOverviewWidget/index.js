@@ -20,56 +20,56 @@ import TableCell from "../../../../../static/components/TableCell";
  */
 const DecisionOverviewWidget = (handleRemove, i) => {
 
-  // these would be fetched.
-  const decisions = [
-      {id:12, decision: "Rejected", wait: 5, system: "KNN"},
-      {id:13, decision: "Limited Approval", wait: 3, system: "KNN"},
-      {id:14, decision: "Rejected", wait: 3, system: "KNN"},
-      {id:15, decision: "Rejected", wait: 2, system: "KNN"}
-  ];
+    // these would be fetched.
+    const decisions = [
+        {id: 12, decision: "Rejected", wait: 5, system: "KNN"},
+        {id: 13, decision: "Limited Approval", wait: 3, system: "KNN"},
+        {id: 14, decision: "Rejected", wait: 3, system: "KNN"},
+        {id: 15, decision: "Rejected", wait: 2, system: "KNN"}
+    ];
 
-  // Create the content using the BaseWidget component.
-  const content = (
-    <BaseWidget handleRemove={handleRemove} i={i} header="Pending Decisions">
-      {/* The children contained within the component will be displayed within */}
-      <Table>
-          <TableHeader>
-              <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Decision</TableCell>
-                  <TableCell>Wait</TableCell>
-                  <TableCell>System</TableCell>
-                  {/*<TableCell>Review</TableCell>*/}
-              </TableRow>
-          </TableHeader>
-          <TableBody>
-              {decisions.map( (decision) => <TableRow key={decision.id}>
-                  <TableCell>{decision.id}</TableCell>
-                  <TableCell>{decision.decision}</TableCell>
-                  <TableCell>{decision.wait}</TableCell>
-                  <TableCell>{decision.system}</TableCell>
-              </TableRow>)}
-          </TableBody>
-      </Table>
-    </BaseWidget>
-  );
+    // Create the content using the BaseWidget component.
+    const content = (
+        <BaseWidget handleRemove={handleRemove} i={i} header="Decisions to Review">
+            {/* The children contained within the component will be displayed within */}
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Decision</TableCell>
+                        <TableCell>Wait</TableCell>
+                        <TableCell>System</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {decisions.map((decision) => <TableRow key={decision.id}>
+                        <TableCell>{decision.id}</TableCell>
+                        <TableCell>{decision.decision}</TableCell>
+                        <TableCell>{decision.wait}</TableCell>
+                        <TableCell>{decision.system}</TableCell>
+                    </TableRow>)}
+                </TableBody>
+            </Table>
+        </BaseWidget>
+    );
 
-  // The default dimensions in terms of the grid system
-  const defaultDimen = { w: 6, h: 2 };
+    // The default dimensions in terms of the grid system
+    const defaultDimen = {w: 6, h: 2};
 
-  /*
-    Any widget MUST have the following return object structure:
-    {
-      content: The content to be displayed within the widget,
-      w: the default width of this widget (in terms of the grid system),
-      h: the default height of this widget (in terms of the grid system)
-    }
-  */
-  return {
-    content: content,
-    w: defaultDimen.w,
-    h: defaultDimen.h
-  };
+    /*
+      Any widget MUST have the following return object structure:
+      {
+        content: The content to be displayed within the widget,
+        w: the default width of this widget (in terms of the grid system),
+        h: the default height of this widget (in terms of the grid system)
+      }
+    */
+    return {
+        content: content,
+        w: defaultDimen.w,
+        h: defaultDimen.h,
+        text: 'Decsion overview'
+    };
 };
 
 export default DecisionOverviewWidget;

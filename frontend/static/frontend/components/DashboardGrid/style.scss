@@ -7,14 +7,8 @@
 //  }
 //}
 
-.DashboardToolbar {
+.DashboardGrid {
   height: 100%;
-  width: auto;
-  display: flex;
-  align-content: flex-start;
-  flex-direction: column;
-  background-color: white;
-   .Button{
-    display: block;
-  }
+  width: 100%;
+
 }
