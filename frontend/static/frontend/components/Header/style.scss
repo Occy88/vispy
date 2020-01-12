@@ -1,16 +1,17 @@
 .Header {
   height: 50px;
-
+  background-color:  #19394F;
   .nav-bar {
-    display: flex;
     position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
     top: 0;
     border: 0;
     margin: 0;
     padding: 0;
     width: 100%;
-    justify-content: space-between;
-    background-color: #19394F;
+    background-color:inherit;
     //-webkit-box-shadow: 0 8px 6px -6px #999;
     //-moz-box-shadow: 0 8px 6px -6px #999;
     //box-shadow: 0 8px 6px -6px #999;
@@ -42,28 +43,36 @@
   }
 
   .nav-links {
+    background-color: inherit;
     font-weight: bold;
-    font-size: 15px;
-    width: 100%;
+    font-size:          15px;
+    width: auto;
+    float:left;
     display: flex;
     justify-content: center;
+    min-width: 200px;
   }
 
   .nav-link {
+    background-color: inherit;
     width: 200px;
     text-align: center;
-    color: gray;
+    color: white;
   }
 
   .nav-link:hover {
-    background-color: whitesmoke;
+    filter: brightness(120%);
   }
 
   .nav-settings {
-    width: 250px;
-    float: left;
+    width: 150px;
     display: flex;
-    justify-content: space-evenly;
+    margin-left: auto;
+    float:right;
+    .dropdown-button{
+      justify-content: end;
+      padding-right: 20px;
+    }
   }
 
   .nav-item, .nav-icon {
@@ -74,6 +83,8 @@
     color: gray;
     font-weight: bold;
     font-size: 15px;
+    background-color: inherit;
+    border-color: transparent;
   }
 
   .nav-icon {
@@ -94,7 +105,6 @@
   }
 
   .nav-item:hover {
-    color: black;
   }
 
   .nav-item-content {
@@ -104,8 +114,7 @@
 
 
   .active {
-    background-color: rgba(235, 235, 235, 0.8);
-    color: black
+    filter: brightness(110%);
   }
 
 }
