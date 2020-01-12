@@ -68,7 +68,7 @@ const DecisionOverviewWidget = (handleRemove, i) => {
         content: content,
         w: defaultDimen.w,
         h: defaultDimen.h,
-        text: 'Decsion overview'
+        text: 'Decision overview'
     };
 };
 
