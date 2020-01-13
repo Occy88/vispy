@@ -7,7 +7,7 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import ExampleWidget from "../ExampleWidget";
 import DecisionOverviewWidget from "../DecisionOverviewWidget";
-import RelevanceVisWidget from "../RelevanceVisWidget";
+import DeepLearningVisWidget from "../DeepLearningVisWidget";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -24,7 +24,7 @@ export default class Dashboard extends React.Component {
             counter: 0
         };
         console.log('constructor Dashboard');
-        this.widgets = [ExampleWidget, DecisionOverviewWidget, RelevanceVisWidget];
+        this.widgets = [ExampleWidget, DecisionOverviewWidget, DeepLearningVisWidget];
         this.handleRemove=this.handleRemove.bind(this)
     }
 

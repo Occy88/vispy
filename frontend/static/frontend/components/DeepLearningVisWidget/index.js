@@ -1,6 +1,7 @@
 import React from "react";
 import BaseWidget from "../../../../../static/components/BaseWidget";
 import {ResponsiveHeatMap} from "@nivo/heatmap"
+import {ResponsiveBar} from "@nivo/bar";
 import WidgetHeader from "../WidgetHeader";
 import WidgetBody from "../WidgetBody";
 import "./style.scss"
@@ -16,10 +17,10 @@ import "./style.scss"
  * @param {function} handleRemove callback used to remove this widget
  * @param {string} i unique identity of this widget.
  */
-const RelevanceVisWidget = (handleRemove, i) => {
+const DeepLearningVisWidget = (handleRemove, i) => {
 
   // these would be fetched.
-  const data = [
+  const heatmap_data = [
       {row:'0', '0': 0.3, '1': 0.1, '2': 0.4, '3': 0.2, '4': 0.3, '5': 0.1, '6': 0.3, '7': 0.8},
       {row:'1', '0': 0.7, '1': 0.1, '2': 0.6, '3': 0.8, '4': 0.5, '5': 0.1, '6': 0.6, '7': 0.1},
       {row:'2', '0': 0.2, '1': 0.0, '2': 0.4, '3': 0.9, '4': 0.7, '5': 0.1, '6': 0.2, '7': 0.5},
@@ -31,8 +32,40 @@ const RelevanceVisWidget = (handleRemove, i) => {
       {row:'8', '0': 0.3, '1': 0.1, '2': 0.3, '3': 0.1, '4': 0.1, '5': 0.2, '6': 0.6, '7': 0.2}
   ];
 
-  const alt_data = [
-      {row:0, dat: [ 0.3, 0.1, 0.4, 0.2, 0.34, 0.1, 0.37, 0.08]}
+  const timeline_posneg_data = [
+      {minibatch:0, pos:0.1, neg:0.0},
+      {minibatch:0, pos:0.3, neg:0.1},
+      {minibatch:0, pos:0.4, neg:0.2},
+      {minibatch:0, pos:0.7, neg:0.1},
+      {minibatch:0, pos:0.2, neg:0.3},
+      {minibatch:0, pos:0.8, neg:0.4},
+      {minibatch:0, pos:0.7, neg:0.5},
+      {minibatch:0, pos:0.4, neg:0.4},
+      {minibatch:0, pos:0.3, neg:0.2},
+      {minibatch:0, pos:0.5, neg:0.3},
+      {minibatch:0, pos:0.6, neg:0.5},
+      {minibatch:0, pos:0.9, neg:0.4},
+      {minibatch:0, pos:0.3, neg:0.2},
+      {minibatch:0, pos:0.4, neg:0.1},
+      {minibatch:0, pos:0.2, neg:0.1}
+  ];
+
+    const timeline_pos_data = [
+      {minibatch:0, pos:0.3},
+      {minibatch:0, pos:0.1},
+      {minibatch:0, pos:0.2},
+      {minibatch:0, pos:0.6},
+      {minibatch:0, pos:0.8},
+      {minibatch:0, pos:0.7},
+      {minibatch:0, pos:0.1},
+      {minibatch:0, pos:0.0},
+      {minibatch:0, pos:0.1},
+      {minibatch:0, pos:0.2},
+      {minibatch:0, pos:0.5},
+      {minibatch:0, pos:0.4},
+      {minibatch:0, pos:0.7},
+      {minibatch:0, pos:0.5},
+      {minibatch:0, pos:0.4}
   ];
 
   // Create the content using the BaseWidget component.
@@ -43,8 +76,16 @@ const RelevanceVisWidget = (handleRemove, i) => {
           Something
       </WidgetHeader>
       <WidgetBody>
-        <ResponsiveHeatMap
-            data={data}
+        <div className="TimelineContainer">
+            <ResponsiveBar
+                data={timeline_posneg_data}
+                keys={['pos', 'neg']}
+
+            />
+        </div>
+        <div className="HeatMapContainer">
+            <ResponsiveHeatMap
+            data={heatmap_data}
             keys={['0', '1', '2', '3', '4', '5', '6', '7']}
             margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
             indexBy="row"
@@ -53,7 +94,8 @@ const RelevanceVisWidget = (handleRemove, i) => {
             axisLeft={null}
             axisTop={null}
             enableLabels={false}
-        />
+            />
+        </div>
       </WidgetBody>
     </BaseWidget>
   );
@@ -77,4 +119,4 @@ const RelevanceVisWidget = (handleRemove, i) => {
   };
 };
 
-export default RelevanceVisWidget;
+export default DeepLearningVisWidget;
