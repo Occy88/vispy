@@ -1,6 +1,7 @@
 .Header {
   height: 50px;
-  background-color:  #19394F;
+  background-color: #19394F;
+
   .nav-bar {
     position: fixed;
     display: flex;
@@ -11,7 +12,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color:inherit;
+    background-color: inherit;
     //-webkit-box-shadow: 0 8px 6px -6px #999;
     //-moz-box-shadow: 0 8px 6px -6px #999;
     //box-shadow: 0 8px 6px -6px #999;
@@ -45,9 +46,9 @@
   .nav-links {
     background-color: inherit;
     font-weight: bold;
-    font-size:          15px;
+    font-size: 15px;
     width: auto;
-    float:left;
+    float: left;
     display: flex;
     justify-content: center;
     min-width: 200px;
@@ -58,63 +59,68 @@
     width: 200px;
     text-align: center;
     color: white;
-  }
-
-  .nav-link:hover {
-    filter: brightness(120%);
-  }
-
-  .nav-settings {
-    width: 150px;
-    display: flex;
-    margin-left: auto;
-    float:right;
-    .dropdown-button{
-      justify-content: end;
-      padding-right: 20px;
-    }
-  }
-
-  .nav-item, .nav-icon {
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: gray;
-    font-weight: bold;
-    font-size: 15px;
-    background-color: inherit;
-    border-color: transparent;
   }
+}
 
-  .nav-icon {
-    margin: 0 10px 0 10px;
-    width: 100px;
-    max-width: 200px;
-    min-width: 100px;
+.nav-link:hover {
+  filter: brightness(120%);
+}
+
+.nav-settings {
+  width: 150px;
+  display: flex;
+  margin-left: auto;
+  float: right;
+
+  .dropdown-button {
+    justify-content: end;
+    padding-right: 20px;
   }
+}
+
+.nav-item, .nav-icon {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: gray;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: inherit;
+  border-color: transparent;
+}
+
+.nav-icon {
+  margin: 0 10px 0 10px;
+  width: 100px;
+  max-width: 200px;
+  min-width: 100px;
+}
 
 
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: auto;
-    min-width: 100%;
-
-  }
-
-  .nav-item:hover {
-  }
-
-  .nav-item-content {
-    max-width: 200px;
-    padding: 5px;
-  }
-
-
-  .active {
-    filter: brightness(110%);
-  }
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  min-width: 100%;
 
 }
+
+.nav-item:hover {
+}
+
+.nav-item-content {
+  max-width: 200px;
+  padding: 5px;
+}
+
+
+.active {
+  filter: brightness(110%);
+}
+
+
