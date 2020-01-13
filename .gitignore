@@ -12,4 +12,6 @@ dist
 */migrations
 migrations
 venv
-
+env
+MYENV
+webpack-stats.json

@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../Button";
+import './style.scss'
 
 /**
  * The skeleton of any widget to be displayed on the grid.
@@ -8,46 +10,30 @@ import React from "react";
  * @param {string} header the name of the widget
  * @param {JSX.Element} chlidren the content to be displayed within the widget (children of the component).
  */
-const BaseWidget = ({ handleRemove, i, header, children }) => {
-  // Styles
-  const style_removeButton = {
-    position: "absolute",
-    right: "3%",
-    top: 0,
-    curesor: "pointer"
-  };
+//{ handleRemove, i, header, children }
+class BaseWidget extends React.Component {
+    // Styles
+    constructor(props) {
+        super(props)
+    }
 
-  const style_interior = {
-    margin: "2% 5%",
-    fontFamily: "Montserrat"
-  };
+    render() {
 
-  const style_header = {
-    textAlign: "left",
-    fontSize: "0.8em",
-    fontWeight: "bold",
-    letterSpacing: "0.2em",
-    paddingBottom: "2%"
-  };
 
-  // Create the interior of any given widget to be displayed.
-  return (
-    <div style={style_interior}>
-      <div>
-        <div style={style_header}>{header}</div>
-        <span
-          className="remove"
-          style={style_removeButton}
-          onClick={() => {
-            handleRemove(i);
-          }}
-        >
-          x
-        </span>
-      </div>
-      <div>{children}</div>
-    </div>
-  );
-};
+        // Create the interior of any given widget to be displayed.
+        return (
+            <div className={'BaseWidget'}>
+                <Button
+                    className="remove"
+                    onClick={() => {
+                        this.props.handleRemove(this.props.i);
+                    }}>
+                    x
+                </Button>
+                <div>{this.props.children}</div>
+            </div>
+        );
+    };
+}
 
 export default BaseWidget;

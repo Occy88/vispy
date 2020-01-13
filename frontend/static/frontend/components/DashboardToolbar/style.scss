@@ -1,0 +1,28 @@
+//.DashboardToolbar  {
+//  height: 100%;
+//  width:20px;
+//  background-color: lightgrey;
+//   .Button{
+//    display: none;
+//  }
+//}
+
+.DashboardToolbar {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  background-color: rgba(16, 67, 85, 1);
+
+  .Button {
+    font-size: 17px;
+    display: block;
+    text-align: left;
+    border-radius: 0;
+    width: inherit;
+    margin: 0;
+    padding: 10px 20px 5px 10px
+
+  }
+}

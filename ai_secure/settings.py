@@ -56,7 +56,7 @@ ADMINS = (('octavio', 'octavio.delser@gmail.com'),)
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'company_manager.apps.CompanyManagerConfig',
-    'visualizer.apps.VisualizerConfig',
+    'frontend.apps.VisualizerConfig',
     'knn_backend.apps.StockManagerConfig',
     'general_backend.apps.GeneralBackendConfig',
     'django.contrib.admin',
@@ -151,7 +151,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-LANGUAGES = [('fr', 'French'), ('it', 'Italiano'), ('es', 'Espanol'), ('en-us', 'english')]
+LANGUAGES = [('fr', 'French'), ('it', 'Italiano'), ('es', 'Espanol'), ('en-us', 'English')]
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -169,7 +169,7 @@ STAFF_URLS = {
     r'^accounts/manager/[\s\S]*',
 }
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/visualizer/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = {
 }
 

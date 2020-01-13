@@ -1,0 +1,10 @@
+// Make sure you set all padding; borders on this select and not the parent div.
+// this is mainly for :focus and tabbing.
+.BaseWidget{
+  .Button{
+    background-color: pink;
+    width:20px;
+    float:right;
+  }
+}
+
