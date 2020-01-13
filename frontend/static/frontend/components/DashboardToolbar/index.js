@@ -18,7 +18,6 @@ export default class DashboardToolbar extends React.Component {
             <div className='DashboardToolbar'>
                 {
                     this.props.widgets.map((d,index) => {
-                        console.log(d);
                         let d_=d(null,null);
                         return <Button text={d_.text} onClick={()=>this.props.handleCreateWidget(index)}/>
                     })

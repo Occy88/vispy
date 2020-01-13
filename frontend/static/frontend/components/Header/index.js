@@ -8,8 +8,8 @@ import AccountService from "../../../../../accounts/static/accounts/components/A
 import Dropdown from "../../../../../static/components/Dropdown";
 import hamburger_svg from '../../../../../static/img/Hamburger_icon.svg'
 import hamburger_active_svg from '../../../../../static/img/Hamburger_icon_active.png'
-import settings_svg from '../../../../../static/img/settings.png'
-import settings_active_svg from '../../../../../static/img/settings_active.png'
+import settings_svg from '../../../../../static/img/settings1.png'
+import settings_active_svg from '../../../../../static/img/settings1_active.png'
 import CompanyList from "../../../../../company_manager/static/company_manager/components/CompanyList";
 
 let lang = languages[document.documentElement.lang];
@@ -69,7 +69,7 @@ class Header extends React.Component {
         }
     }
 
-    render() {
+ render() {
         let company_logo =
             <div className="nav-brand ">
                 <Link to={'/'}>
@@ -105,7 +105,7 @@ class Header extends React.Component {
                         }/>
                 </div>
             </div>;
-        let url_list = this.state.links;
+        let url_list = serve_scan_page_only ? [this.state.links[3]] : this.state.links;
         let link_list = url_list.map((obj, index) =>
             <div key={obj.id}
                  className={(location.pathname === app_url_prefix + obj.url) ? "nav-link active" : "nav-link"}
@@ -114,26 +114,25 @@ class Header extends React.Component {
             </div>);
 
         let custom_nav =
-            <div className={'side-nav'}>
-                <Dropdown
-                    button_fill_active={<img style={{width: '30px'}} src={STATIC_URL + hamburger_active_svg}/>}
-                    button_fill={<img style={{width: '30px'}} src={STATIC_URL + hamburger_svg}/>}
-                    item_list={link_list}/>
+            <div className={'nav-links'}>
+                {this.state.width < 200*(this.state.links.length+2) ?
+                    <div className={'nav-item'}>
+
+                        <Dropdown
+                            button_fill_active={<img style={{width: '30px'}} src={STATIC_URL + hamburger_active_svg}/>}
+                            button_fill={<img style={{width: '30px'}} src={STATIC_URL + hamburger_svg}/>}
+                            item_list={link_list}/></div>
+                    : link_list
+                }
             </div>
         ;
 
 
         return (
-            <div className='Header'>
+            <div className={'Header'}>
                 <div className={'nav-bar'}>
-                    {/*companylogo maximum widht needed is 100px*/}
-                    {/*custom nav is the rest*/}
                     {company_logo}
                     {custom_nav}
-                    {/*companylogo maximum widht needed is 100px*/}
-
-
-                    {/*settings maximum width needed is 200px*/}
                     {settings}
                 </div>
             </div>
@@ -141,6 +140,7 @@ class Header extends React.Component {
 
         )
     }
+
 }
 
 export default withRouter(Header);

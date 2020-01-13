@@ -40,7 +40,7 @@ export default class Routes extends React.Component {
                         )
                     }}/>
                 </Switch>
-                <Footer/>
+                {/*<Footer/>*/}
             </Router>
         )
     }
