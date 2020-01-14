@@ -1,0 +1,56 @@
+.CadexVisWidget {
+  padding: 10px;
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+
+  .row {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0;
+    overflow: hidden;
+    flex-wrap: nowrap;
+  }
+
+  .name {
+    width: 200px;
+    min-width: 100px;
+  }
+
+  .adjust {
+    width: 200px;
+    min-width: 200px;
+
+  }
+
+  .original {
+    width: 100px;
+    min-width: 100px;
+
+  }
+
+  .proposed {
+    width: 100px;
+    min-width: 100px;
+
+  }
+
+  .change {
+    width: 50px;
+    min-width: 100px;
+
+
+  }
+}

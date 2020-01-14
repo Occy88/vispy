@@ -25,9 +25,7 @@ class BaseWidget extends React.Component {
             <div className={'BaseWidget'}>
                 <Button
                     className="remove"
-                    onClick={() => {
-                        this.props.handleRemove(this.props.i);
-                    }}>
+                    onClick={this.props.handleRemove}>
                     x
                 </Button>
                 {this.props.children}

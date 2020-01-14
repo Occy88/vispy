@@ -2,8 +2,6 @@ import React from "react";
 import {WidthProvider, Responsive} from "react-grid-layout";
 // import {Paper} from "@material-ui/core";
 import './style.scss'
-import ExampleWidget from '../ExampleWidget';
-import DecisionOverviewWidget from '../DecisionOverviewWidget';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -29,12 +27,15 @@ export default class DashboardGrid extends React.Component {
         console.log("here");
         return (
             <div className={'DashboardGrid'}>
-                <ResponsiveGridLayout>
+                <ResponsiveGridLayout
+                    compactType={null}
+                    draggableCancel={'.nonDraggable'}
+                >
                     {this.props.items.map(item => {
                         return <div className={'widget'}
-                            itemevation={3}
-                            key={item.i}
-                            data-grid={item.gridData}>
+                                    itemevation={3}
+                                    key={item.i}
+                                    data-grid={item.gridData}>
                             {item.content}
                         </div>
                     })}

@@ -5,9 +5,9 @@ import React from 'react'
 import "./style.scss";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import ExampleWidget from "../ExampleWidget";
 import DecisionOverviewWidget from "../DecisionOverviewWidget";
 import RelevanceVisWidget from "../RelevanceVisWidget";
+import CadexVisWidget from "../CadexVisWidget";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -24,23 +24,34 @@ export default class Dashboard extends React.Component {
             counter: 0
         };
         console.log('constructor Dashboard');
-        this.widgets = [ExampleWidget, DecisionOverviewWidget, RelevanceVisWidget];
-        this.handleRemove=this.handleRemove.bind(this)
+        this.widgets = [
+            // {widget: ExampleWidget, w: 6, h: 2},
+            // {widget: DecisionOverviewWidget, w: 6, h: 2},
+            // {widget: RelevanceVisWidget, w: 6, h: 2},
+            CadexVisWidget];
+        this.handleRemove = this.handleRemove.bind(this)
     }
 
     createWidget(type) {
-        let widget = this.widgets[type](this.handleRemove, this.state.counter);
+        let val = this.state.counter;
+        console.log(val)
+        let widget = this.widgets[type](() => {
+            console.log(val);
+            this.handleRemove(val)
+        });
         let gridData = {
-            i: 'n'+this.state.counter,
+            i: 'n' + val,
             x: (this.state.createdWidgets.length * 2) % 12,
             y: Infinity,
             w: widget.w,
             h: widget.h
         };
+        console.log("widget: ");
+        console.log(widget);
         return {
             content: widget.content,
             gridData: gridData,
-            i: this.state.counter
+            i: val
         }
     }
 
@@ -50,8 +61,8 @@ export default class Dashboard extends React.Component {
      */
     handleCreate(type) {
         this.setState({
+            createdWidgets: this.state.createdWidgets.concat(this.createWidget(type)),
             counter: this.state.counter + 1,
-            createdWidgets: this.state.createdWidgets.concat(this.createWidget(type))
         });
 
     };
@@ -61,6 +72,8 @@ export default class Dashboard extends React.Component {
      * @param {string} i the unique id of the widget.
      */
     handleRemove(i) {
+        console.log(i);
+        console.log(this.state.createdWidgets);
         this.setState({
             createdWidgets: _.reject(this.state.createdWidgets, {i: i})
         })
@@ -70,8 +83,7 @@ export default class Dashboard extends React.Component {
         return (
             <div className='Dashboard'>
                 <DashboardToolbar widgets={this.widgets} handleCreateWidget={this.handleCreate.bind(this)}/>
-                <DashboardGrid items={this.state.createdWidgets}
-                               handleRemove={this.handleRemove.bind(this)}/>
+                <DashboardGrid items={this.state.createdWidgets}/>
             </div>
         );
     }
