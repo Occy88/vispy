@@ -31,10 +31,14 @@ class CadexVis extends React.Component {
     }
 
     render() {
-        const slider = (key, value, onChange) => {
+        const slider = (key,original, value, onChange) => {
             return (
-                <Slider onChange={(event, value) => onChange(event, value, key)} min={-value * 2} max={value * 4}
-                        value={value}/>
+                <Slider
+                        onChange={(event, value) => onChange(event, value, key)}
+                        min={-original * 2}
+                        max={original * 4}
+                        step={original *4/100}
+                        defaultValue={value}/>
             )
         };
         const rowTitles = <div className={'row'}>
@@ -71,11 +75,11 @@ class CadexVis extends React.Component {
                                     </div>
                                     <div className='nonDraggable'>
                                         <div className={'adjust'}>
-                                            {slider(index, value.proposed, (event, value, key) => {
-                                                let new_data = [...this.state.data];
-                                                new_data[key].proposed = value;
+                                            {slider(index, value.original,value.proposed, (event, value, key) => {
+                                                let newData = [...this.state.data];
+                                                newData[key].proposed = value;
                                                 this.setState({
-                                                    data: new_data
+                                                    data: newData
                                                 })
                                             })}
                                         </div>
@@ -88,7 +92,7 @@ class CadexVis extends React.Component {
                                         {value.proposed}
                                     </div>
                                     <div className={'change'}>
-                                        {Math.round((value.proposed / value.original) * 1000)/10}%
+                                        {Math.round((value.proposed / value.original) * 1000) / 10 -100}%
                                     </div>
                                 </div>
                             )
