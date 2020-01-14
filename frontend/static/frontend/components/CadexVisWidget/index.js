@@ -1,6 +1,4 @@
 import React from "react";
-import BaseWidget from "../../../../../static/components/BaseWidget";
-import ListSelect from "../../../../../static/components/ListSelect";
 import CadexVis from './widget.js'
 /**
  * An Example of a simple widget to be used in the grid.

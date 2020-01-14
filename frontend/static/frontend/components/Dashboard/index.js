@@ -1,14 +1,14 @@
+import React from 'react'
 import _ from "lodash";
 import DashboardToolbar from "../DashboardToolbar";
 import DashboardGrid from "../DashboardGrid";
-import React from 'react'
-import "./style.scss";
-import "react-grid-layout/css/styles.css";
-import "react-resizable/css/styles.css";
 import DecisionOverviewWidget from "../DecisionOverviewWidget";
 import CadexVisWidget from "../CadexVisWidget";
 import DeepLearningVisWidget from "../DeepLearningVisWidget";
 import DecisionReviewOverviewWidget from "../DecisionReviewOverviewWidget";
+import "./style.scss";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -24,19 +24,18 @@ export default class Dashboard extends React.Component {
             createdWidgets: [],
             counter: 0
         };
-        console.log('constructor Dashboard');
         this.widgets = [
-            // {widget: ExampleWidget, w: 6, h: 2},
-            // {widget: DecisionOverviewWidget, w: 6, h: 2},
-            // {widget: RelevanceVisWidget, w: 6, h: 2},
-            CadexVisWidget];
+            CadexVisWidget,
+            DecisionReviewOverviewWidget,
+            DecisionOverviewWidget,
+            DeepLearningVisWidget
+        ];
         this.handleRemove = this.handleRemove.bind(this)
     }
 
     createWidget(type) {
         let val = this.state.counter;
         let widget = this.widgets[type](() => {
-            console.log(val);
             this.handleRemove(val)
         });
         let gridData = {
