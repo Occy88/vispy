@@ -1,13 +1,14 @@
+import React from 'react'
 import _ from "lodash";
 import DashboardToolbar from "../DashboardToolbar";
 import DashboardGrid from "../DashboardGrid";
-import React from 'react'
+import DecisionOverviewWidget from "../DecisionOverviewWidget";
+import CadexVisWidget from "../CadexVisWidget";
+import DeepLearningVisWidget from "../DeepLearningVisWidget";
+import DecisionReviewOverviewWidget from "../DecisionReviewOverviewWidget";
 import "./style.scss";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import DecisionOverviewWidget from "../DecisionOverviewWidget";
-import RelevanceVisWidget from "../RelevanceVisWidget";
-import CadexVisWidget from "../CadexVisWidget";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -23,12 +24,12 @@ export default class Dashboard extends React.Component {
             createdWidgets: [],
             counter: 0
         };
-        console.log('constructor Dashboard');
         this.widgets = [
-            // {widget: ExampleWidget, w: 6, h: 2},
-            // {widget: DecisionOverviewWidget, w: 6, h: 2},
-            // {widget: RelevanceVisWidget, w: 6, h: 2},
-            CadexVisWidget];
+            CadexVisWidget,
+            DecisionReviewOverviewWidget,
+            DecisionOverviewWidget,
+            DeepLearningVisWidget
+        ];
         this.handleRemove = this.handleRemove.bind(this)
     }
 
@@ -68,8 +69,6 @@ export default class Dashboard extends React.Component {
      * @param {string} i the unique id of the widget.
      */
     handleRemove(i) {
-        console.log(i);
-        console.log(this.state.createdWidgets);
         this.setState({
             createdWidgets: _.reject(this.state.createdWidgets, {i: i})
         })

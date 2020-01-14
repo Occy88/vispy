@@ -1,6 +1,5 @@
 import React from "react";
 import BaseWidget from "../../../../../static/components/BaseWidget";
-import ResponsiveHeatMap from "nivo/lib/components/charts/heatmap/ResponsiveHeatMap";
 import WidgetHeader from "../WidgetHeader";
 import WidgetBody from "../WidgetBody";
 import {Slider} from "@material-ui/core";

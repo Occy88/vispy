@@ -1,5 +1,7 @@
 import React from "react";
-import CadexVis from './widget.js'
+import DeepLearningVis from "./widget";
+import "./style.scss"
+
 /**
  * An Example of a simple widget to be used in the grid.
  *
@@ -8,24 +10,25 @@ import CadexVis from './widget.js'
  *  - Create a button for it in the DashboardToolbar
  *
  * Any given widget must take the following parameters
- * @param {function} handleRemove callback used to remove this widget
+ * @param {function} handleRemove callback usSSSSSed to remove this widget
  * @param {string} i unique identity of this widget.
  */
-const CadexVisWidget = (handleRemove) => {
+const DeepLearningVisWidget = (handleRemove, i) => {
+
   // Create the content using the BaseWidget component.
   const content = (
-    <CadexVis handleRemove={handleRemove}/>
+      <DeepLearningVis handleRemove={handleRemove}/>
   );
 
   // The default dimensions in terms of the grid system
   const defaultDimen = { w: 6, h: 2 };
 
   return {
-    text:'Cadex Vis',
+    text: "Relevance",
     content: content,
     w: defaultDimen.w,
     h: defaultDimen.h
   };
 };
 
-export default CadexVisWidget;
+export default DeepLearningVisWidget;

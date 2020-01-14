@@ -1,15 +1,8 @@
 import React from "react";
 import {WidthProvider, Responsive} from "react-grid-layout";
-// import {Paper} from "@material-ui/core";
 import './style.scss'
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
-
-/**
- * A list of all the widgets that can be used in the grid.
- * The widget must exist in this list to be accessed by the DashboardToolbar
- */
-
 
 /**
  * Component that handles the grid system of widgets
@@ -22,7 +15,7 @@ export default class DashboardGrid extends React.Component {
         super(props)
     }
 
-    // Generate all the widgets as children of a ReponsiveGridLayout
+    // Generate all the widgets as children of a ResponsiveGridLayout
     render() {
         console.log("here");
         return (

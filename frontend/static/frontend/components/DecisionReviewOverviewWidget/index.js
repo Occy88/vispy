@@ -1,5 +1,5 @@
 import React from "react";
-import DecisionOverview from "./widget.js"
+import DecisionReviewOverview from "./widget.js"
 import "./style.scss"
 
 /**
@@ -10,25 +10,23 @@ import "./style.scss"
  *  - Create a button for it in the DashboardToolbar
  *
  * Any given widget must take the following parameters
- * @param {function} handleRemove callback used to remove this widget
+ * @param {function} handleRemove callback usSSSSSed to remove this widget
  * @param {string} i unique identity of this widget.
  */
-const DecisionOverviewWidget = (handleRemove) => {
+const DecisionReviewOverviewWidget = (handleRemove) => {
 
-    // Create the content using the BaseWidget component.
     const content = (
-        <DecisionOverview handleRemove={handleRemove}/>
+        <DecisionReviewOverview handleRemove={handleRemove}/>
     );
 
-    // The default dimensions in terms of the grid system
-    const defaultDimen = {w: 6, h: 2};
+    const defaultDimen = { w: 6, h: 2 };
 
     return {
+        text: "Decision Review Overview",
         content: content,
         w: defaultDimen.w,
-        h: defaultDimen.h,
-        text: 'Decision overview'
+        h: defaultDimen.h
     };
 };
 
-export default DecisionOverviewWidget;
+export default DecisionReviewOverviewWidget;
