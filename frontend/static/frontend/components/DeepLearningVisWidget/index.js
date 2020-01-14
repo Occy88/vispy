@@ -88,7 +88,7 @@ const DeepLearningVisWidget = (handleRemove, i) => {
                   </div>
                   <div className="TimelineContainer">
                       <ResponsiveBar
-                          data={timeline_posneg_data}
+                          data={timeline_posneg_data.reverse()}
                           keys={['pos', 'neg']}
                           indexBy="minibatch"
                           groupMode={'grouped'}
