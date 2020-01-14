@@ -74,11 +74,7 @@ const DecisionReviewOverviewWidget = (handleRemove, i) => {
                 <div className="TimelineContainer">
                     <ResponsiveLine
                         data={error_data}
-                        // keys={['pos']}
-                        // indexBy=x
-                        // groupMode={'grouped'}
                         margin={{top: 10, right: 10, bottom: 30, left: 30}}
-                        // enableLabel={false}
                         xScale={{
                             type:'time',
                             format:'%d/%m/%Y',
