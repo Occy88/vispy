@@ -34,9 +34,7 @@ export default class Dashboard extends React.Component {
 
     createWidget(type) {
         let val = this.state.counter;
-        console.log(val)
         let widget = this.widgets[type](() => {
-            console.log(val);
             this.handleRemove(val)
         });
         let gridData = {
@@ -46,8 +44,6 @@ export default class Dashboard extends React.Component {
             w: widget.w,
             h: widget.h
         };
-        console.log("widget: ");
-        console.log(widget);
         return {
             content: widget.content,
             gridData: gridData,
