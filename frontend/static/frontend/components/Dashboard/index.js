@@ -2,13 +2,14 @@ import React from 'react'
 import _ from "lodash";
 import DashboardToolbar from "../DashboardToolbar";
 import DashboardGrid from "../DashboardGrid";
-import DecisionOverviewWidget from "../DecisionOverviewWidget";
-import CadexVisWidget from "../CadexVisWidget";
-import DeepLearningVisWidget from "../DeepLearningVisWidget";
-import DecisionReviewOverviewWidget from "../DecisionReviewOverviewWidget";
+import DecisionOverview from "../DecisionOverview";
+import DeepLearningVis from "../DeepLearningVis";
+import DecisionReviewOverview from "../DecisionReviewOverview";
 import "./style.scss";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
+import CadexVis from "../CadexVis";
+import AsWidget from "../../../../../static/components/AsWidget";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -25,32 +26,119 @@ export default class Dashboard extends React.Component {
             counter: 0
         };
         this.widgets = [
-            CadexVisWidget,
-            DecisionReviewOverviewWidget,
-            DecisionOverviewWidget,
-            DeepLearningVisWidget
+            {component: CadexVis, w: 5, h: 4, text: 'Cadex Vis'},
+            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Decision Review'},
+            {component: DecisionOverview, w: 5, h: 4, text: 'Decision Overview'},
+            {component: DeepLearningVis, w: 5, h: 4, text: 'Deep Learning'},
         ];
         this.handleRemove = this.handleRemove.bind(this)
     }
 
     createWidget(type) {
         let val = this.state.counter;
-        let widget = this.widgets[type](() => {
+        let widget = this.widgets[type];
+        let content = <AsWidget component={this.widgets[type].component} handleRemove={() => {
             this.handleRemove(val)
-        });
+        }}/>;
+        let pos = this.findSpace(widget.w, widget.h);
         let gridData = {
             i: 'n' + val,
-            x: (this.state.createdWidgets.length * 2) % 12,
-            y: Infinity,
+            x: pos[0],
+            y: pos[1],
             w: widget.w,
             h: widget.h
         };
         return {
-            content: widget.content,
+            content: content,
             gridData: gridData,
             i: val
         }
     }
+
+    preloadWidgets() {
+        let width = [[5, 0, 0], [6, 0, 5], [7, 4, 0], [4, 4, 7]]
+        let widgets = [CadexVisWidget, DecisionReviewOverviewWidget, DeepLearningVisWidget, DecisionOverviewWidget]
+        let returnList = [];
+
+        for (let i = 0; i < widgets.length; i += 1) {
+            let widget = AsWidget(widgets[type], (() => {
+                this.handleRemove(val)
+            }));
+            let gridData = {
+                i: 'n' + i,
+                x: width[i][2],
+                y: width[i][1],
+                w: width[i][0],
+                h: 4
+            };
+            let toPush = {
+                content: widget.content,
+                gridData: gridData,
+                i: i
+            };
+            returnList.push(toPush)
+        }
+        this.setState({
+            createdWidgets: returnList,
+            counter: widgets.length
+        })
+    }
+
+
+    findSpace(width, height) {
+        // identify max_width,max_height
+        const max_width = 12;
+        const max_height = 13;
+        //    go linearly
+        let p_x = 0;
+        let p_y = 0;
+        let found = true;
+        let y = 0;
+        let x = 0;
+        while (y < max_height) {
+            while (x < max_width) {
+                console.log('evaluating:', x, y);
+                for (let comp of this.state.createdWidgets) {
+                    let w = comp.gridData.w;
+                    let h = comp.gridData.h;
+                    let x_c = comp.gridData.x;
+                    let y_c = comp.gridData.y;
+                    if (((p_x + width >= x_c && p_x < x_c) || (p_x + width >= x_c + w && p_x < x_c + w)) ||
+                        ((p_y + height >= y_c && p_y < y_c) || (p_y + height >= y_c + h && p_y < y_c + h))) {
+                        if (x_c + w + width > max_width) {
+                            console.log('max width reached');
+                            p_x = 0;
+                            p_y = y_c + h;
+                            console.log('evaluating:', p_x, p_y);
+                        } else {
+                            p_x = x_c + w;
+                            console.log('evaluating:', p_x, p_y);
+
+                        }
+                        found = true;
+                        x = p_x + width + 1;
+                        y = p_y + height + 1;
+                    }
+                }
+                if (found) {
+                    console.log('went through iteration wth no collision, returning:', p_x, p_y);
+                    return [p_x, p_y]
+
+                }
+                x += 1
+            }
+            y += 1
+        }
+        console.log('forced return: ', p_x, p_y);
+        return [p_x, p_y]
+
+    }
+
+    // componentDidMount() {
+    //     this.preloadWidgets();
+    //     this.forceUpdate()
+    //
+    // }
 
     /**
      * Function to create a specific widget
@@ -61,6 +149,7 @@ export default class Dashboard extends React.Component {
             createdWidgets: this.state.createdWidgets.concat(this.createWidget(type)),
             counter: this.state.counter + 1,
         });
+        this.forceUpdate()
 
     };
 

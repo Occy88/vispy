@@ -1,13 +1,12 @@
 import React from "react";
-import BaseWidget from "../../../../../static/components/BaseWidget";
 import Table from "../../../../../static/components/Table";
 import TableHeader from "../../../../../static/components/TableHeader";
 import TableBody from "../../../../../static/components/TableBody";
 import TableRow from "../../../../../static/components/TableRow";
 import TableCell from "../../../../../static/components/TableCell";
-import WidgetHeader from "../WidgetHeader";
-import WidgetBody from "../WidgetBody";
 import "./style.scss"
+import WidgetHeader from "../../../../../static/components/WidgetHeader";
+import WidgetBody from "../../../../../static/components/WidgetBody";
 
 class DecisionOverview extends React.Component {
     constructor(props) {
@@ -23,7 +22,8 @@ class DecisionOverview extends React.Component {
         ];
 
         return (
-            <BaseWidget handleRemove={this.props.handleRemove}>
+
+            <div className={'DecisionOverview'}>
                 {/* The children contained within the component will be displayed within */}
                 <WidgetHeader>
                     Something
@@ -48,7 +48,7 @@ class DecisionOverview extends React.Component {
                         </TableBody>
                     </Table>
                 </WidgetBody>
-            </BaseWidget>
+            </div>
         )
     }
 }

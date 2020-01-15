@@ -1,9 +1,9 @@
 import React from "react";
-import BaseWidget from "../../../../../static/components/BaseWidget";
-import {ResponsiveLine} from "@nivo/line";
-import WidgetHeader from "../WidgetHeader";
-import WidgetBody from "../WidgetBody";
+import WidgetHeader from "../../../../../static/components/WidgetHeader";
+import WidgetBody from "../../../../../static/components/WidgetBody";
+import GraphContainer from "../../../../../static/components/GraphContainer";
 import {Tab, Tabs} from "react-bootstrap";
+import {ResponsiveLine} from "@nivo/line";
 import "./style.scss"
 
 class DecisionReviewOverview extends React.Component {
@@ -71,7 +71,7 @@ class DecisionReviewOverview extends React.Component {
                         {x: "13/01/2020", y: 7},
                         {x: "14/01/2020", y: 5},
                         {x: "15/01/2020", y: 4}
-                        ]
+                    ]
                 }
             ];
 
@@ -85,27 +85,27 @@ class DecisionReviewOverview extends React.Component {
                         {x: "05/01/2020", y: 7},
                         {x: "12/01/2020", y: 5},
                         {x: "19/01/2020", y: 4}
-                        ]
+                    ]
                 }
             ];
 
         // Create the content using the BaseWidget component.
         return (
-            <BaseWidget handleRemove={this.props.handleRemove}>
+            <div className={'DecisionReviewOverview'}>
                 <WidgetHeader>
                     Decisions Flagged for Review
                 </WidgetHeader>
                 <WidgetBody className="vertical">
-                    <Tabs defaultActiveKey="weekly" transition={false} >
+                    <Tabs defaultActiveKey="weekly" transition={false} id="graph-tabs">
                         <Tab eventKey="weekly" title="Per Week">
-                            <div className="LineGraphContainer">
+                            <GraphContainer>
                                 <ResponsiveLine
                                     data={weekly_timeline_pos_data}
                                     margin={{top: 10, right: 20, bottom: 30, left: 30}}
                                     xScale={{
-                                        type:'time',
-                                        format:'%d/%m/%Y',
-                                        precision:'day'
+                                        type: 'time',
+                                        format: '%d/%m/%Y',
+                                        precision: 'day'
                                     }}
                                     xFormat="time:%d/%m/%Y"
                                     axisBottom={{
@@ -113,17 +113,17 @@ class DecisionReviewOverview extends React.Component {
                                         tickValues: 'every week'
                                     }}
                                 />
-                            </div>
+                            </GraphContainer>
                         </Tab>
                         <Tab eventKey="daily" title="Per day">
-                            <div className="LineGraphContainer">
+                            <GraphContainer>
                                 <ResponsiveLine
                                     data={daily_timeline_pos_data}
                                     margin={{top: 10, right: 20, bottom: 30, left: 30}}
                                     xScale={{
-                                        type:'time',
-                                        format:'%d/%m/%Y',
-                                        precision:'day'
+                                        type: 'time',
+                                        format: '%d/%m/%Y',
+                                        precision: 'day'
                                     }}
                                     xFormat="time:%d/%m/%Y"
                                     axisBottom={{
@@ -131,10 +131,10 @@ class DecisionReviewOverview extends React.Component {
                                         tickValues: 'every day'
                                     }}
                                 />
-                            </div>
+                            </GraphContainer>
                         </Tab>
                         <Tab eventKey="hourly" title="Per Hour">
-                            <div className="LineGraphContainer">
+                            <GraphContainer>
                                 <ResponsiveLine
                                     data={hourly_timeline_pos_data}
                                     margin={{top: 10, right: 20, bottom: 30, left: 30}}
@@ -149,11 +149,11 @@ class DecisionReviewOverview extends React.Component {
                                         tickValues: 'every hour'
                                     }}
                                 />
-                            </div>
+                            </GraphContainer>
                         </Tab>
                     </Tabs>
                 </WidgetBody>
-            </BaseWidget>
+            </div>
         );
     }
 }

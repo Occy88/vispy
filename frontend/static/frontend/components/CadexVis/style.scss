@@ -1,12 +1,27 @@
-.CadexVisWidget {
+.CadexVis {
   padding: 10px;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 
   ::-webkit-scrollbar {
     display: none;
   }
 
   -ms-overflow-style: none;
+
+  .WidgetHeader {
+  }
+
+  .WidgetBody {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 
   .row {
     -webkit-user-select: none;
@@ -15,13 +30,21 @@
     -o-user-select: none;
     user-select: none;
     width: 100%;
-    height: 50px;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: left;
     margin: 0;
     overflow: hidden;
     flex-wrap: nowrap;
+  }
+
+  .name, .adjust, .original, .proposed, .change {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
   }
 
   .name {
@@ -32,13 +55,13 @@
   .adjust {
     width: 200px;
     min-width: 200px;
+    padding: 0 10px 0 10px;
 
   }
 
   .original {
     width: 100px;
     min-width: 100px;
-
   }
 
   .proposed {
