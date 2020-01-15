@@ -2,13 +2,13 @@ from django.contrib.auth.models import Group, Permission
 from pydoc import locate
 from django.conf import settings
 
-# try:
-#     print("CREATING DEFAULT COMPANY (Seclea)")
-#     company_model = locate(settings.COMPANY_INSTANCE)
-#     print(company_model)
-#     seclea = company_model.objects.get_or_create(name="Seclea", logo='company_manager/static/company_manager/logo/seclea.png')
-#     print("CREATING DEFAULT GROUPS")
-#     from django.db.models import Q
+try:
+    print("CREATING DEFAULT COMPANY (Seclea)")
+    company_model = locate(settings.COMPANY_INSTANCE)
+    print(company_model)
+    seclea = company_model.objects.get_or_create(name="Seclea", logo='company_manager/static/company_manager/logo/seclea.png')
+    print("CREATING DEFAULT GROUPS")
+    from django.db.models import Q
 
     # Group for people working in office with access to reports:
     # Group name= Logistic Administrator
@@ -30,7 +30,7 @@ from django.conf import settings
     #     log_admin_group.permissions.add(permission)
 
 
-# except Exception as e:
-#     print("Can't create default Company try running Migrations!")
-#     print("Can't create default groups try running Migrations")
-#     print(e)
+except Exception as e:
+    print("Can't create default Company try running Migrations!")
+    print("Can't create default groups try running Migrations")
+    print(e)
