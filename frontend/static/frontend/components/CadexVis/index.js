@@ -20,24 +20,24 @@ class CadexVis extends React.Component {
         super(props);
         this.state = {
             data: [
-                {name: 'Credit Score', original: 500, proposed: 500, minValue:0, maxValue:850},
-                {name: 'Total Income', original: 20000, proposed: 20000, minValue:1000, maxValue:10000000},
-                {name: 'Loan Amount', original: 10000, proposed: 5000, minValue:100, maxValue:100000},
-                {name: 'Interest Rate', original: 20, proposed: 24, minValue:0.1, maxValue:300},
-                {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue:0, maxValue:2},
-                {name: 'Total Accounts', original: 20, proposed: 20, minValue:0, maxValue:100},
+                {name: 'Credit Score', original: 500, proposed: 500, minValue: 0, maxValue: 850},
+                {name: 'Total Income', original: 20000, proposed: 20000, minValue: 1000, maxValue: 10000000},
+                {name: 'Loan Amount', original: 10000, proposed: 5000, minValue: 100, maxValue: 100000},
+                {name: 'Interest Rate', original: 20, proposed: 24, minValue: 0.1, maxValue: 300},
+                {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue: 0, maxValue: 2},
+                {name: 'Total Accounts', original: 20, proposed: 20, minValue: 0, maxValue: 100},
             ]
         }
     }
 
     render() {
-        const slider = (key, original, value, onChange) => {
+        const slider = (key, original, value, max, min, onChange) => {
             return (
                 <Slider
                     onChange={(event, value) => onChange(event, value, key)}
-                    min={-original * 2}
-                    max={original * 4}
-                    step={original * 4 / 100}
+                    min={min}
+                    max={max}
+                    step={(max - min) / 10000}
                     defaultValue={value}/>
             )
         };
@@ -73,7 +73,7 @@ class CadexVis extends React.Component {
                                 </div>
                                 <div className='nonDraggable'>
                                     <div className={'adjust'}>
-                                        {slider(index, value.original, value.proposed, (event, value, key) => {
+                                        {slider(index, value.original, value.proposed, value.maxValue, value.minValue, (event, value, key) => {
                                             let newData = [...this.state.data];
                                             newData[key].proposed = value;
                                             this.setState({
@@ -87,16 +87,16 @@ class CadexVis extends React.Component {
                                     {value.original}
                                 </div>
                                 <div className={'proposed'}>
-                                    {value.proposed}
+                                    {value.proposed.toFixed(2)}
                                 </div>
                                 <div className={'change'}
                                      style={{
                                          backgroundColor: 'RGB(' +
                                              (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
                                              (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.maxValue / value.original)) : 255) + ')'
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255) + ')'
                                      }}>
-                                    {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 1000) / 10 - 100}%
+                                    {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 100).toFixed(2) - 100}%
                                 </div>
                             </div>
                         )
