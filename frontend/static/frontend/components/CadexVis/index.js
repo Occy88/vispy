@@ -21,7 +21,7 @@ class CadexVis extends React.Component {
         this.state = {
             data: [
                 {name: 'Credit Score', original: 500, proposed: 500, minValue:0, maxValue:850},
-                {name: 'Total Income', original: 20000, proposed: 20000, minValue:1000, maxValue:10000000},
+                {name: 'Total Income', original: 20000, proposed: 20000, minValue:1000, maxValue:1000000},
                 {name: 'Loan Amount', original: 10000, proposed: 5000, minValue:100, maxValue:100000},
                 {name: 'Interest Rate', original: 20, proposed: 24, minValue:0.1, maxValue:300},
                 {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue:0, maxValue:2},
@@ -61,7 +61,7 @@ class CadexVis extends React.Component {
         return (
             <div className={'CadexVis'}>
                 <WidgetHeader>
-                    Decision Review
+                    <h5>Decision Review</h5>
                 </WidgetHeader>
                 <WidgetBody>
                     {rowTitles}

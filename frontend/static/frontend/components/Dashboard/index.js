@@ -56,8 +56,8 @@ export default class Dashboard extends React.Component {
     }
 
     preloadWidgets() {
-        let dims = [[5, 0, 0], [7, 0, 5], [7, 4, 0], [5, 4, 7]];
-        let widgets = [CadexVis, DecisionReviewOverview, DeepLearningVis, DecisionOverview];
+        let dims = [[0, 0, 5, 6], [5, 0, 7, 3]];
+        let widgets = [DecisionOverview, DecisionReviewOverview];
         let returnList = [];
         for (let i = 0; i < widgets.length; i += 1) {
             let widget = widgets[i];
@@ -66,10 +66,10 @@ export default class Dashboard extends React.Component {
             }}/>;
             let gridData = {
                 i: 'n' + i,
-                x: dims[i][2],
+                x: dims[i][0],
                 y: dims[i][1],
-                w: dims[i][0],
-                h: 4
+                w: dims[i][2],
+                h: dims[i][3]
             };
             let toPush = {
                 content: content,
