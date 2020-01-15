@@ -1,6 +1,7 @@
 import React from "react";
 import './style.scss'
 import Button from "../../../../../static/components/Button";
+import AsWidget from "../../../../../static/components/AsWidget";
 
 /**
  * Button toolbar that handles user adding a widget to the grid
@@ -18,9 +19,7 @@ export default class DashboardToolbar extends React.Component {
             <div className='DashboardToolbar'>
                 {
                     this.props.widgets.map((d, index) => {
-                        console.log(d);
-                        let d_=d(null);
-                        return <Button text={d_.text} onClick={() => this.props.handleCreateWidget(index)}/>
+                        return <Button text={d.text} onClick={() => this.props.handleCreateWidget(index)}/>
                     })
                 }
             </div>

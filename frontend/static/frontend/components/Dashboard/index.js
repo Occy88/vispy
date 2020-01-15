@@ -2,13 +2,14 @@ import React from 'react'
 import _ from "lodash";
 import DashboardToolbar from "../DashboardToolbar";
 import DashboardGrid from "../DashboardGrid";
-import DecisionOverviewWidget from "../DecisionOverviewWidget";
-import CadexVisWidget from "../CadexVisWidget";
-import DeepLearningVisWidget from "../DeepLearningVisWidget";
-import DecisionReviewOverviewWidget from "../DecisionReviewOverviewWidget";
+import DecisionOverview from "../DecisionOverview";
+import DeepLearningVis from "../DeepLearningVis";
+import DecisionReviewOverview from "../DecisionReviewOverview";
 import "./style.scss";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
+import CadexVis from "../CadexVis";
+import AsWidget from "../../../../../static/components/AsWidget";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -25,19 +26,20 @@ export default class Dashboard extends React.Component {
             counter: 0
         };
         this.widgets = [
-            CadexVisWidget,
-            DecisionReviewOverviewWidget,
-            DecisionOverviewWidget,
-            DeepLearningVisWidget
+            {component: CadexVis, w: 5, h: 4, text: 'Cadex Vis'},
+            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Decision Review'},
+            {component: DecisionOverview, w: 5, h: 4, text: 'Decision Overview'},
+            {component: DeepLearningVis, w: 5, h: 4, text: 'Deep Learning'},
         ];
         this.handleRemove = this.handleRemove.bind(this)
     }
 
     createWidget(type) {
         let val = this.state.counter;
-        let widget = this.widgets[type](() => {
+        let widget = this.widgets[type];
+        let content = <AsWidget component={this.widgets[type].component} handleRemove={() => {
             this.handleRemove(val)
-        });
+        }}/>;
         let pos = this.findSpace(widget.w, widget.h);
         let gridData = {
             i: 'n' + val,
@@ -47,11 +49,41 @@ export default class Dashboard extends React.Component {
             h: widget.h
         };
         return {
-            content: widget.content,
+            content: content,
             gridData: gridData,
             i: val
         }
     }
+
+    preloadWidgets() {
+        let width = [[5, 0, 0], [6, 0, 5], [7, 4, 0], [4, 4, 7]]
+        let widgets = [CadexVisWidget, DecisionReviewOverviewWidget, DeepLearningVisWidget, DecisionOverviewWidget]
+        let returnList = [];
+
+        for (let i = 0; i < widgets.length; i += 1) {
+            let widget = AsWidget(widgets[type], (() => {
+                this.handleRemove(val)
+            }));
+            let gridData = {
+                i: 'n' + i,
+                x: width[i][2],
+                y: width[i][1],
+                w: width[i][0],
+                h: 4
+            };
+            let toPush = {
+                content: widget.content,
+                gridData: gridData,
+                i: i
+            };
+            returnList.push(toPush)
+        }
+        this.setState({
+            createdWidgets: returnList,
+            counter: widgets.length
+        })
+    }
+
 
     findSpace(width, height) {
         // identify max_width,max_height
@@ -101,6 +133,12 @@ export default class Dashboard extends React.Component {
         return [p_x, p_y]
 
     }
+
+    // componentDidMount() {
+    //     this.preloadWidgets();
+    //     this.forceUpdate()
+    //
+    // }
 
     /**
      * Function to create a specific widget

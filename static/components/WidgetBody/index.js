@@ -8,7 +8,7 @@ export default class WidgetBody extends React.Component {
 
     render() {
         return (
-            <div className={`WidgetBody ${this.props.className}`}>
+            <div className={'WidgetBody'}>
                 {this.props.children}
             </div>
         );

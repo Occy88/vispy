@@ -30,6 +30,7 @@ export default class DashboardGrid extends React.Component {
                                     itemevation={3}
                                     key={item.i}
                                     data-grid={item.gridData}>
+
                             {item.content}
                         </div>
                     })}
