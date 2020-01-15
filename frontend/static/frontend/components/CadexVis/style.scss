@@ -45,12 +45,15 @@
     height: 100%;
     flex-direction: column;
     justify-content: center;
-    text-align: left;
   }
 
+  .adjust, .original, .proposed, .change{
+    text-align: center;
+  }
   .name {
     width: 200px;
     min-width: 100px;
+    text-align: left;
   }
 
   .adjust {

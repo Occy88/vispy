@@ -98,9 +98,9 @@ class CadexVis extends React.Component {
                                 <div className={'change'}
                                      style={{
                                          backgroundColor: 'RGB(' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / 3)) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / 3) : 255 - ((value.proposed / value.original - 1) * -255 / 3)) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / 3) : 255) + ')'
+                                             (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.maxValue / value.original)) : 255) + ')'
                                      }}>
                                     {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 1000) / 10 - 100}%
                                 </div>
