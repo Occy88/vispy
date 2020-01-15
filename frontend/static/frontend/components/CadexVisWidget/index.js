@@ -18,7 +18,7 @@ const CadexVisWidget = (handleRemove) => {
   );
 
   // The default dimensions in terms of the grid system
-  const defaultDimen = { w: 6, h: 2 };
+  const defaultDimen = { w: 4, h: 4 };
 
   return {
     text:'Cadex Vis',

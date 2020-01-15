@@ -38,10 +38,11 @@ export default class Dashboard extends React.Component {
         let widget = this.widgets[type](() => {
             this.handleRemove(val)
         });
+        let pos = this.findSpace(widget.w, widget.h);
         let gridData = {
             i: 'n' + val,
-            x: (this.state.createdWidgets.length * 2) % 12,
-            y: Infinity,
+            x: pos[0],
+            y: pos[1],
             w: widget.w,
             h: widget.h
         };
@@ -50,6 +51,55 @@ export default class Dashboard extends React.Component {
             gridData: gridData,
             i: val
         }
+    }
+
+    findSpace(width, height) {
+        // identify max_width,max_height
+        const max_width = 12;
+        const max_height = 13;
+        //    go linearly
+        let p_x = 0;
+        let p_y = 0;
+        let found = true;
+        let y = 0;
+        let x = 0;
+        while (y < max_height) {
+            while (x < max_width) {
+                console.log('evaluating:', x, y);
+                for (let comp of this.state.createdWidgets) {
+                    let w = comp.gridData.w;
+                    let h = comp.gridData.h;
+                    let x_c = comp.gridData.x;
+                    let y_c = comp.gridData.y;
+                    if (((p_x + width >= x_c && p_x < x_c) || (p_x + width >= x_c + w && p_x < x_c + w)) ||
+                        ((p_y + height >= y_c && p_y < y_c) || (p_y + height >= y_c + h && p_y < y_c + h))) {
+                        if (x_c + w + width > max_width) {
+                            console.log('max width reached');
+                            p_x = 0;
+                            p_y = y_c + h;
+                            console.log('evaluating:', p_x, p_y);
+                        } else {
+                            p_x = x_c + w;
+                            console.log('evaluating:', p_x, p_y);
+
+                        }
+                        found = true;
+                        x = p_x + width + 1;
+                        y = p_y + height + 1;
+                    }
+                }
+                if (found) {
+                    console.log('went through iteration wth no collision, returning:', p_x, p_y);
+                    return [p_x, p_y]
+
+                }
+                x += 1
+            }
+            y += 1
+        }
+        console.log('forced return: ', p_x, p_y);
+        return [p_x, p_y]
+
     }
 
     /**
@@ -61,6 +111,7 @@ export default class Dashboard extends React.Component {
             createdWidgets: this.state.createdWidgets.concat(this.createWidget(type)),
             counter: this.state.counter + 1,
         });
+        this.forceUpdate()
 
     };
 

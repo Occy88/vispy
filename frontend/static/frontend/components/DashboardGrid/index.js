@@ -21,9 +21,10 @@ export default class DashboardGrid extends React.Component {
         return (
             <div className={'DashboardGrid'}>
                 <ResponsiveGridLayout
+                    rowHeight={100}
                     compactType={null}
                     draggableCancel={'.nonDraggable'}
-                >
+                    >
                     {this.props.items.map(item => {
                         return <div className={'widget'}
                                     itemevation={3}
