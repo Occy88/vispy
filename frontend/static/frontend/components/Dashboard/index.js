@@ -37,7 +37,7 @@ export default class Dashboard extends React.Component {
     createWidget(type) {
         let val = this.state.counter;
         let widget = this.widgets[type];
-        let content = <AsWidget component={this.widgets[type].component} handleRemove={() => {
+        let content = <AsWidget component={widget.component} handleRemove={() => {
             this.handleRemove(val)
         }}/>;
         let pos = this.findSpace(widget.w, widget.h);
@@ -56,14 +56,14 @@ export default class Dashboard extends React.Component {
     }
 
     preloadWidgets() {
-        let width = [[5, 0, 0], [6, 0, 5], [7, 4, 0], [4, 4, 7]]
-        let widgets = [CadexVisWidget, DecisionReviewOverviewWidget, DeepLearningVisWidget, DecisionOverviewWidget]
+        let width = [[5, 0, 0], [7, 0, 5], [7, 4, 0], [5, 4, 7]];
+        let widgets = [CadexVis, DecisionReviewOverview, DeepLearningVis, DecisionOverview];
         let returnList = [];
-
         for (let i = 0; i < widgets.length; i += 1) {
-            let widget = AsWidget(widgets[type], (() => {
-                this.handleRemove(val)
-            }));
+            let widget = widgets[i];
+            let content = <AsWidget component={widget} handleRemove={() => {
+                this.handleRemove(i)
+            }}/>;
             let gridData = {
                 i: 'n' + i,
                 x: width[i][2],
@@ -72,7 +72,7 @@ export default class Dashboard extends React.Component {
                 h: 4
             };
             let toPush = {
-                content: widget.content,
+                content: content,
                 gridData: gridData,
                 i: i
             };
@@ -134,11 +134,11 @@ export default class Dashboard extends React.Component {
 
     }
 
-    // componentDidMount() {
-    //     this.preloadWidgets();
-    //     this.forceUpdate()
-    //
-    // }
+    componentDidMount() {
+        this.preloadWidgets();
+        this.forceUpdate()
+
+    }
 
     /**
      * Function to create a specific widget

@@ -19,7 +19,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: start;
+    overflow-y: scroll;
   }
 
   .row {
@@ -29,6 +30,7 @@
     -o-user-select: none;
     user-select: none;
     width: 100%;
+    min-height: 50px;
     height: auto;
     display: flex;
     flex-direction: row;

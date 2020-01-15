@@ -23,6 +23,14 @@ class CadexVis extends React.Component {
                 {name: 'sweets', original: 100, proposed: 200},
                 {name: 'jail time', original: 20, proposed: 30},
                 {name: 'relationship strength', original: 0.4, proposed: 0.2},
+                {name: 'life expectancy', original: 100, proposed: 36},
+                {name: 'sweets', original: 100, proposed: 200},
+                {name: 'jail time', original: 20, proposed: 30},
+                {name: 'relationship strength', original: 0.4, proposed: 0.2},
+                {name: 'life expectancy', original: 100, proposed: 36},
+                {name: 'sweets', original: 100, proposed: 200},
+                {name: 'jail time', original: 20, proposed: 30},
+                {name: 'relationship strength', original: 0.4, proposed: 0.2},
                 {name: 'life expectancy', original: 100, proposed: 36}
             ]
         }

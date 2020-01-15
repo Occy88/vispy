@@ -15,10 +15,18 @@ class DecisionOverview extends React.Component {
 
     render() {
         const decisions = [
+            {id: 1, decision: "Rejected", wait: 5, system: "KNN"},
+            {id: 2, decision: "Limited Approval", wait: 3, system: "KNN"},
+            {id: 3, decision: "Rejected", wait: 3, system: "KNN"},
+            {id: 5, decision: "Rejected", wait: 2, system: "KNN"},
             {id: 12, decision: "Rejected", wait: 5, system: "KNN"},
             {id: 13, decision: "Limited Approval", wait: 3, system: "KNN"},
             {id: 14, decision: "Rejected", wait: 3, system: "KNN"},
-            {id: 15, decision: "Rejected", wait: 2, system: "KNN"}
+            {id: 15, decision: "Rejected", wait: 2, system: "KNN"},
+            {id: 21, decision: "Rejected", wait: 5, system: "KNN"},
+            {id: 23, decision: "Limited Approval", wait: 3, system: "KNN"},
+            {id: 24, decision: "Rejected", wait: 3, system: "KNN"},
+            {id: 25, decision: "Rejected", wait: 2, system: "KNN"}
         ];
 
         return (
