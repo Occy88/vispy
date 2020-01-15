@@ -31,13 +31,13 @@ class CadexVis extends React.Component {
     }
 
     render() {
-        const slider = (key, original, value, onChange) => {
+        const slider = (key, original, value, max, min, onChange) => {
             return (
                 <Slider
                     onChange={(event, value) => onChange(event, value, key)}
-                    min={-original * 2}
-                    max={original * 4}
-                    step={original * 4 / 100}
+                    min={min}
+                    max={max}
+                    step={(max - min) / 10000}
                     defaultValue={value}/>
             )
         };
@@ -73,7 +73,7 @@ class CadexVis extends React.Component {
                                 </div>
                                 <div className='nonDraggable'>
                                     <div className={'adjust'}>
-                                        {slider(index, value.original, value.proposed, (event, value, key) => {
+                                        {slider(index, value.original, value.proposed, value.maxValue, value.minValue, (event, value, key) => {
                                             let newData = [...this.state.data];
                                             newData[key].proposed = value;
                                             this.setState({
@@ -87,16 +87,16 @@ class CadexVis extends React.Component {
                                     {value.original}
                                 </div>
                                 <div className={'proposed'}>
-                                    {value.proposed}
+                                    {value.proposed.toFixed(2)}
                                 </div>
                                 <div className={'change'}
                                      style={{
                                          backgroundColor: 'RGB(' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / 3)) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / 3) : 255 - ((value.proposed / value.original - 1) * -255 / 3)) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / 3) : 255) + ')'
+                                             (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255) + ')'
                                      }}>
-                                    {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 1000) / 10 - 100}%
+                                    {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 100).toFixed(2) - 100}%
                                 </div>
                             </div>
                         )
