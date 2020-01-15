@@ -29,9 +29,8 @@ class Header extends React.Component {
             company: DEFAULT_COMPANY,
 
             links: [
-                {'url': 'knn', id: 1, 'text': 'knn'},
-                {'url': 'deep-learning', id: 2, 'text': 'deep_learning'},
-                {'url': 'dashboard', id: 3, 'text': 'dashboard'},
+                {'url': 'dashboard', id: 1, 'text': 'Dashboard'},
+                {'url': 'knn', id: 2, 'text': 'KNN'},
             ]
         };
         console.log(this.state.company);

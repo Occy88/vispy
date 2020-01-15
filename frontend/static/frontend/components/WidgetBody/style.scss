@@ -2,5 +2,16 @@
   position: absolute;
   top: 2em;
   bottom: 0;
-  width: inherit;
+  width: 100%;
+}
+
+// These are options for flex layouts. Use one.
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
 }
