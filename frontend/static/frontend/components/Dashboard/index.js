@@ -26,10 +26,10 @@ export default class Dashboard extends React.Component {
             counter: 0
         };
         this.widgets = [
-            {component: CadexVis, w: 5, h: 4, text: 'Cadex Vis'},
-            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Decision Review'},
-            {component: DecisionOverview, w: 5, h: 4, text: 'Decision Overview'},
-            {component: DeepLearningVis, w: 5, h: 4, text: 'Deep Learning'},
+            {component: CadexVis, w: 5, h: 4, text: 'Transparency'},
+            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Auditability'},
+            {component: DecisionOverview, w: 5, h: 4, text: 'Safety Monitoring'},
+            {component: DeepLearningVis, w: 5, h: 4, text: 'Explainability'},
         ];
         this.handleRemove = this.handleRemove.bind(this)
     }
