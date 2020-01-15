@@ -25,15 +25,12 @@ export default class Routes extends React.Component {
             <Router>
                 <Header/>
                 <Switch {...this.props}>
-                    <Route path={app_url_prefix + "knn"} render={(routeProps) => (
-                        <NetworkController {...routeProps} />
-                    )}/>
-                    <Route path={app_url_prefix + "deep-learning"} render={(routeProps) => (
-                        <DeepLearningVisualisation {...routeProps} />
-                    )}/>
-                    <Route path={app_url_prefix + "dashboard"} render={(routeProps) => (
+                    <Route path={app_url_prefix + "Dashboard"} render={(routeProps) => (
                         <Dashboard {...routeProps} />
                     )} />
+                    <Route path={app_url_prefix + "KNN"} render={(routeProps) => (
+                        <NetworkController {...routeProps} />
+                    )}/>
                     <Route path="*" render={() => {
                         return (
                             <h2 style={{"textAlign": "center", "padding": "30px"}}>Page Not Found</h2>
