@@ -95,8 +95,14 @@ class CadexVis extends React.Component {
                                 <div className={'proposed'}>
                                     {value.proposed}
                                 </div>
-                                <div className={'change'}>
-                                    {Math.round((value.proposed / value.original) * 1000) / 10 - 100}%
+                                <div className={'change'}
+                                     style={{
+                                         backgroundColor: 'RGB(' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / 3)) + ',' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / 3) : 255 - ((value.proposed / value.original - 1) * -255 / 3)) + ',' +
+                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / 3) : 255) + ')'
+                                     }}>
+                                    {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 1000) / 10 - 100}%
                                 </div>
                             </div>
                         )
