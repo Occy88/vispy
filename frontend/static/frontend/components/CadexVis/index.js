@@ -20,18 +20,12 @@ class CadexVis extends React.Component {
         super(props);
         this.state = {
             data: [
-                {name: 'sweets', original: 100, proposed: 200},
-                {name: 'jail time', original: 20, proposed: 30},
-                {name: 'relationship strength', original: 0.4, proposed: 0.2},
-                {name: 'life expectancy', original: 100, proposed: 36},
-                {name: 'sweets', original: 100, proposed: 200},
-                {name: 'jail time', original: 20, proposed: 30},
-                {name: 'relationship strength', original: 0.4, proposed: 0.2},
-                {name: 'life expectancy', original: 100, proposed: 36},
-                {name: 'sweets', original: 100, proposed: 200},
-                {name: 'jail time', original: 20, proposed: 30},
-                {name: 'relationship strength', original: 0.4, proposed: 0.2},
-                {name: 'life expectancy', original: 100, proposed: 36}
+                {name: 'Credit Score', original: 500, proposed: 500, minValue:0, maxValue:850},
+                {name: 'Total Income', original: 20000, proposed: 20000, minValue:1000, maxValue:10000000},
+                {name: 'Loan Amount', original: 10000, proposed: 5000, minValue:100, maxValue:100000},
+                {name: 'Interest Rate', original: 20, proposed: 24, minValue:0.1, maxValue:300},
+                {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue:0, maxValue:2},
+                {name: 'Total Accounts', original: 20, proposed: 20, minValue:0, maxValue:100},
             ]
         }
     }
@@ -67,7 +61,7 @@ class CadexVis extends React.Component {
         return (
             <div className={'CadexVis'}>
                 <WidgetHeader>
-                    Some Header
+                    Decision Review
                 </WidgetHeader>
                 <WidgetBody>
                     {rowTitles}

@@ -34,7 +34,7 @@ class DecisionOverview extends React.Component {
             <div className={'DecisionOverview'}>
                 {/* The children contained within the component will be displayed within */}
                 <WidgetHeader>
-                    Something
+                    Decisions Flagged for Review | Currently Pending
                 </WidgetHeader>
                 <WidgetBody>
                     <Table>

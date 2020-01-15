@@ -10,7 +10,6 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import CadexVis from "../CadexVis";
 import AsWidget from "../../../../../static/components/AsWidget";
-import Routes from "../Routes";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -27,12 +26,10 @@ export default class Dashboard extends React.Component {
             counter: 0
         };
         this.widgets = [
-            {component: CadexVis, w: 5, h: 4, text: 'Cadex Vis'},
-            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Decision Review'},
-            {component: DecisionOverview, w: 5, h: 4, text: 'Decision Overview'},
-            {component: DeepLearningVis, w: 5, h: 4, text: 'Deep Learning'},
-            {component: Routes, w: 5, h: 4, text: 'Routes'},
-
+            {component: CadexVis, w: 5, h: 4, text: 'Transparency'},
+            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Auditability'},
+            {component: DecisionOverview, w: 5, h: 4, text: 'Safety Monitoring'},
+            {component: DeepLearningVis, w: 5, h: 4, text: 'Explainability'},
         ];
         this.handleRemove = this.handleRemove.bind(this)
     }
@@ -59,7 +56,7 @@ export default class Dashboard extends React.Component {
     }
 
     preloadWidgets() {
-        let width = [[5, 0, 0], [7, 0, 5], [7, 4, 0], [5, 4, 7]];
+        let dims = [[5, 0, 0], [7, 0, 5], [7, 4, 0], [5, 4, 7]];
         let widgets = [CadexVis, DecisionReviewOverview, DeepLearningVis, DecisionOverview];
         let returnList = [];
         for (let i = 0; i < widgets.length; i += 1) {
@@ -69,9 +66,9 @@ export default class Dashboard extends React.Component {
             }}/>;
             let gridData = {
                 i: 'n' + i,
-                x: width[i][2],
-                y: width[i][1],
-                w: width[i][0],
+                x: dims[i][2],
+                y: dims[i][1],
+                w: dims[i][0],
                 h: 4
             };
             let toPush = {

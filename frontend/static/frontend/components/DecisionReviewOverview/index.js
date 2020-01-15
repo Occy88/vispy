@@ -93,7 +93,7 @@ class DecisionReviewOverview extends React.Component {
         return (
             <div className={'DecisionReviewOverview'}>
                 <WidgetHeader>
-                    Decisions Flagged for Review
+                    Decisions Flagged for Review | Timeline
                 </WidgetHeader>
                 <WidgetBody className="vertical">
                     <Tabs defaultActiveKey="weekly" transition={false} id="graph-tabs">
