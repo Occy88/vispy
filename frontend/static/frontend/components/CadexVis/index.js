@@ -67,7 +67,7 @@ class CadexVis extends React.Component {
         return (
             <div className={'CadexVis'}>
                 <WidgetHeader>
-                    Some Header
+                    Decision Review
                 </WidgetHeader>
                 <WidgetBody>
                     {rowTitles}

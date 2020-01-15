@@ -364,12 +364,12 @@ class DeepLearningVis extends React.Component {
         return (
             <div className={'DeepLearningVis'}>
                 <WidgetHeader>
-                    Something
+                    Deep Learning Decision Explanation
                 </WidgetHeader>
                 <WidgetBody>
                     <div className="TimelineContainer">
                         <div className="title">
-                            Network Training
+                            Training Progression
                         </div>
                         <GraphContainer>
                             <ResponsiveBar
@@ -383,8 +383,7 @@ class DeepLearningVis extends React.Component {
                         </GraphContainer>
                     </div>
                     <div className="HeatMapContainer">
-
-                        <div className="title">
+                        <div className="title heat-map">
                             Decision Relevance Heat Map
                         </div>
                         <GraphContainer>

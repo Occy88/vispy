@@ -74,7 +74,7 @@ class Header extends React.Component {
                     <img
                         src={this.state.company && this.state.company.logo ? STATIC_URL + this.state.company.logo : "https://www.designevo.com/res/templates/thumb_small/blue-bar-graph-and-stock.png"}
                         alt="Logo"
-                        style={{height: '50px'}}></img>
+                        style={{height: '50px'}} />
                 </Link>
             </div>;
 
