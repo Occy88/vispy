@@ -31,6 +31,9 @@ class DecisionReviewOverview extends React.Component {
         ];
 
         const hourly_timeline_pos_data = [
+            {
+                    id: 'something',
+                    data: [
             {x: "03/01/2020:07", y: 3},
             {x: "03/01/2020:08", y: 1},
             {x: "03/01/2020:09", y: 2},
@@ -46,7 +49,7 @@ class DecisionReviewOverview extends React.Component {
             {x: "03/01/2020:19", y: 7},
             {x: "03/01/2020:20", y: 5},
             {x: "03/01/2020:21", y: 4}
-        ];
+        ]}];
 
         const daily_timeline_pos_data =
             [
@@ -94,7 +97,7 @@ class DecisionReviewOverview extends React.Component {
                 </WidgetHeader>
                 <WidgetBody className="vertical">
                     <Tabs defaultActiveKey="weekly" transition={false} >
-                        <Tab eventKey="weekly" title="By Week">
+                        <Tab eventKey="weekly" title="Per Week">
                             <div className="LineGraphContainer">
                                 <ResponsiveLine
                                     data={weekly_timeline_pos_data}
@@ -112,7 +115,7 @@ class DecisionReviewOverview extends React.Component {
                                 />
                             </div>
                         </Tab>
-                        <Tab eventKey="daily" title="By day">
+                        <Tab eventKey="daily" title="Per day">
                             <div className="LineGraphContainer">
                                 <ResponsiveLine
                                     data={daily_timeline_pos_data}
@@ -137,13 +140,13 @@ class DecisionReviewOverview extends React.Component {
                                     margin={{top: 10, right: 20, bottom: 30, left: 30}}
                                     xScale={{
                                         type:'time',
-                                        format:'%d/%m/%Y',
-                                        precision:'day'
+                                        format:'%d/%m/%Y:%H',
+                                        precision:'hour'
                                     }}
                                     xFormat="time:%d/%m/%Y"
                                     axisBottom={{
-                                        format: '%b %d',
-                                        tickValues: 'every day'
+                                        format: '%H:00',
+                                        tickValues: 'every hour'
                                     }}
                                 />
                             </div>
