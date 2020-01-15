@@ -10,6 +10,7 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import CadexVis from "../CadexVis";
 import AsWidget from "../../../../../static/components/AsWidget";
+import Routes from "../Routes";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -30,6 +31,8 @@ export default class Dashboard extends React.Component {
             {component: DecisionReviewOverview, w: 5, h: 4, text: 'Decision Review'},
             {component: DecisionOverview, w: 5, h: 4, text: 'Decision Overview'},
             {component: DeepLearningVis, w: 5, h: 4, text: 'Deep Learning'},
+            {component: Routes, w: 5, h: 4, text: 'Routes'},
+
         ];
         this.handleRemove = this.handleRemove.bind(this)
     }

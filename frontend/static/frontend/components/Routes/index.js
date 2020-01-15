@@ -3,7 +3,6 @@ import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import './style.scss'
 import languages from "../../../../../accounts/static/accounts/components/AccountService/lang";
 import NetworkController from "../NetworkController";
-import DeepLearningVisualisation from "../DeepLearningVisualisation";
 import Header from "../Header";
 import Footer from "../Footer";
 import Dashboard from '../Dashboard';
