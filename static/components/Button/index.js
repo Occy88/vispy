@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss'
 import languages from "./lang.js"
+import Image from "react-bootstrap/Image";
 
 let lang = languages[document.documentElement.lang];
 
@@ -28,12 +29,19 @@ class Button extends React.Component {
      * @return {*}
      */
     render() {
-
-        return (
-            <div onClick={this.props.onClick} className={'Button'} style={this.props.style}>
-                {this.props.text?this.props.text:this.props.children}
-            </div>
-        )
+        if (this.props.image) {
+            return (
+                <div onClick={this.props.onClick} className={'Button'} style={this.props.style}>
+                    <Image src={this.props.image} fluid={true} />
+                </div>
+            );
+        } else {
+            return (
+                <div onClick={this.props.onClick} className={'Button'} style={this.props.style}>
+                    {this.props.text ? this.props.text : this.props.children}
+                </div>
+            );
+        }
     }
 }
 

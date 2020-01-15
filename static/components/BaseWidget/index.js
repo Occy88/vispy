@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import './style.scss'
+import thin_black_cross from "../../img/thin_black_cross.png"
 
 /**
  * The skeleton of any widget to be displayed on the grid.
@@ -19,15 +20,23 @@ class BaseWidget extends React.Component {
 
     render() {
 
+        const button_style = {
+            position: "absolute",
+            right: "0",
+            width: "20px",
+            float: "right"
+        };
 
         // Create the interior of any given widget to be displayed.
         return (
             <div className={'BaseWidget'}>
                 <Button
                     className="remove"
-                    onClick={this.props.handleRemove}>
+                    onClick={this.props.handleRemove}
+                    image={STATIC_URL + thin_black_cross}
+                    style={button_style}>
                     x
-                </Button>
+                </Button >
                 {this.props.children}
             </div>
         );
