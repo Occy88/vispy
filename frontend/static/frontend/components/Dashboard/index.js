@@ -56,7 +56,7 @@ export default class Dashboard extends React.Component {
     }
 
     preloadWidgets() {
-        let dims = [[5, 0, 0], [7, 0, 5], [7, 3, 0], [5, 3, 7]];
+        let dims = [[5, 0, 0], [7, 0, 5], [7, 4, 0], [5, 4, 7]];
         let widgets = [CadexVis, DecisionReviewOverview, DeepLearningVis, DecisionOverview];
         let returnList = [];
         for (let i = 0; i < widgets.length; i += 1) {
@@ -69,7 +69,7 @@ export default class Dashboard extends React.Component {
                 x: dims[i][2],
                 y: dims[i][1],
                 w: dims[i][0],
-                h: 3
+                h: 4
             };
             let toPush = {
                 content: content,
