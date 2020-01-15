@@ -64,7 +64,7 @@ class DecisionOverview extends React.Component {
                                 <TableCell>{decision.wait}</TableCell>
                                 <TableCell>{decision.system}</TableCell>
                                 <TableCell>
-                                    <Button style={button_style}>
+                                    <Button style={button_style} onClick={this.props.createSpecial}>
                                         Review
                                     </Button>
                                 </TableCell>

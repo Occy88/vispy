@@ -55,13 +55,39 @@ export default class Dashboard extends React.Component {
         }
     }
 
+    createSpecial() {
+        let widget = CadexVis;
+        let i = this.state.counter + 1;
+        let content = <AsWidget component={widget} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
+            this.handleRemove(i)
+        }}/>;
+        let gridData = {
+            i: 'n' + i,
+            x: 5,
+            y: 3,
+            w: 7,
+            h: 3
+        };
+        let toPush = {
+            content: content,
+            gridData: gridData,
+            i: i
+        };
+        let returnList = [...this.state.createdWidgets];
+        returnList.push(toPush);
+        this.setState({
+            createdWidgets: returnList,
+            counter: i
+        })
+    }
+
     preloadWidgets() {
         let dims = [[0, 0, 5, 6], [5, 0, 7, 3]];
         let widgets = [DecisionOverview, DecisionReviewOverview];
         let returnList = [];
         for (let i = 0; i < widgets.length; i += 1) {
             let widget = widgets[i];
-            let content = <AsWidget component={widget} handleRemove={() => {
+            let content = <AsWidget component={widget} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
                 this.handleRemove(i)
             }}/>;
             let gridData = {
