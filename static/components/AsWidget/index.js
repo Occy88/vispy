@@ -23,15 +23,6 @@ class AsWidget extends React.Component {
         console.log('as widget', this.props)
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log('hello i upated Derived', nextProps, prevState)
-
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('hello i upated', prevProps, prevState)
-    }
-
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         console.log('recieved props in as widget:', nextProps.elementToRemove);

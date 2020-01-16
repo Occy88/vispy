@@ -18,8 +18,6 @@ export default class DashboardGrid extends React.Component {
 
     UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         console.log('recieved props in GRID');
-        console.log(nextProps);
-        this.forceUpdate();
     }
 
     // Generate all the widgets as children of a ResponsiveGridLayout
@@ -37,8 +35,15 @@ export default class DashboardGrid extends React.Component {
                                     itemevation={3}
                                     key={item.i}
                                     data-grid={item.gridData}>
-
-                            <AsWidget component={item.content} removeElement={this.props.removeElement} elementToRemove={this.props.elementToRemove}/>
+                            <AsWidget
+                                createSpecial={this.props.createSpecial}
+                                component={item.content}
+                                removeElement={this.props.removeElement}
+                                elementToEval={this.props.elementToEval}
+                                elementToRemove={this.props.elementToRemove}
+                                handleRemove={() => {
+                                    this.props.handleRemove(item.i)
+                                }}/>
                         </div>
                     })}
                 </ResponsiveGridLayout>

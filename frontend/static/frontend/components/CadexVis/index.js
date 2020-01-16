@@ -19,16 +19,23 @@ import Button from "../../../../../static/components/Button";
 class CadexVis extends React.Component {
     constructor(props) {
         super(props);
+        console.log('created cadex vis', this.props.elementToEval)
         this.state = {
             data: [
-                {name: 'Credit Score', original: 500, proposed: 500, minValue:0, maxValue:850},
-                {name: 'Total Income', original: 20000, proposed: 20000, minValue:1000, maxValue:100000},
-                {name: 'Loan Amount', original: 10000, proposed: 5000, minValue:100, maxValue:100000},
-                {name: 'Interest Rate', original: 20, proposed: 24, minValue:0.1, maxValue:100},
-                {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue:0, maxValue:2},
-                {name: 'Total Accounts', original: 20, proposed: 20, minValue:0, maxValue:100},
+                {name: 'Credit Score', original: 500, proposed: 500, minValue: 0, maxValue: 850},
+                {name: 'Total Income', original: 20000, proposed: 20000, minValue: 1000, maxValue: 100000},
+                {name: 'Loan Amount', original: 10000, proposed: 5000, minValue: 100, maxValue: 100000},
+                {name: 'Interest Rate', original: 20, proposed: 24, minValue: 0.1, maxValue: 100},
+                {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue: 0, maxValue: 2},
+                {name: 'Total Accounts', original: 20, proposed: 20, minValue: 0, maxValue: 100},
             ]
         }
+        this.removeElement = this.removeElement.bind(this)
+    }
+
+    removeElement() {
+        console.log('clicked on remove element', this.props.elementToEval)
+        this.props.removeElement(this.props.elementToEval)
     }
 
     render() {
@@ -61,11 +68,11 @@ class CadexVis extends React.Component {
         </div>;
 
         const button_style = {
-                color:"unset",
-                border:"1px solid #3e3e3e",
-                width:"100%",
-                margin:"auto"
-            };
+            color: "unset",
+            border: "1px solid #3e3e3e",
+            width: "100%",
+            margin: "auto"
+        };
 
         return (
             <div className={'CadexVis'}>
@@ -112,7 +119,10 @@ class CadexVis extends React.Component {
                     })}
 
                 </WidgetBody>
-            <Button style={button_style} onClick={this.props.removeElement}>Accept</Button>
+                <Button style={button_style} onClick={() => {
+                    this.removeElement();
+                    this.props.handleRemove()
+                }}>Accept</Button>
             </div>
         )
     }

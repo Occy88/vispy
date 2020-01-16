@@ -41,7 +41,7 @@ class DecisionOverview extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        console.log('recieved some props: ', props);
+        console.log('Decision Overview Props Recieved: ');
         this.removeElement(props.elementToRemove)
     }
 
@@ -55,8 +55,6 @@ class DecisionOverview extends React.Component {
         const decision_col_style = {
             textAlign: "unset"
         };
-        console.log(this.props.elementToRemove)
-
 
         return (
             <div className={'DecisionOverview'}>
