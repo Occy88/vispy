@@ -14,6 +14,10 @@ export default class DashboardToolbar extends React.Component {
 
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+        console.log("TOOLBAR RECIEVED THEM", nextProps)
+    }
+
     render() {
         return (
             <div className='DashboardToolbar'>

@@ -10,6 +10,7 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import CadexVis from "../CadexVis";
 import AsWidget from "../../../../../static/components/AsWidget";
+import Button from "../../../../../static/components/Button";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -24,7 +25,7 @@ export default class Dashboard extends React.Component {
         this.state = {
             createdWidgets: [],
             counter: 0,
-            elementToRemove:null
+            elementToRemove: 0
         };
         this.widgets = [
             {component: CadexVis, w: 5, h: 4, text: 'Transparency'},
@@ -33,13 +34,13 @@ export default class Dashboard extends React.Component {
             {component: DeepLearningVis, w: 5, h: 4, text: 'Explainability'},
         ];
         this.handleRemove = this.handleRemove.bind(this)
-        this.removeElement=this.removeElement.bind(this)
+        this.removeElement = this.removeElement.bind(this)
     }
 
     createWidget(type) {
         let val = this.state.counter;
         let widget = this.widgets[type];
-        let content = <AsWidget  component={widget.component} handleRemove={() => {
+        let content = <AsWidget component={widget.component} handleRemove={() => {
             this.handleRemove(val)
         }}/>;
         let pos = this.findSpace(widget.w, widget.h);
@@ -58,14 +59,17 @@ export default class Dashboard extends React.Component {
     }
 
     removeElement(id) {
-        this.setState({elementToRemove:id});
+        this.setState({elementToRemove: id});
+        this.forceUpdate();
         console.log("Removing element", id)
     }
 
     createSpecial(id) {
         let widget = CadexVis;
         let i = this.state.counter + 1;
-        let content = <AsWidget component={widget} removeElement={()=>{this.removeElement(id)}} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
+        let content = <AsWidget component={widget} removeElement={() => {
+            this.removeElement(id)
+        }} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
             this.handleRemove(i)
         }}/>;
         let gridData = {
@@ -94,7 +98,8 @@ export default class Dashboard extends React.Component {
         let returnList = [];
         for (let i = 0; i < widgets.length; i += 1) {
             let widget = widgets[i];
-            let content = <AsWidget component={widget} elementToRemove={this.state.elementToRemove} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
+            let content = <AsWidget component={widget} elementToRemove={this.state.elementToRemove}
+                                    createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
                 this.handleRemove(i)
             }}/>;
             let gridData = {
@@ -197,10 +202,15 @@ export default class Dashboard extends React.Component {
     };
 
     render() {
+        console.log(this.state.elementToRemove);
         return (
             <div className='Dashboard'>
-                <DashboardToolbar widgets={this.widgets} handleCreateWidget={this.handleCreate.bind(this)}/>
+
+                <DashboardToolbar  widgets={this.widgets} handleCreateWidget={this.handleCreate.bind(this)}/>
                 <DashboardGrid items={this.state.createdWidgets}/>
+                <Button style={{width: '100px', height: '100px'}} onClick={() => {
+                    this.forceUpdate()
+                }}>UPDATE</Button>
             </div>
         );
     }

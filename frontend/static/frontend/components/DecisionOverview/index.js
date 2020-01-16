@@ -14,43 +14,48 @@ class DecisionOverview extends React.Component {
     constructor(props) {
         super(props);
         this.removeElement = this.removeElement.bind(this);
-        this.state= {decisions : [
-            {id: 1, decision: "Rejected", wait: 11, system: "KNN"},
-            {id: 2, decision: "Limited Approval", wait: 9, system: "KNN"},
-            {id: 3, decision: "Rejected", wait: 8, system: "KNN"},
-            {id: 5, decision: "Rejected", wait: 7, system: "KNN"},
-            {id: 12, decision: "Rejected", wait: 5, system: "KNN"},
-            {id: 13, decision: "Limited Approval", wait: 3, system: "KNN"},
-            {id: 14, decision: "Rejected", wait: 2, system: "KNN"},
-            {id: 15, decision: "Rejected", wait: 1, system: "KNN"},
-            {id: 21, decision: "Rejected", wait: 1, system: "KNN"},
-            {id: 23, decision: "Limited Approval", wait: 3, system: "KNN"},
-            {id: 24, decision: "Rejected", wait: 3, system: "KNN"},
-            {id: 25, decision: "Rejected", wait: 2, system: "KNN"}
-        ]};
+        this.state = {
+            decisions: [
+                {id: 1, decision: "Rejected", wait: 11, system: "KNN"},
+                {id: 2, decision: "Limited Approval", wait: 9, system: "KNN"},
+                {id: 3, decision: "Rejected", wait: 8, system: "KNN"},
+                {id: 5, decision: "Rejected", wait: 7, system: "KNN"},
+                {id: 12, decision: "Rejected", wait: 5, system: "KNN"},
+                {id: 13, decision: "Limited Approval", wait: 3, system: "KNN"},
+                {id: 14, decision: "Rejected", wait: 2, system: "KNN"},
+                {id: 15, decision: "Rejected", wait: 1, system: "KNN"},
+                {id: 21, decision: "Rejected", wait: 1, system: "KNN"},
+                {id: 23, decision: "Limited Approval", wait: 3, system: "KNN"},
+                {id: 24, decision: "Rejected", wait: 3, system: "KNN"},
+                {id: 25, decision: "Rejected", wait: 2, system: "KNN"}
+            ]
+        };
+        console.log('decision overview: ', this.props)
     }
 
     removeElement(id) {
-        console.log('clicked remove elemnt',id);
+        console.log('clicked remove elemnt', id);
         this.setState({
             decisions: _.reject(this.state.decisions, {id: id})
         });
     }
 
-    componentWillReceiveProps(props) {
-        console.log('recieved some props: ',props);
+    UNSAFE_componentWillReceiveProps(props) {
+        console.log('recieved some props: ', props);
         this.removeElement(props.elementToRemove)
     }
 
+
     render() {
         const button_style = {
-                color:"unset",
-                border:"1px solid #3e3e3e"
-            };
+            color: "unset",
+            border: "1px solid #3e3e3e"
+        };
 
         const decision_col_style = {
             textAlign: "unset"
         };
+        console.log(this.props.elementToRemove)
 
 
         return (
@@ -77,8 +82,15 @@ class DecisionOverview extends React.Component {
                                 <TableCell>{decision.wait}</TableCell>
                                 <TableCell>{decision.system}</TableCell>
                                 <TableCell>
-                                    <Button style={button_style} onClick={() => { this.props.createSpecial(decision.id)}}>
+                                    <Button style={button_style} onClick={() => {
+                                        this.props.createSpecial(decision.id)
+                                    }}>
                                         Review
+                                    </Button>
+                                    <Button style={button_style} onClick={() => {
+                                        this.forceUpdate()
+                                    }}>
+                                        update
                                     </Button>
                                 </TableCell>
                             </TableRow>)}

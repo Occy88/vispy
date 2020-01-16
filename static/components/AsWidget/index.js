@@ -16,24 +16,35 @@ import WidgetBody from '../WidgetBody'
  */
 class AsWidget extends React.Component {
     constructor(props) {
-        super(props)
-        this.state={
-            elementToRemove:null
-        }
+        super(props);
+        this.state = {
+            elementToRemove: null
+        };
+        console.log('as widget', this.props)
     }
-    componentWillReceiveProps(nextProps, nextContext) {
-        console.log('recieved props in as widget:',nextProps.elementToRemove)
-        if(nextProps.elementToRemove!==this.state.elementToRemove){
 
-        this.setState({elementToRemove:nextProps.elementToRemove})
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('hello i upated Derived', nextProps, prevState)
+
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('hello i upated', prevProps, prevState)
+    }
+
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log('recieved props in as widget:', nextProps.elementToRemove);
+        if (nextProps.elementToRemove !== this.state.elementToRemove) {
+
+            this.setState({elementToRemove: nextProps.elementToRemove})
         }
     }
 
     // Create the content using the BaseWidget component.
     render() {
 
-        console.log('props passed: ',this.props);
-        const element = React.createElement(this.props.component,this.props);
+        const element = React.createElement(this.props.component, this.props);
         const content = (
             <BaseWidget handleRemove={this.props.handleRemove}>
                 {element}
