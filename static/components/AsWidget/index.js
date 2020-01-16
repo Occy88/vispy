@@ -20,7 +20,6 @@ class AsWidget extends React.Component {
         this.state = {
             elementToRemove: null
         };
-        console.log('as widget', this.props)
     }
 
 

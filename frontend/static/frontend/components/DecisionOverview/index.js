@@ -30,18 +30,15 @@ class DecisionOverview extends React.Component {
                 {id: 25, decision: "Rejected", wait: 2, system: "KNN"}
             ]
         };
-        console.log('decision overview: ', this.props)
     }
 
     removeElement(id) {
-        console.log('clicked remove elemnt', id);
         this.setState({
             decisions: _.reject(this.state.decisions, {id: id})
         });
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        console.log('Decision Overview Props Recieved: ');
         this.removeElement(props.elementToRemove)
     }
 
@@ -55,6 +52,7 @@ class DecisionOverview extends React.Component {
         const decision_col_style = {
             textAlign: "unset"
         };
+
 
         return (
             <div className={'DecisionOverview'}>
@@ -84,11 +82,6 @@ class DecisionOverview extends React.Component {
                                         this.props.createSpecial(decision.id)
                                     }}>
                                         Review
-                                    </Button>
-                                    <Button style={button_style} onClick={() => {
-                                        this.forceUpdate()
-                                    }}>
-                                        update
                                     </Button>
                                 </TableCell>
                             </TableRow>)}

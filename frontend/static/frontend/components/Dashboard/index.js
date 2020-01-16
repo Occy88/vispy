@@ -9,8 +9,6 @@ import "./style.scss";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import CadexVis from "../CadexVis";
-import AsWidget from "../../../../../static/components/AsWidget";
-import Button from "../../../../../static/components/Button";
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -65,7 +63,7 @@ export default class Dashboard extends React.Component {
     createSpecial(id) {
         let widget = CadexVis;
         let i = this.state.counter + 1;
-        let content = widget
+        let content = widget;
         let gridData = {
             i: 'n' + i,
             x: 5,
@@ -166,8 +164,6 @@ export default class Dashboard extends React.Component {
 
     componentDidMount() {
         this.preloadWidgets();
-        this.forceUpdate()
-
     }
 
     /**
@@ -179,8 +175,6 @@ export default class Dashboard extends React.Component {
             createdWidgets: this.state.createdWidgets.concat(this.createWidget(type)),
             counter: this.state.counter + 1,
         });
-        this.forceUpdate()
-
     };
 
     /**
@@ -205,9 +199,6 @@ f
                                elementToEval={this.state.elementToEval}
                                createSpecial={this.createSpecial}
                                items={this.state.createdWidgets}/>
-                <Button style={{width: '100px', height: '100px'}} onClick={() => {
-                    this.forceUpdate()
-                }}>UPDATE</Button>
             </div>
         );
     }

@@ -16,13 +16,8 @@ export default class DashboardGrid extends React.Component {
         super(props)
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-        console.log('recieved props in GRID');
-    }
-
     // Generate all the widgets as children of a ResponsiveGridLayout
     render() {
-        console.log("here");
         return (
             <div className={'DashboardGrid'}>
                 <ResponsiveGridLayout
