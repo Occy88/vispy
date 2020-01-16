@@ -9,13 +9,12 @@ import WidgetHeader from "../../../../../static/components/WidgetHeader";
 import WidgetBody from "../../../../../static/components/WidgetBody";
 import Button from "../../../../../static/components/Button";
 
+
 class DecisionOverview extends React.Component {
     constructor(props) {
-        super(props)
-    }
-
-    render() {
-        const decisions = [
+        super(props);
+        this.removeElement = this.removeElement.bind(this);
+        this.state= {decisions : [
             {id: 1, decision: "Rejected", wait: 11, system: "KNN"},
             {id: 2, decision: "Limited Approval", wait: 9, system: "KNN"},
             {id: 3, decision: "Rejected", wait: 8, system: "KNN"},
@@ -28,8 +27,22 @@ class DecisionOverview extends React.Component {
             {id: 23, decision: "Limited Approval", wait: 3, system: "KNN"},
             {id: 24, decision: "Rejected", wait: 3, system: "KNN"},
             {id: 25, decision: "Rejected", wait: 2, system: "KNN"}
-        ];
+        ]};
+    }
 
+    removeElement(id) {
+        console.log('clicked remove elemnt',id);
+        this.setState({
+            decisions: _.reject(this.state.decisions, {id: id})
+        });
+    }
+
+    componentWillReceiveProps(props) {
+        console.log('recieved some props: ',props);
+        this.removeElement(props.elementToRemove)
+    }
+
+    render() {
         const button_style = {
                 color:"unset",
                 border:"1px solid #3e3e3e"
@@ -58,13 +71,13 @@ class DecisionOverview extends React.Component {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {decisions.map((decision) => <TableRow key={decision.id}>
+                            {this.state.decisions.map((decision,) => <TableRow key={decision.id}>
                                 <TableCell>{decision.id}</TableCell>
                                 <TableCell style={decision_col_style}>{decision.decision}</TableCell>
                                 <TableCell>{decision.wait}</TableCell>
                                 <TableCell>{decision.system}</TableCell>
                                 <TableCell>
-                                    <Button style={button_style} onClick={this.props.createSpecial}>
+                                    <Button style={button_style} onClick={() => { this.props.createSpecial(decision.id)}}>
                                         Review
                                     </Button>
                                 </TableCell>

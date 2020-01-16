@@ -112,7 +112,7 @@ class CadexVis extends React.Component {
                     })}
 
                 </WidgetBody>
-            <Button style={button_style}>Accept</Button>
+            <Button style={button_style} onClick={this.props.removeElement}>Accept</Button>
             </div>
         )
     }

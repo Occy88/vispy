@@ -17,11 +17,23 @@ import WidgetBody from '../WidgetBody'
 class AsWidget extends React.Component {
     constructor(props) {
         super(props)
+        this.state={
+            elementToRemove:null
+        }
+    }
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log('recieved props in as widget:',nextProps.elementToRemove)
+        if(nextProps.elementToRemove!==this.state.elementToRemove){
+
+        this.setState({elementToRemove:nextProps.elementToRemove})
+        }
     }
 
     // Create the content using the BaseWidget component.
     render() {
-        const element = React.createElement(this.props.component, this.props);
+
+        console.log('props passed: ',this.props);
+        const element = React.createElement(this.props.component,this.props);
         const content = (
             <BaseWidget handleRemove={this.props.handleRemove}>
                 {element}

@@ -23,7 +23,8 @@ export default class Dashboard extends React.Component {
         super(props);
         this.state = {
             createdWidgets: [],
-            counter: 0
+            counter: 0,
+            elementToRemove:null
         };
         this.widgets = [
             {component: CadexVis, w: 5, h: 4, text: 'Transparency'},
@@ -32,12 +33,13 @@ export default class Dashboard extends React.Component {
             {component: DeepLearningVis, w: 5, h: 4, text: 'Explainability'},
         ];
         this.handleRemove = this.handleRemove.bind(this)
+        this.removeElement=this.removeElement.bind(this)
     }
 
     createWidget(type) {
         let val = this.state.counter;
         let widget = this.widgets[type];
-        let content = <AsWidget component={widget.component} handleRemove={() => {
+        let content = <AsWidget  component={widget.component} handleRemove={() => {
             this.handleRemove(val)
         }}/>;
         let pos = this.findSpace(widget.w, widget.h);
@@ -55,10 +57,15 @@ export default class Dashboard extends React.Component {
         }
     }
 
-    createSpecial() {
+    removeElement(id) {
+        this.setState({elementToRemove:id});
+        console.log("Removing element", id)
+    }
+
+    createSpecial(id) {
         let widget = CadexVis;
         let i = this.state.counter + 1;
-        let content = <AsWidget component={widget} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
+        let content = <AsWidget component={widget} removeElement={()=>{this.removeElement(id)}} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
             this.handleRemove(i)
         }}/>;
         let gridData = {
@@ -87,7 +94,7 @@ export default class Dashboard extends React.Component {
         let returnList = [];
         for (let i = 0; i < widgets.length; i += 1) {
             let widget = widgets[i];
-            let content = <AsWidget component={widget} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
+            let content = <AsWidget component={widget} elementToRemove={this.state.elementToRemove} createSpecial={this.createSpecial.bind(this)} handleRemove={() => {
                 this.handleRemove(i)
             }}/>;
             let gridData = {
