@@ -190,7 +190,6 @@ export default class Dashboard extends React.Component {
     render() {
         return (
             <div className='Dashboard'>
-f
                 <DashboardToolbar widgets={this.widgets} handleCreateWidget={this.handleCreate.bind(this)}/>
                 <DashboardGrid
                                handleRemove={this.handleRemove}
@@ -202,5 +201,4 @@ f
             </div>
         );
     }
-
 }
