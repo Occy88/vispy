@@ -19,7 +19,6 @@ import Button from "../../../../../static/components/Button";
 class CadexVis extends React.Component {
     constructor(props) {
         super(props);
-        console.log('created cadex vis', this.props.elementToEval)
         this.state = {
             data: [
                 {name: 'Credit Score', original: 500, proposed: 500, minValue: 0, maxValue: 850},
@@ -30,12 +29,6 @@ class CadexVis extends React.Component {
                 {name: 'Total Accounts', original: 20, proposed: 20, minValue: 0, maxValue: 100},
             ]
         }
-        this.removeElement = this.removeElement.bind(this)
-    }
-
-    removeElement() {
-        console.log('clicked on remove element', this.props.elementToEval)
-        this.props.removeElement(this.props.elementToEval)
     }
 
     render() {
@@ -120,8 +113,7 @@ class CadexVis extends React.Component {
 
                 </WidgetBody>
                 <Button style={button_style} onClick={() => {
-                    this.removeElement();
-                    this.props.handleRemove()
+                    this.props.onSubmit();
                 }}>Accept</Button>
             </div>
         )

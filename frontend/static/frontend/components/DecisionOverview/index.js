@@ -8,12 +8,14 @@ import "./style.scss"
 import WidgetHeader from "../../../../../static/components/WidgetHeader";
 import WidgetBody from "../../../../../static/components/WidgetBody";
 import Button from "../../../../../static/components/Button";
-
+import CadexVis from "../CadexVis";
+import _ from 'underscore'
+import uuid from 'uuid'
 
 class DecisionOverview extends React.Component {
     constructor(props) {
         super(props);
-        this.removeElement = this.removeElement.bind(this);
+        this.removeDecision = this.removeDecision.bind(this);
         this.state = {
             decisions: [
                 {id: 1, decision: "Rejected", wait: 11, system: "KNN"},
@@ -30,21 +32,14 @@ class DecisionOverview extends React.Component {
                 {id: 25, decision: "Rejected", wait: 2, system: "KNN"}
             ]
         };
-        console.log('decision overview: ', this.props)
     }
 
-    removeElement(id) {
+    removeDecision(id) {
         console.log('clicked remove elemnt', id);
         this.setState({
             decisions: _.reject(this.state.decisions, {id: id})
         });
     }
-
-    UNSAFE_componentWillReceiveProps(props) {
-        console.log('Decision Overview Props Recieved: ');
-        this.removeElement(props.elementToRemove)
-    }
-
 
     render() {
         const button_style = {
@@ -81,14 +76,15 @@ class DecisionOverview extends React.Component {
                                 <TableCell>{decision.system}</TableCell>
                                 <TableCell>
                                     <Button style={button_style} onClick={() => {
-                                        this.props.createSpecial(decision.id)
+                                        let compUid = uuid();
+                                        this.props.handleCreate(CadexVis, compUid, null, null, null, null, {
+                                            onSubmit: () => {
+                                                this.removeDecision(decision.id);
+                                                this.props.handleRemove(compUid);
+                                            }
+                                        })
                                     }}>
                                         Review
-                                    </Button>
-                                    <Button style={button_style} onClick={() => {
-                                        this.forceUpdate()
-                                    }}>
-                                        update
                                     </Button>
                                 </TableCell>
                             </TableRow>)}

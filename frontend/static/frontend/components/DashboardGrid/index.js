@@ -1,26 +1,15 @@
 import React from "react";
 import {WidthProvider, Responsive} from "react-grid-layout";
 import './style.scss'
-import AsWidget from "../../../../../static/components/AsWidget";
+import BaseWidget from "../../../../../static/components/BaseWidget";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-/**
- * Component that handles the grid system of widgets
- *
- * @param {[{i: string, x: number, y: number, type: number}]} items descriptors of all the widgets
- * @param {function} handleRemove callback to remove a widget
- */
 export default class DashboardGrid extends React.Component {
     constructor(props) {
         super(props)
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-        console.log('recieved props in GRID');
-    }
-
-    // Generate all the widgets as children of a ResponsiveGridLayout
     render() {
         console.log("here");
         return (
@@ -30,20 +19,20 @@ export default class DashboardGrid extends React.Component {
                     compactType={null}
                     draggableCancel={'.nonDraggable'}
                 >
-                    {this.props.items.map(item => {
+                    {this.props.componentDicts.map((componentDict, index) => {
                         return <div className={'widget'}
                                     itemevation={3}
-                                    key={item.i}
-                                    data-grid={item.gridData}>
-                            <AsWidget
-                                createSpecial={this.props.createSpecial}
-                                component={item.content}
-                                removeElement={this.props.removeElement}
-                                elementToEval={this.props.elementToEval}
-                                elementToRemove={this.props.elementToRemove}
-                                handleRemove={() => {
-                                    this.props.handleRemove(item.i)
-                                }}/>
+                                    key={index}
+                                    data-grid={{
+                                        i: componentDict.id,
+                                        x: componentDict.x,
+                                        y: componentDict.y,
+                                        h: componentDict.h,
+                                        w: componentDict.w
+                                    }}>
+                            <BaseWidget componentDict={componentDict}
+                                        handleRemove={this.props.handleRemove}
+                                        handleCreate={this.props.handleCreate}/>
                         </div>
                     })}
                 </ResponsiveGridLayout>

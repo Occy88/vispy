@@ -1,16 +1,12 @@
 import React from 'react'
-import _ from "lodash";
 import DashboardToolbar from "../DashboardToolbar";
 import DashboardGrid from "../DashboardGrid";
-import DecisionOverview from "../DecisionOverview";
-import DeepLearningVis from "../DeepLearningVis";
-import DecisionReviewOverview from "../DecisionReviewOverview";
 import "./style.scss";
+import _ from 'underscore'
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import CadexVis from "../CadexVis";
-import AsWidget from "../../../../../static/components/AsWidget";
-import Button from "../../../../../static/components/Button";
+import findSpace from "../../../../../static/js/packing";
+import uuid from 'uuid'
 
 /**
  * High level component that handles the connection between the toolbar and the grid.
@@ -20,194 +16,75 @@ import Button from "../../../../../static/components/Button";
 export default class Dashboard extends React.Component {
     // State
     // Current createdWidgets on the grid
+
     constructor(props) {
         super(props);
         this.state = {
-            createdWidgets: [],
-            counter: 0,
-            elementToRemove: 0
+            componentDicts: [],
         };
-        this.widgets = [
-            {component: CadexVis, w: 5, h: 4, text: 'Transparency'},
-            {component: DecisionReviewOverview, w: 5, h: 4, text: 'Auditability'},
-            {component: DecisionOverview, w: 5, h: 4, text: 'Safety Monitoring'},
-            {component: DeepLearningVis, w: 5, h: 4, text: 'Explainability'},
-        ];
+
         this.handleRemove = this.handleRemove.bind(this);
-        this.createSpecial = this.createSpecial.bind(this);
-        this.removeElement = this.removeElement.bind(this)
+        this.handleCreate = this.handleCreate.bind(this);
     }
 
-    createWidget(type) {
-        let val = this.state.counter;
-        let widget = this.widgets[type];
-        let content = this.widgets[type].component
-        let pos = this.findSpace(widget.w, widget.h);
-        let gridData = {
-            i: 'n' + val,
-            x: pos[0],
-            y: pos[1],
-            w: widget.w,
-            h: widget.h
-        };
-        return {
-            content: content,
-            gridData: gridData,
-            i: val
+    /**
+     * function adds a component to the grid
+     * @param component an imported component (to be called with react.createElement(...)
+     * @param id
+     * @param posX (null or int)
+     * @param posY (null or int)
+     * @param width (null or int)
+     * @param height (null or int)
+     * @param props (additional props to pass )
+     */
+    handleCreate(component, id, posX, posY, width, height, props) {
+        //if no height/ width provided, set it here.
+        if (!id) {
+            id = uuid()
         }
-    }
-
-    removeElement(id) {
-        this.setState({elementToRemove: id});
-        console.log("Removing element", id)
-    }
-
-    createSpecial(id) {
-        let widget = CadexVis;
-        let i = this.state.counter + 1;
-        let content = widget
-        let gridData = {
-            i: 'n' + i,
-            x: 5,
-            y: 3,
-            w: 7,
-            h: 3
-        };
-        let toPush = {
-            content: content,
-            gridData: gridData,
-            i: i
-        };
-        let returnList = [...this.state.createdWidgets];
-        returnList.push(toPush);
-        this.setState({
-            createdWidgets: returnList,
-            counter: i,
-            elementToEval:id
-        })
-    }
-
-    preloadWidgets() {
-        let dims = [[0, 0, 5, 6], [5, 0, 7, 3]];
-        let widgets = [DecisionOverview, DecisionReviewOverview];
-        let returnList = [];
-        for (let i = 0; i < widgets.length; i += 1) {
-            let widget = widgets[i];
-            let content = widget;
-            let gridData = {
-                i: 'n' + i,
-                x: dims[i][0],
-                y: dims[i][1],
-                w: dims[i][2],
-                h: dims[i][3]
-            };
-            let toPush = {
-                content: content,
-                gridData: gridData,
-                i: i
-            };
-            returnList.push(toPush)
+        if (!width || !height) {
+            width = 4;
+            height = 4;
+        }
+        //if  position not provided, generate one.
+        if (!posX || !posY) {
+            let pos = findSpace(this.state.componentDicts, 13, 13, width, height);
+            posX = pos[0];
+            posY = pos[1];
         }
         this.setState({
-            createdWidgets: returnList,
-            counter: widgets.length
+            componentDicts: this.state.componentDicts.concat({
+                component: component,
+                x: posX,
+                y: posY,
+                h: height,
+                w: width,
+                props: props,
+                id: id
+            })
         })
     }
 
 
-    findSpace(width, height) {
-        // identify max_width,max_height
-        const max_width = 12;
-        const max_height = 13;
-        //    go linearly
-        let p_x = 0;
-        let p_y = 0;
-        let found = true;
-        let y = 0;
-        let x = 0;
-        while (y < max_height) {
-            while (x < max_width) {
-                console.log('evaluating:', x, y);
-                for (let comp of this.state.createdWidgets) {
-                    let w = comp.gridData.w;
-                    let h = comp.gridData.h;
-                    let x_c = comp.gridData.x;
-                    let y_c = comp.gridData.y;
-                    if (((p_x + width >= x_c && p_x < x_c) || (p_x + width >= x_c + w && p_x < x_c + w)) ||
-                        ((p_y + height >= y_c && p_y < y_c) || (p_y + height >= y_c + h && p_y < y_c + h))) {
-                        if (x_c + w + width > max_width) {
-                            console.log('max width reached');
-                            p_x = 0;
-                            p_y = y_c + h;
-                            console.log('evaluating:', p_x, p_y);
-                        } else {
-                            p_x = x_c + w;
-                            console.log('evaluating:', p_x, p_y);
-
-                        }
-                        found = true;
-                        x = p_x + width + 1;
-                        y = p_y + height + 1;
-                    }
-                }
-                if (found) {
-                    console.log('went through iteration wth no collision, returning:', p_x, p_y);
-                    return [p_x, p_y]
-
-                }
-                x += 1
-            }
-            y += 1
-        }
-        console.log('forced return: ', p_x, p_y);
-        return [p_x, p_y]
-
-    }
-
-    componentDidMount() {
-        this.preloadWidgets();
-        this.forceUpdate()
-
-    }
-
     /**
-     * Function to create a specific widget
-     * @param {number} type index of the widget in the WidgetList
+     * Function to remove a component from the grid
+     * @param {string} id the unique id of the component.
      */
-    handleCreate(type) {
+    handleRemove(id) {
         this.setState({
-            createdWidgets: this.state.createdWidgets.concat(this.createWidget(type)),
-            counter: this.state.counter + 1,
-        });
-        this.forceUpdate()
-
-    };
-
-    /**
-     * Function to remove a widget from the list of createdWidgets
-     * @param {string} i the unique id of the widget.
-     */
-    handleRemove(i) {
-        this.setState({
-            createdWidgets: _.reject(this.state.createdWidgets, {i: i})
+            componentDicts: _.reject(this.state.componentDicts, {id: id})
         })
     };
 
     render() {
         return (
             <div className='Dashboard'>
-f
-                <DashboardToolbar widgets={this.widgets} handleCreateWidget={this.handleCreate.bind(this)}/>
+
+                <DashboardToolbar handleCreate={this.handleCreate.bind(this)}/>
                 <DashboardGrid
-                               handleRemove={this.handleRemove}
-                               removeElement={this.removeElement}
-                               elementToRemove={this.state.elementToRemove}
-                               elementToEval={this.state.elementToEval}
-                               createSpecial={this.createSpecial}
-                               items={this.state.createdWidgets}/>
-                <Button style={{width: '100px', height: '100px'}} onClick={() => {
-                    this.forceUpdate()
-                }}>UPDATE</Button>
+                    handleRemove={this.handleRemove}
+                    handleCreate={this.handleCreate}
+                    componentDicts={this.state.componentDicts}/>
             </div>
         );
     }
