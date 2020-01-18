@@ -1,4 +1,4 @@
-./scripts/collectstatic.sh;
+./collectstatic.sh;
 git add --all;
 git commit -m $1;
 git push;
