@@ -16,6 +16,7 @@
     "@nivo/line": "^0.61.1",
     "babel-loader": "^8.0.4",
     "bootstrap": "^4.3.1",
+    "classnames": "^2.2.6",
     "compass": "^0.1.1",
     "css-loader": "^1.0.0",
     "file-loader": "^4.0.0",
