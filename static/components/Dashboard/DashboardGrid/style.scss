@@ -10,7 +10,9 @@
 .DashboardGrid {
   height: 100%;
   width: 100%;
-  .widget{
+  overflow: scroll;
+
+  .widget {
     background-color: white;
   }
 
