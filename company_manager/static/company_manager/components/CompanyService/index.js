@@ -12,7 +12,7 @@ import csrftoken from '../../../../../static/js/csrf.js'
 /**
  *  Manages the product manager api.
  */
-const COMPANY_MANAGER_API_URL = '/company_manager';
+const COMPANY_MANAGER_API_URL = '/company_manager/';
 
 class CompanyService extends React.Component {
     /**
@@ -24,7 +24,6 @@ class CompanyService extends React.Component {
         return fetch(`${COMPANY_MANAGER_API_URL}?${jQuery.param(filter_param_dict)}`, {
             method: 'GET',
         }).then(d =>{
-            console.log(d);
             return d.json();
         })
     }
@@ -55,7 +54,7 @@ class CompanyService extends React.Component {
      * @return {Promise<Response>}
      */
     static updateCompany(updated_field_dict, company_pk) {
-        return fetch(`${COMPANY_MANAGER_API_URL}/${company_pk}`, {
+        return fetch(`${COMPANY_MANAGER_API_URL}${company_pk}`, {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',
@@ -76,7 +75,7 @@ class CompanyService extends React.Component {
      * @return {Promise<Response>}
      */
     static addUsersToCompany(user_dict_list, company_pk) {
-        return fetch(`${COMPANY_MANAGER_API_URL}/${company_pk}/register_user`, {
+        return fetch(`${COMPANY_MANAGER_API_URL}${company_pk}/register_user`, {
             method: 'POST',
             credentials: 'include',
             mode: 'same-origin',

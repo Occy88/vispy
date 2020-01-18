@@ -5,11 +5,9 @@ import CadexVis from "../CadexVis";
 import DecisionReviewOverview from "../DecisionReviewOverview";
 import DeepLearningVis from "../DeepLearningVis";
 import DecisionOverview from "../DecisionOverview";
+import Routes from "../Routes";
 
-/**
- * Button toolbar that handles user adding a widget to the grid
- * @param {function} handleCreateWidget callback used to determine when and which widget to create
- */
+
 export default class DashboardToolbar extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +17,8 @@ export default class DashboardToolbar extends React.Component {
             {component: DecisionReviewOverview, w: 5, h: 4, text: 'Auditability'},
             {component: DecisionOverview, w: 5, h: 4, text: 'Safety Monitoring'},
             {component: DeepLearningVis, w: 5, h: 4, text: 'Explainability'},
+            {component: Routes, w: 6, h: 4, text: 'Website'},
+
         ];
     }
 
@@ -27,7 +27,7 @@ export default class DashboardToolbar extends React.Component {
             <div className='DashboardToolbar'>
                 {
                     this.componentDicts.map((d, index) => {
-                        return <Button text={d.text}
+                        return <Button key={index} text={d.text}
                                        onClick={() => this.props.handleCreate(d.component, null, null, null, d.w, d.h, null)}/>
                     })
                 }

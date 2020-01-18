@@ -43,6 +43,7 @@ class CompanyList extends React.Component {
                 <ListSelect default={DEFAULT_COMPANY} filter={false} object_list={this.state.company_data.map(obj => {
                     var rObj = {};
                     rObj = obj;
+                    console.log("in for for companies: ", obj.name);
                     rObj["str"] = obj.name;
                     rObj["sort"] = obj.name;
                     return rObj;

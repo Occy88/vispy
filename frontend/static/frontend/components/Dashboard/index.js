@@ -30,7 +30,7 @@ export default class Dashboard extends React.Component {
     /**
      * function adds a component to the grid
      * @param component an imported component (to be called with react.createElement(...)
-     * @param id
+     * @param id uuid
      * @param posX (null or int)
      * @param posY (null or int)
      * @param width (null or int)
@@ -38,10 +38,11 @@ export default class Dashboard extends React.Component {
      * @param props (additional props to pass )
      */
     handleCreate(component, id, posX, posY, width, height, props) {
-        //if no height/ width provided, set it here.
+        // if id not provided generate it now
         if (!id) {
             id = uuid()
         }
+        //if no height/ width provided, set it here.
         if (!width || !height) {
             width = 4;
             height = 4;

@@ -24,6 +24,7 @@ if (STATIC_URL === undefined) {
 class Header extends React.Component {
     constructor(props) {
         super(props);
+        console.log('DEFAULE COMPANY: ==================',DEFAULT_COMPANY)
         this.state = {
             width: 0, height: 0,
             company: DEFAULT_COMPANY,
