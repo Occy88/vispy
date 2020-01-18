@@ -37,12 +37,12 @@ export default class Toolbar extends React.Component {
                     'Listing': true,
                     'hide': !this.state.expanded
                 })}>
-                    {
+                    {this.state.expanded?
                         this.componentDicts.map((d, index) => {
-                            return <Button key={index} text={d.text}
-                                           onClick={() => this.props.handleCreate(d.component, null, null, null, d.w, d.h, null)}/>
+                        return <Button key={index} text={d.text}
+                        onClick={() => this.props.handleCreate(d.component, null, null, null, d.w, d.h, null)}/>
 
-                        })
+                    }):null
                     }
                 </div>
                 <div className={'Toggle'} onClick={this.toggleToolbar.bind(this)
