@@ -1,7 +1,7 @@
 import React from "react";
 import {WidthProvider, Responsive} from "react-grid-layout";
 import './style.scss'
-import BaseWidget from "../../../../../static/components/BaseWidget";
+import BaseWidget from "../../BaseWidget";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 

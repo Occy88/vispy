@@ -1,11 +1,11 @@
 import React from 'react'
-import DashboardToolbar from "../DashboardToolbar";
-import DashboardGrid from "../DashboardGrid";
+import Toolbar from "./Toolbar";
+import DashboardGrid from "./DashboardGrid";
 import "./style.scss";
 import _ from 'underscore'
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import findSpace from "../../../../../static/js/packing";
+import findSpace from "../../js/packing";
 import uuid from 'uuid'
 
 /**
@@ -80,8 +80,7 @@ export default class Dashboard extends React.Component {
     render() {
         return (
             <div className='Dashboard'>
-
-                <DashboardToolbar handleCreate={this.handleCreate.bind(this)}/>
+                <Toolbar handleCreate={this.handleCreate.bind(this)}/>
                 <DashboardGrid
                     handleRemove={this.handleRemove}
                     handleCreate={this.handleCreate}

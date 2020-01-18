@@ -1,16 +1,17 @@
 import React from "react";
 import './style.scss'
-import Button from "../../../../../static/components/Button";
-import CadexVis from "../CadexVis";
-import DecisionReviewOverview from "../DecisionReviewOverview";
-import DeepLearningVis from "../DeepLearningVis";
-import DecisionOverview from "../DecisionOverview";
-import Routes from "../Routes";
+import Button from "../../Button";
+import CadexVis from "../../../../frontend/static/frontend/components/CadexVis";
+import DecisionReviewOverview from "../../../../frontend/static/frontend/components/DecisionReviewOverview";
+import DecisionOverview from "../../../../frontend/static/frontend/components/DecisionOverview";
+import DeepLearningVis from "../../../../frontend/static/frontend/components/DeepLearningVis";
+import Routes from "../../../../frontend/static/frontend/components/Routes";
 
 
-export default class DashboardToolbar extends React.Component {
+export default class Toolbar extends React.Component {
     constructor(props) {
         super(props);
+
         //components to be created according to each button.
         this.componentDicts = [
             {component: CadexVis, w: 5, h: 4, text: 'Transparency'},
@@ -24,7 +25,7 @@ export default class DashboardToolbar extends React.Component {
 
     render() {
         return (
-            <div className='DashboardToolbar'>
+            <div className='Toolbar'>
                 {
                     this.componentDicts.map((d, index) => {
                         return <Button key={index} text={d.text}

@@ -10,7 +10,7 @@ import Button from "../../../../../static/components/Button";
  *
  * Note: To be able to use a widget you must also:
  *  - Add it to the WidgetList in DashboardGrid
- *  - Create a button for it in the DashboardToolbar
+ *  - Create a button for it in the Toolbar
  *
  * Any given widget must take the following parameters
  * @param {function} handleRemove callback used to remove this widget
