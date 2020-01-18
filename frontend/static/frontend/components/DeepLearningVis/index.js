@@ -364,7 +364,7 @@ class DeepLearningVis extends React.Component {
         return (
             <div className={'DeepLearningVis'}>
                 <WidgetHeader>
-                    Deep Learning Decision Explanation
+                    <h5>Deep Learning Decision Explanation</h5>
                 </WidgetHeader>
                 <WidgetBody>
                     <div className="TimelineContainer">

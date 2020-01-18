@@ -3,13 +3,14 @@ import {Slider} from "@material-ui/core";
 import './style.scss'
 import WidgetHeader from "../../../../../static/components/WidgetHeader";
 import WidgetBody from "../../../../../static/components/WidgetBody";
+import Button from "../../../../../static/components/Button";
 
 /**
  * An Example of a simple widget to be used in the grid.
  *
  * Note: To be able to use a widget you must also:
  *  - Add it to the WidgetList in DashboardGrid
- *  - Create a button for it in the DashboardToolbar
+ *  - Create a button for it in the Toolbar
  *
  * Any given widget must take the following parameters
  * @param {function} handleRemove callback used to remove this widget
@@ -21,9 +22,9 @@ class CadexVis extends React.Component {
         this.state = {
             data: [
                 {name: 'Credit Score', original: 500, proposed: 500, minValue: 0, maxValue: 850},
-                {name: 'Total Income', original: 20000, proposed: 20000, minValue: 1000, maxValue: 10000000},
+                {name: 'Total Income', original: 20000, proposed: 20000, minValue: 1000, maxValue: 100000},
                 {name: 'Loan Amount', original: 10000, proposed: 5000, minValue: 100, maxValue: 100000},
-                {name: 'Interest Rate', original: 20, proposed: 24, minValue: 0.1, maxValue: 300},
+                {name: 'Interest Rate', original: 20, proposed: 24, minValue: 0.1, maxValue: 100},
                 {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue: 0, maxValue: 2},
                 {name: 'Total Accounts', original: 20, proposed: 20, minValue: 0, maxValue: 100},
             ]
@@ -58,10 +59,18 @@ class CadexVis extends React.Component {
                 Change
             </div>
         </div>;
+
+        const button_style = {
+            color: "unset",
+            border: "1px solid #3e3e3e",
+            width: "100%",
+            margin: "auto"
+        };
+
         return (
             <div className={'CadexVis'}>
                 <WidgetHeader>
-                    Decision Review
+                    <h5>Decision Review</h5>
                 </WidgetHeader>
                 <WidgetBody>
                     {rowTitles}
@@ -101,8 +110,11 @@ class CadexVis extends React.Component {
                             </div>
                         )
                     })}
-                </WidgetBody>
 
+                </WidgetBody>
+                <Button style={button_style} onClick={() => {
+                    this.props.onSubmit();
+                }}>Accept</Button>
             </div>
         )
     }

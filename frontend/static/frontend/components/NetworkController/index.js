@@ -5,7 +5,6 @@ import './style.css'
 
 export default class NetworkController extends React.Component {
     constructor(props) {
-        console.log("CONSTRUCTOR CALLED");
         super(props);
         this.state = {
             nodes: [],

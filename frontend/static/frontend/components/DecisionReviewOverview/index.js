@@ -12,23 +12,6 @@ class DecisionReviewOverview extends React.Component {
     }
 
     render() {
-        const timeline_posneg_data = [
-            {"minibatch": 0, pos: 0.1, neg: -0.0},
-            {"minibatch": 1, pos: 0.3, neg: -0.1},
-            {"minibatch": 2, pos: 0.4, neg: -0.2},
-            {"minibatch": 3, pos: 0.7, neg: -0.1},
-            {"minibatch": 4, pos: 0.2, neg: -0.3},
-            {"minibatch": 5, pos: 0.8, neg: -0.4},
-            {"minibatch": 6, pos: 0.7, neg: -0.5},
-            {"minibatch": 7, pos: 0.4, neg: -0.4},
-            {"minibatch": 8, pos: 0.3, neg: -0.2},
-            {"minibatch": 9, pos: 0.5, neg: -0.3},
-            {"minibatch": 10, pos: 0.6, neg: -0.5},
-            {"minibatch": 11, pos: 0.9, neg: -0.4},
-            {"minibatch": 12, pos: 0.3, neg: -0.2},
-            {"minibatch": 13, pos: 0.4, neg: -0.1},
-            {"minibatch": 14, pos: 0.2, neg: -0.1}
-        ];
 
         const hourly_timeline_pos_data = [
             {
@@ -56,21 +39,21 @@ class DecisionReviewOverview extends React.Component {
                 {
                     id: 'something',
                     data: [
-                        {x: "01/01/2020", y: 3},
-                        {x: "02/01/2020", y: 1},
-                        {x: "03/01/2020", y: 27},
-                        {x: "04/01/2020", y: 6},
-                        {x: "05/01/2020", y: 8},
-                        {x: "06/01/2020", y: 7},
-                        {x: "07/01/2020", y: 1},
-                        {x: "08/01/2020", y: 0},
-                        {x: "09/01/2020", y: 1},
-                        {x: "10/01/2020", y: 2},
-                        {x: "11/01/2020", y: 5},
-                        {x: "12/01/2020", y: 4},
-                        {x: "13/01/2020", y: 7},
-                        {x: "14/01/2020", y: 5},
-                        {x: "15/01/2020", y: 4}
+                        {x: "01/01/2020", y: 10},
+                        {x: "02/01/2020", y: 11},
+                        {x: "03/01/2020", y: 22},
+                        {x: "04/01/2020", y: 16},
+                        {x: "05/01/2020", y: 28},
+                        {x: "06/01/2020", y: 17},
+                        {x: "07/01/2020", y: 11},
+                        {x: "08/01/2020", y: 7},
+                        {x: "09/01/2020", y: 11},
+                        {x: "10/01/2020", y: 14},
+                        {x: "11/01/2020", y: 18},
+                        {x: "12/01/2020", y: 24},
+                        {x: "13/01/2020", y: 27},
+                        {x: "14/01/2020", y: 22},
+                        {x: "15/01/2020", y: 16}
                     ]
                 }
             ];
@@ -80,11 +63,11 @@ class DecisionReviewOverview extends React.Component {
                 {
                     id: 'something',
                     data: [
-                        {x: "22/12/2019", y: 5},
-                        {x: "29/12/2019", y: 4},
-                        {x: "05/01/2020", y: 7},
-                        {x: "12/01/2020", y: 5},
-                        {x: "19/01/2020", y: 4}
+                        {x: "22/12/2019", y: 67},
+                        {x: "29/12/2019", y: 34},
+                        {x: "05/01/2020", y: 72},
+                        {x: "12/01/2020", y: 93},
+                        {x: "19/01/2020", y: 82}
                     ]
                 }
             ];
@@ -93,7 +76,7 @@ class DecisionReviewOverview extends React.Component {
         return (
             <div className={'DecisionReviewOverview'}>
                 <WidgetHeader>
-                    Decisions Flagged for Review | Timeline
+                    <h5>Decisions Flagged for Review | Timeline</h5>
                 </WidgetHeader>
                 <WidgetBody className="vertical">
                     <Tabs defaultActiveKey="weekly" transition={false} id="graph-tabs">
@@ -115,7 +98,7 @@ class DecisionReviewOverview extends React.Component {
                                 />
                             </GraphContainer>
                         </Tab>
-                        <Tab eventKey="daily" title="Per day">
+                        <Tab eventKey="daily" title="Per Day">
                             <GraphContainer>
                                 <ResponsiveLine
                                     data={daily_timeline_pos_data}

@@ -7,7 +7,7 @@ export default class TableCell extends React.Component {
 
     render() {
         return (
-            <td>
+            <td style={this.props.style ? this.props.style : {textAlign:"center"}}>
                 {this.props.children}
             </td>
         );

@@ -5,7 +5,7 @@ import languages from "../../../../../accounts/static/accounts/components/Accoun
 import NetworkController from "../NetworkController";
 import Header from "../Header";
 import Footer from "../Footer";
-import Dashboard from '../Dashboard';
+import Dashboard from '../../../../../static/components/Dashboard';
 
 let lang = languages[document.documentElement.lang];
 
