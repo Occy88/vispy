@@ -24,7 +24,7 @@ if (STATIC_URL === undefined) {
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        console.log('DEFAULE COMPANY: ==================',DEFAULT_COMPANY)
+        console.log('DEFAULE COMPANY: ==================', DEFAULT_COMPANY)
         this.state = {
             width: 0, height: 0,
             company: DEFAULT_COMPANY,
@@ -68,14 +68,14 @@ class Header extends React.Component {
         }
     }
 
- render() {
+    render() {
         let company_logo =
             <div className="nav-brand ">
                 <Link to={'/'}>
                     <img
                         src={this.state.company && this.state.company.logo ? STATIC_URL + this.state.company.logo : "https://www.designevo.com/res/templates/thumb_small/blue-bar-graph-and-stock.png"}
                         alt="Logo"
-                        style={{height: '50px'}} />
+                        style={{height: '50px'}}/>
                 </Link>
             </div>;
 
@@ -114,7 +114,7 @@ class Header extends React.Component {
 
         let custom_nav =
             <div className={'nav-links'}>
-                {this.state.width < 200*(this.state.links.length+2) ?
+                {this.state.width < 200 * (this.state.links.length + 2) ?
                     <div className={'nav-item'}>
 
                         <Dropdown

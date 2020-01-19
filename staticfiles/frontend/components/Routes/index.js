@@ -21,23 +21,26 @@ export default class Routes extends React.Component {
 
     render() {
         return (
-            <Router>
-                <Header/>
-                <Switch {...this.props}>
-                    <Route path={app_url_prefix + "Dashboard"} render={(routeProps) => (
-                        <Dashboard {...routeProps} />
-                    )} />
-                    <Route path={app_url_prefix + "KNN"} render={(routeProps) => (
-                        <NetworkController {...routeProps} />
-                    )}/>
-                    <Route path="*" render={() => {
-                        return (
-                            <h2 style={{"textAlign": "center", "padding": "30px"}}>Page Not Found</h2>
-                        )
-                    }}/>
-                </Switch>
-                {/*<Footer/>*/}
-            </Router>
+            <div className={'Router'}>
+
+                <Router>
+                    <Header/>
+                    <Switch {...this.props}>
+                        <Route path={app_url_prefix + "Dashboard"} render={(routeProps) => (
+                            <Dashboard {...routeProps} />
+                        )}/>
+                        <Route path={app_url_prefix + "KNN"} render={(routeProps) => (
+                            <NetworkController {...routeProps} />
+                        )}/>
+                        <Route path="*" render={() => {
+                            return (
+                                <h2 style={{"textAlign": "center", "padding": "30px"}}>Page Not Found</h2>
+                            )
+                        }}/>
+                    </Switch>
+                    {/*<Footer/>*/}
+                </Router>
+            </div>
         )
     }
 }
