@@ -4,6 +4,7 @@ import './style.scss'
 import WidgetHeader from "../../../../../static/components/WidgetHeader";
 import WidgetBody from "../../../../../static/components/WidgetBody";
 import Button from "../../../../../static/components/Button";
+import RGBStyling from "../../../../../static/components/RGBStyling";
 
 /**
  * An Example of a simple widget to be used in the grid.
@@ -21,7 +22,7 @@ class CadexVis extends React.Component {
         super(props);
         this.state = {
             data: [
-                {name: 'Credit Score', original: 500, proposed: 500, minValue: 0, maxValue: 850},
+                {name: 'Credit Score', original: 500, proposed: 500, minValue: -1000, maxValue: 850},
                 {name: 'Total Income', original: 20000, proposed: 20000, minValue: 1000, maxValue: 100000},
                 {name: 'Loan Amount', original: 10000, proposed: 5000, minValue: 100, maxValue: 100000},
                 {name: 'Interest Rate', original: 20, proposed: 24, minValue: 0.1, maxValue: 100},
@@ -100,10 +101,7 @@ class CadexVis extends React.Component {
                                 </div>
                                 <div className={'change'}
                                      style={{
-                                         backgroundColor: 'RGB(' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255 - ((value.proposed / value.original - 1) * -255 / ((value.original - value.minValue) / value.original))) + ',' +
-                                             (value.proposed / value.original - 1 > 0 ? 255 - ((value.proposed / value.original - 1) * 255 / ((value.maxValue - value.original) / value.original)) : 255) + ')'
+                                         backgroundColor: RGBStyling.getRGBTransitionThroughColour(value.proposed, value.minValue, value.original, value.maxValue, [240, 245, 246], [255, 255, 255], [25, 57, 79])
                                      }}>
                                     {value.proposed / value.original - 1 > 0 ? '+' : ''}{Math.round((value.proposed / value.original) * 100).toFixed(2) - 100}%
                                 </div>

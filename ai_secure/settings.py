@@ -20,11 +20,10 @@ MASTER_BASE_DIR = os.path.dirname(__file__)
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'v8ojti^$1m0ys%*q#qv*b9(+6)am3)^t1n601$rhk!6m2#&rmi'
-API_KEY_SECRET = 'ti^$0ys%1m0ys%n601$rhk!*q#q1$rhk!6m2#&m0ys%'
+SECRET_KEY = '<A Random Collection of Characters Here>'
 # SECURITY WARNING: don't run with debug turned on in production!
-ENV_ROLE = 'production'
-# ENV_ROLE = 'development'
+# ENV_ROLE = 'production'
+ENV_ROLE = 'development'
 if ENV_ROLE == 'production':
     print("PRODUCTION")
     BASE_URL = 'http://localhost:8080/staticfiles/'
@@ -34,7 +33,6 @@ else:
     print("DEVELOPMENT")
     # BASE_URL = 'http://localhost:8080/staticfiles/'
     BASE_URL = 'http://localhost:8080/'
-
     DEBUG = True
     HEROKU = False
 TEMPLATE_DEBUG = DEBUG
@@ -199,8 +197,8 @@ COMPANY_INSTANCE = "company_manager.models.Company"
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ai_secure@gmail.com'
-EMAIL_HOST_PASSWORD = 'ai_secure@2019'
+EMAIL_HOST_USER = 'some_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'some password'
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
