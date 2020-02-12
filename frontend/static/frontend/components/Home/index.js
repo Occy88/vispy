@@ -36,7 +36,8 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.pregenWidgets()
+        this.pregenWidgets();
+        this.dashboard.current.scale(1000);
     }
 
     pregenWidgets() {
