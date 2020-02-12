@@ -32,9 +32,7 @@ export default class Toolbar extends React.Component {
                         }) : null
                     }
                 </div>
-                <div className={'Toggle'} style={{
-                    position:this.state.expanded?'inherit':'absolute'
-                }} onClick={this.toggleToolbar.bind(this)
+                <div className={'Toggle'}  onClick={this.toggleToolbar.bind(this)
                 }>
                     {this.state.expanded ? '<' : '>'}
                 </div>
