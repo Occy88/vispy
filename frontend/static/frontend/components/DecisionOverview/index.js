@@ -78,7 +78,7 @@ class DecisionOverview extends React.Component {
                                 <TableCell>
                                     <Button style={button_style} onClick={() => {
                                         let compUid = uuid();
-                                        this.props.handleCreate(CadexVis, compUid, null, null, null, null, {
+                                        this.props.handleCreate(CadexVis, compUid, null, null,2, 4, {
                                             onSubmit: () => {
                                                 this.removeDecision(decision.id);
                                                 this.props.handleRemove(compUid);

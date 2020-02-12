@@ -2,10 +2,10 @@ import React from 'react'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import './style.scss'
 import languages from "../../../../../accounts/static/accounts/components/AccountService/lang";
-import NetworkController from "../NetworkController";
 import Header from "../Header";
 import Footer from "../Footer";
 import Dashboard from '../../../../../static/components/Dashboard';
+import Home from "../Home";
 
 let lang = languages[document.documentElement.lang];
 
@@ -21,26 +21,21 @@ export default class Routes extends React.Component {
 
     render() {
         return (
-            <div className={'Router'}>
+                <div className={'Router'}>
 
-                <Router>
-                    <Header/>
-                    <Switch {...this.props}>
-                        <Route path={app_url_prefix + "Dashboard"} render={(routeProps) => (
-                            <Dashboard {...routeProps} />
-                        )}/>
-                        <Route path={app_url_prefix + "KNN"} render={(routeProps) => (
-                            <NetworkController {...routeProps} />
-                        )}/>
-                        <Route path="*" render={() => {
-                            return (
-                                <h2 style={{"textAlign": "center", "padding": "30px"}}>Page Not Found</h2>
-                            )
-                        }}/>
-                    </Switch>
-                    {/*<Footer/>*/}
-                </Router>
-            </div>
+                    <Router>
+                        <Header/>
+                        <Switch {...this.props}>
+                            <Route path={app_url_prefix + "Home"} render={(routeProps) => (
+                                    <Home {...routeProps} />
+                            )}/>
+                            <Route path="*" render={(routeProps) => (
+                                    <Home {...routeProps} />
+                            )}/>
+                        </Switch>
+                        {/*<Footer/>*/}
+                    </Router>
+                </div>
         )
     }
 }
