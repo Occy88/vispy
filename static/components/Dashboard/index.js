@@ -107,9 +107,9 @@ export default class Dashboard extends React.Component {
             componentDicts: this.state.componentDicts.concat(componentsToAdd)
         })
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        this.scale();
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     this.scale();
+    // }
 
     scale(time) {
         console.log('resizing: ',time);
