@@ -52,7 +52,9 @@ class Home extends React.Component {
     render() {
         return (
                 <div className={'Home'}>
-                    <Toolbar componentDicts={this.state.dashboardComponents} onClick={this.generateWidget.bind(this)}/>
+                    <Toolbar onToggle={(time) => {
+                        this.dashboard.current.scale(time)
+                    }} componentDicts={this.state.dashboardComponents} onClick={this.generateWidget.bind(this)}/>
                     <Dashboard ref={this.dashboard}/>
                 </div>
         )

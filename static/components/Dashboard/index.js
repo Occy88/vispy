@@ -108,6 +108,11 @@ export default class Dashboard extends React.Component {
         })
     }
 
+    scale(time) {
+        console.log('resizing: ',time)
+        time = time ? time : 0
+        setTimeout(()=>window.dispatchEvent(new Event('resize')), time);
+    }
 
     /**
      * Function to remove a component from the grid

@@ -13,30 +13,37 @@ export default class Toolbar extends React.Component {
     }
 
     toggleToolbar() {
-        this.setState({expanded: !this.state.expanded})
+        this.setState({expanded: !this.state.expanded});
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // call onToggle after state is set and re-rendered.
+        if (prevState.expanded !== this.state.expanded) {
+            this.props.onToggle(1000);
+        }
     }
 
     render() {
         return (
-            <div className='Toolbar'>
+                <div className='Toolbar'>
 
-                <div className={classnames({
-                    'Listing': true,
-                    'hide': !this.state.expanded
-                })}>
-                    {this.state.expanded ?
-                        this.props.componentDicts.map((d, index) => {
-                            return <Button key={index} text={d.text}
-                                           onClick={() => this.props.onClick(d)}/>
+                    <div className={classnames({
+                        'Listing': true,
+                        'hide': !this.state.expanded
+                    })}>
+                        {this.state.expanded ?
+                                this.props.componentDicts.map((d, index) => {
+                                    return <Button key={index} text={d.text}
+                                                   onClick={() => this.props.onClick(d)}/>
 
-                        }) : null
-                    }
+                                }) : null
+                        }
+                    </div>
+                    <div className={'Toggle'} onClick={this.toggleToolbar.bind(this)
+                    }>
+                        {this.state.expanded ? '<' : '>'}
+                    </div>
                 </div>
-                <div className={'Toggle'}  onClick={this.toggleToolbar.bind(this)
-                }>
-                    {this.state.expanded ? '<' : '>'}
-                </div>
-            </div>
         );
     }
 }
