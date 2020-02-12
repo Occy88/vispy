@@ -36,7 +36,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.pregenWidgets()
+        this.pregenWidgets();
     }
 
     pregenWidgets() {
