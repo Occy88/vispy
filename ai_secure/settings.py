@@ -23,7 +23,7 @@ MASTER_BASE_DIR = os.path.dirname(__file__)
 SECRET_KEY = '<A Random Collection of Characters Here>'
 # SECURITY WARNING: don't run with debug turned on in production!
 ENV_ROLE = 'production'
-#ENV_ROLE = 'development'
+# ENV_ROLE = 'development'
 if ENV_ROLE == 'production':
     print("PRODUCTION")
     BASE_URL = 'http://localhost:8080/staticfiles/'
@@ -169,7 +169,8 @@ STAFF_URLS = {
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/Home'
 LOGIN_EXEMPT_URLS = {
-    '/'
+    '/',
+    '',
 }
 
 REST_FRAMEWORK = {
