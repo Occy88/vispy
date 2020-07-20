@@ -2,6 +2,7 @@ import React from "react";
 import './style.scss'
 import languages from "./lang.js";
 import lk_icon from '../../images/linkedin-icon-2.svg'
+import ParticleBackground from '../../../../../static/components/ParticleBackground'
 
 let lang = languages[document.documentElement.lang];
 
@@ -31,25 +32,28 @@ export default class WelcomePage extends React.Component {
     render() {
         return (
                 <div className={'WelcomePage'}>
-                    <div className={'Title'}>
-                        {lang.title}
+                    <ParticleBackground/>
+                    <div className={'Container'}>
+                        <div className={'Title'}>
+                            {lang.title}
+                        </div>
+                        <div className={'Subtitle'}>
+                            {lang.subtitle}
+                        </div>
+                        <div className={'WhatIsSeclea'}>
+                            <p>{lang.what_is_seclea}
+                                <a href="mailto:rajanaeem@seclea.com" style={{color: "rgb(47, 47, 132)"}}
+                                   className={'contact'}>
+                                    contact
+                                </a>
+                                .</p>
+                        </div>
+                        <img className={'LinkedinIcon'}
+                             src={STATIC_URL + lk_icon}
+                             onClick={() => {
+                                 window.open('https://www.linkedin.com/company/seclea')
+                             }}/>
                     </div>
-                    <div className={'Subtitle'}>
-                        {lang.subtitle}
-                    </div>
-                    <div className={'WhatIsSeclea'}>
-                        <p>{lang.what_is_seclea}
-                            <a href="mailto:rajanaeem@seclea.com" style={{color: "rgb(47, 47, 132)"}}
-                               className={'contact'}>
-                                contact
-                            </a>
-                            .</p>
-                    </div>
-                    <img className={'LinkedinIcon'}
-                         src={STATIC_URL + lk_icon}
-                         onClick={() => {
-                             window.open('https://www.linkedin.com/company/seclea')
-                         }}/>
                 </div>
         )
     }
