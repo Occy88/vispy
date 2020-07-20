@@ -4,6 +4,7 @@ from pydoc import locate
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import serializers
+from django.http.response import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 from django.views import View
 from rest_framework import generics
@@ -21,7 +22,7 @@ class ServeApp(View):
         default_company_obj = json.loads(serializers.serialize('json', [default_company, ]))[0]
         default_company_obj.update({'id': default_company_obj['pk']})
         if type(request.user == AnonymousUser):
-            return render(request, '../templates/root.html',
+            return render(request, '../templates/index.html',
                           context={
                               "language": json.dumps('en-us'),
                               "choices": json.dumps(settings.LANGUAGES),
@@ -43,7 +44,7 @@ class ServeApp(View):
             serve_scan_page_only = 'true'
         else:
             serve_scan_page_only = 'false'
-        return render(request, '../templates/root.html',
+        return render(request, '../templates/index.html',
                       context={
                           "serve_scan_page_only": serve_scan_page_only,
                           "language": json.dumps(request.user.profile.language),
@@ -80,3 +81,15 @@ class ToolDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ToolSerializer
     # permission_classes = (CompanyPermissions, permissions.DjangoModelPermissions,)
     # parser_class = (FileUploadParser,)
+
+
+class ServeIcons(View):
+    def get(self, request):
+        print(request.META['PATH_INFO'])
+        try:
+            relevant_png = request.META['PATH_INFO'].split('/')[2]
+            print(relevant_png)
+            image_data = open("frontend/templates/icons/" + relevant_png, "rb").read()
+        except:
+            return HttpResponseNotFound('<h1>File not found</h1>')
+        return HttpResponse(image_data, content_type='image/png')
