@@ -1,6 +1,7 @@
 var path = require("path");
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -12,6 +13,14 @@ module.exports = {
     },
     plugins: [
         new BundleTracker({filename: './webpack-stats.json'}),
+        new CompressionPlugin({
+            cache: true,
+            filename: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: /\.js$|\.jsx$|\.scss$|\.css$|\.html$\.(mp3|png|jpe?g|gif|svg)$/,
+            threshold: 10240,
+            minRatio: 0.8,
+        }),
     ],
     module: {
         rules: [

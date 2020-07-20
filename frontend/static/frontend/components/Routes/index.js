@@ -1,11 +1,11 @@
 import React from 'react'
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
-import './style.scss'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import languages from "../../../../../accounts/static/accounts/components/AccountService/lang";
+import './style.scss'
+
 import Header from "../Header";
-import Footer from "../Footer";
-import Dashboard from '../../../../../static/components/Dashboard';
-import Home from "../Home";
+import Demo from "../Demo";
+import WelcomePage from '../WelcomePage'
 
 let lang = languages[document.documentElement.lang];
 
@@ -14,8 +14,6 @@ const app_url_prefix = '/';
 export default class Routes extends React.Component {
     constructor(props) {
         super(props);
-        console.log("hello")
-
     }
 
 
@@ -24,13 +22,16 @@ export default class Routes extends React.Component {
                 <div className={'Router'}>
 
                     <Router>
-                        <Header/>
+                        {/*<Header/>*/}
                         <Switch {...this.props}>
+                            <Route path={app_url_prefix} render={(routeProps) => (
+                                    <WelcomePage {...routeProps} />
+                            )}/>
                             <Route path={app_url_prefix + "Home"} render={(routeProps) => (
-                                    <Home {...routeProps} />
+                                    <Demo {...routeProps} />
                             )}/>
                             <Route path="*" render={(routeProps) => (
-                                    <Home {...routeProps} />
+                                    <WelcomePage {...routeProps} />
                             )}/>
                         </Switch>
                         {/*<Footer/>*/}
