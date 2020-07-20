@@ -167,8 +167,9 @@ STAFF_URLS = {
     r'^accounts/manager/[\s\S]*',
 }
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/Home'
 LOGIN_EXEMPT_URLS = {
+    '/'
 }
 
 REST_FRAMEWORK = {
