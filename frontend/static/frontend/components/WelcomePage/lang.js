@@ -6,7 +6,7 @@ const languages = {
                 "trackable Machine Learning and Deep Learning algorithms. Enabling organisations using AI applications to\n" +
                 "\n" +
                 "trust, audit and explain their AI’s decisions.\n" +
-                "Want know to more about Seclea, please ",
+                "Want to know more about Seclea, please ",
         filter: "filter"
     },
     "fr": {
