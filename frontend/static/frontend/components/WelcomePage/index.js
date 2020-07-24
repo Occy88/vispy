@@ -3,7 +3,7 @@ import './style.scss'
 import languages from "./lang.js";
 import lk_icon from '../../images/linkedin-icon-2.svg'
 import ParticleBackground from '../../../../../static/components/ParticleBackground'
-import mail_icon from '../../images/mail.png'
+import mail_icon from '../../images/mail.svg'
 
 let lang = languages[document.documentElement.lang];
 
