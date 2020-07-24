@@ -18,8 +18,14 @@
     text-align: center;
     cursor: default;
     z-index: 1;
+
     .Title {
       font-size: 60px;
+    }
+
+    .contacts {
+      display: flex;
+
     }
 
     .Subtitle {

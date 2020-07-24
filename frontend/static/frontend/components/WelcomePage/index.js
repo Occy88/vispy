@@ -3,6 +3,7 @@ import './style.scss'
 import languages from "./lang.js";
 import lk_icon from '../../images/linkedin-icon-2.svg'
 import ParticleBackground from '../../../../../static/components/ParticleBackground'
+import mail_icon from '../../images/mail.png'
 
 let lang = languages[document.documentElement.lang];
 
@@ -21,6 +22,7 @@ let lang = languages[document.documentElement.lang];
 export default class WelcomePage extends React.Component {
     constructor(props) {
         super(props);
+        this.mail = React.createRef()
         console.log("loading welcome page");
         console.log("lang:");
         console.log(lang);
@@ -42,17 +44,26 @@ export default class WelcomePage extends React.Component {
                         </div>
                         <div className={'WhatIsSeclea'}>
                             <p>{lang.what_is_seclea}
-                                <a href="mailto:rajanaeem@seclea.com" style={{color: "rgb(47, 47, 132)"}}
+                                <a ref={this.mail} href="mailto:rajanaeem@seclea.com"
+                                   style={{color: "rgb(47, 47, 132)"}}
                                    className={'contact'}>
                                     contact
                                 </a>
                                 .</p>
                         </div>
+                        <div className={'Contacts'}>
                         <img className={'LinkedinIcon'}
                              src={STATIC_URL + lk_icon}
                              onClick={() => {
                                  window.open('https://www.linkedin.com/company/seclea')
                              }}/>
+                        <img className={'LinkedinIcon'}
+                             src={STATIC_URL + mail_icon}
+                             onClick={() => {
+                                 this.mail.current.click()
+                             }}
+                        />
+                        </div>
                     </div>
                 </div>
         )
