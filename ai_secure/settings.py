@@ -56,7 +56,7 @@ ADMINS = (('octavio', 'octavio.delser@gmail.com'),)
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'company_manager.apps.CompanyManagerConfig',
-    'visualizer.apps.VisualizerConfig',
+    'frontend.apps.VisualizerConfig',
     'knn_backend.apps.StockManagerConfig',
     'general_backend.apps.GeneralBackendConfig',
     'django.contrib.admin',
@@ -169,7 +169,7 @@ STAFF_URLS = {
     r'^accounts/manager/[\s\S]*',
 }
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/visualizer/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = {
 }
 

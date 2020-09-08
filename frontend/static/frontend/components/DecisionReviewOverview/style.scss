@@ -1,0 +1,28 @@
+.DecisionReviewOverview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  .WidgetBody {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+  }
+
+  .nav-item {
+    min-width: unset;
+  }
+
+  .tab-content {
+    max-height: 100%;
+    height: 100%;
+    display: flex;
+
+    .active {
+      height: 100%;
+      width:100%;
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import React from 'react';
 import './style.scss'
 import languages from "./lang.js"
+import PropTypes from 'prop-types'
 
 let lang = languages[document.documentElement.lang];
+
 
 /**
  *  takes a list of objects which have an str field and an id
@@ -69,7 +71,7 @@ class ListSelect extends React.Component {
      * Parent updates with new list of objects
      * @param props : object_list
      */
-    componentWillReceiveProps(props) {
+    UNSAFE_componentWillReceiveProps(props) {
         //pre process the props (make sure they go through sorting and adding default (as in the constructor)
         let data = props.object_list;
 
@@ -219,6 +221,7 @@ class ListSelect extends React.Component {
             )
         }
     }
+
 }
 
 export default ListSelect

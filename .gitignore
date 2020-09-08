@@ -13,3 +13,6 @@ dist
 migrations
 venv
 env
+MYENV
+webpack-stats.json
+.DS_Store
