@@ -1,8 +1,10 @@
 import React from 'react';
 import './style.scss'
 import languages from "./lang.js"
+import PropTypes from 'prop-types'
 
 let lang = languages[document.documentElement.lang];
+
 
 /**
  *  takes a list of objects which have an str field and an id
@@ -219,6 +221,7 @@ class ListSelect extends React.Component {
             )
         }
     }
+
 }
 
 export default ListSelect

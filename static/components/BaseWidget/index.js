@@ -19,7 +19,6 @@ class BaseWidget extends React.Component {
             float: "right"
         };
         const element = React.createElement(this.props.componentDict.component, Object.assign({}, this.props, this.props.componentDict.props));
-
         // Create the interior of any given widget to be displayed.
         return (
             <div className={'BaseWidget'}>

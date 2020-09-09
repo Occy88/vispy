@@ -29,7 +29,16 @@ class CadexVis extends React.Component {
                 {name: 'Debt to Income Ratio', original: 1, proposed: 1, minValue: 0, maxValue: 2},
                 {name: 'Total Accounts', original: 20, proposed: 20, minValue: 0, maxValue: 100},
             ]
+<<<<<<< HEAD
         }
+=======
+        };
+        this.removeElement = this.removeElement.bind(this)
+    }
+
+    removeElement() {
+        this.props.removeElement(this.props.elementToEval);
+>>>>>>> MachineLearning
     }
 
     render() {
@@ -111,12 +120,17 @@ class CadexVis extends React.Component {
 
                 </WidgetBody>
                 <Button style={button_style} onClick={() => {
+<<<<<<< HEAD
                     this.props.onSubmit();
+=======
+                    //call function indicating completion of the task.
+                    this.props.complete()
+                    this.props.removeWidget(this.props.id)
+>>>>>>> MachineLearning
                 }}>Accept</Button>
             </div>
         )
     }
-
 }
 
 export default CadexVis;
