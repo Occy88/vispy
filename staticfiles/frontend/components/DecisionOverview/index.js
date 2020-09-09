@@ -13,6 +13,7 @@ import _ from 'underscore'
 import uuid from 'uuid'
 import Routes from "../Routes";
 
+
 class DecisionOverview extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +38,7 @@ class DecisionOverview extends React.Component {
 
     removeDecision(id) {
         console.log('clicked remove elemnt', id);
+
         this.setState({
             decisions: _.reject(this.state.decisions, {id: id})
         });
@@ -52,6 +54,10 @@ class DecisionOverview extends React.Component {
             textAlign: "unset"
         };
 
+        let component = CadexVis
+        let props = {
+            complete: () => this.removeElement(decision.id),
+        }
         return (
             <div className={'DecisionOverview'}>
                 {/* The children contained within the component will be displayed within */}

@@ -3,7 +3,6 @@ import {ResponsiveHeatMap} from "@nivo/heatmap"
 import {ResponsiveBar} from "@nivo/bar";
 import WidgetHeader from "../../../../../static/components/WidgetHeader";
 import WidgetBody from "../../../../../static/components/WidgetBody";
-
 import "./style.scss"
 import GraphContainer from "../../../../../static/components/GraphContainer";
 

@@ -6,6 +6,7 @@ import GraphContainer from "../../../../../static/components/GraphContainer";
 import ListSelect from "../../../../../static/components/ListSelect";
 import Button from "../../../../../static/components/Button";
 import FeatureAnalysis from "../FeatureAnalysis";
+import uuid from 'uuid'
 
 class FeatureSelection extends React.Component {
 
@@ -45,7 +46,7 @@ class FeatureSelection extends React.Component {
                             {display_features(this.state.selected_feature)}
                         </div>
                         <Button
-                            onClick={()=>this.props.createWidget(FeatureAnalysis, 6, 4, {feature: this.state.selected_feature})}>
+                            onClick={()=>this.props.handleCreate(FeatureAnalysis,uuid(),null,null, 2, 3, {feature: this.state.selected_feature})}>
                             Analyse
                         </Button>
                     </div>

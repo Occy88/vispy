@@ -30,6 +30,7 @@ class CadexVis extends React.Component {
                 {name: 'Total Accounts', original: 20, proposed: 20, minValue: 0, maxValue: 100},
             ]
         }
+
     }
 
     render() {
@@ -116,7 +117,6 @@ class CadexVis extends React.Component {
             </div>
         )
     }
-
 }
 
 export default CadexVis;

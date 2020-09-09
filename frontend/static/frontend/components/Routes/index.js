@@ -9,7 +9,7 @@ import WelcomePage from '../WelcomePage'
 
 let lang = languages[document.documentElement.lang];
 
-const app_url_prefix = '/';
+const app_url_prefix = '';
 
 export default class Routes extends React.Component {
     constructor(props) {
@@ -18,18 +18,22 @@ export default class Routes extends React.Component {
 
 
     render() {
+        console.log('RENDERINGF')
+        console.log(app_url_prefix)
+        console.log(app_url_prefix+"dashboard")
         return (
                 <div className={'Router'}>
 
                     <Router>
                         {/*<Header/>*/}
                         <Switch {...this.props}>
+                             <Route path={app_url_prefix + "/dashboard"} render={(routeProps) => (
+                                    <Demo {...routeProps} />
+                            )}/>
                             <Route path={app_url_prefix} render={(routeProps) => (
-                                    <Demo {...routeProps} />
+                                    <WelcomePage {...routeProps} />
                             )}/>
-                            <Route path={app_url_prefix + "Home"} render={(routeProps) => (
-                                    <Demo {...routeProps} />
-                            )}/>
+
                         </Switch>
                         {/*<Footer/>*/}
                     </Router>
