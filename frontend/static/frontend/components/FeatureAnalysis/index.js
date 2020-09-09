@@ -5,17 +5,16 @@ import "./style.scss"
 import GraphContainer from "../../../../../static/components/GraphContainer";
 import ListSelect from "../../../../../static/components/ListSelect";
 import Button from "../../../../../static/components/Button";
-import FeatureAnalysis from "../FeatureAnalysis";
-
-class FeatureSelection extends React.Component {
+import Shapley from "./Shapley";
+class FeatureAnalysis extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            feature_list: [
-                {id: 0, str: 'ex0', sort: 0, feature_list: {n1: 'blonde', n2: 'died'}},
-                {id: 1, str: 'ex1', sort: 1, feature_list: {n1: 'brunette', n2: 'survived'}},
-                {id: 2, str: 'ex2', sort: 2, feature_list: {n1: 'ginger', n2: 'amputated'}},],
+            analysis_list: [
+                {id:0,str:"Feature Contribution",sort:0,component:Shapley},
+                {id:1,str:"Permutation Feature Importance",sort:1,component:Shapley},
+        ],
             selected_feature: {id: 0, str: 'ex0', sort: 0, feature_list: {n1: 'blonde', n2: 'died'}}
 
         }
@@ -30,23 +29,21 @@ class FeatureSelection extends React.Component {
 
     render() {
         return (
-            <div className={'FeatureSelection'}>
+            <div className={'FeatureAnalysis'}>
                 <WidgetHeader>
                     <h5>Feature Visualisation and Selection</h5>
                 </WidgetHeader>
                 <WidgetBody>
                     <div className={'selection'}>
                         <div className={'select_feature'}>
-                            <ListSelect handleSelect={this.setFeature.bind(this)} filter={true}
-                                        object_list={this.state.feature_list}/>
+                            <ListSelect  handleSelect={this.setFeature.bind(this)} filter={false}
+                                        object_list={this.state.analysis_list}/>
                         </div>
 
                         <div className={'features'}>
-                            {display_features(this.state.selected_feature)}
                         </div>
-                        <Button
-                            onClick={()=>this.props.createWidget(FeatureAnalysis, 6, 4, {feature: this.state.selected_feature})}>
-                            Analyse
+                        <Button>
+                        HI
                         </Button>
                     </div>
                     <div className={'visualisation'}>
@@ -64,25 +61,5 @@ class FeatureSelection extends React.Component {
 }
 
 
-export default FeatureSelection;
+export default FeatureAnalysis;
 
-/**
- *
- * @param feature: {id: id of feature, }
- */
-function display_features(feature) {
-    console.log(feature)
-    return [
-        display_feature('id', feature.id),
-        Object.keys(feature.feature_list).map((key, index) => {
-            return display_feature(key, feature.feature_list[key])
-        })
-    ]
-
-}
-
-function display_feature(feature_name, feature_value) {
-    return <div key={feature_name} className={'feature'}>
-        <h6>{feature_name + " -"} </h6> <p>{feature_value}</p>
-    </div>
-}

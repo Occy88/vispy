@@ -35,24 +35,34 @@ export default class Dashboard extends React.Component {
 
         ];
         this.handleRemove = this.handleRemove.bind(this);
-        this.createSpecial = this.createSpecial.bind(this);
+        this.handleCreate = this.handleCreate.bind(this);
         this.removeElement = this.removeElement.bind(this)
     }
 
-    createWidget(type) {
+    /**
+     *
+     * @param component Component to render
+     * @param w width in grid units
+     * @param h height in grid units
+     * @param props props to pass component as it is created and rendered
+     * @returns {{i: (number|Int8Array|Int16Array|Int32Array|Uint8Array|Uint16Array|Uint32Array|Uint8ClampedArray|Float32Array|Float64Array|DataView|ArrayBuffer), gridData: {w: *, x: number, h: *, i: string, y: number}, content: *, props: *}}
+     */
+    createWidget(component, w, h, props) {
         let val = this.state.counter;
-        let widget = this.widgets[type];
-        let content = this.widgets[type].component
-        let pos = this.findSpace(widget.w, widget.h);
+        let pos = this.findSpace(w, h);
         let gridData = {
             i: 'n' + val,
             x: pos[0],
             y: pos[1],
-            w: widget.w,
-            h: widget.h
+            w: w,
+            h: h
         };
+        props.createWidget = this.handleCreate
+        props.removeWidget = this.handleRemove
+        props.id = val;
         return {
-            content: content,
+            content: component,
+            props: props,
             gridData: gridData,
             i: val
         }
@@ -63,30 +73,6 @@ export default class Dashboard extends React.Component {
         console.log("Removing element", id)
     }
 
-    createSpecial(id) {
-        let widget = CadexVis;
-        let i = this.state.counter + 1;
-        let content = widget;
-        let gridData = {
-            i: 'n' + i,
-            x: 5,
-            y: 3,
-            w: 7,
-            h: 3
-        };
-        let toPush = {
-            content: content,
-            gridData: gridData,
-            i: i
-        };
-        let returnList = [...this.state.createdWidgets];
-        returnList.push(toPush);
-        this.setState({
-            createdWidgets: returnList,
-            counter: i,
-            elementToEval: id
-        })
-    }
 
     preloadWidgets() {
         let dims = [[0, 0, 5, 6], [5, 0, 7, 3]];
@@ -170,12 +156,17 @@ export default class Dashboard extends React.Component {
     }
 
     /**
-     * Function to create a specific widget
-     * @param {number} type index of the widget in the WidgetList
+     * Creates a widget given a component, height of widget and width,
+     * Widget is added to list of widgets to be rendered.
+     * @param component: the widget to be created
+     * @param width: width of the widget in grid units
+     * @param height: height of the widget in grid units
+     * @param props: props to pass to widget as it is created
      */
-    handleCreate(type) {
+    handleCreate(component, width, height, props) {
+
         this.setState({
-            createdWidgets: this.state.createdWidgets.concat(this.createWidget(type)),
+            createdWidgets: this.state.createdWidgets.concat(this.createWidget(component, width, height, props)),
             counter: this.state.counter + 1,
         });
     };
@@ -199,7 +190,6 @@ export default class Dashboard extends React.Component {
                     removeElement={this.removeElement}
                     elementToRemove={this.state.elementToRemove}
                     elementToEval={this.state.elementToEval}
-                    createSpecial={this.createSpecial}
                     items={this.state.createdWidgets}/>
             </div>
         );

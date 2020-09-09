@@ -31,8 +31,8 @@ export default class DashboardGrid extends React.Component {
                                     key={item.i}
                                     data-grid={item.gridData}>
                             <AsWidget
-                                createSpecial={this.props.createSpecial}
                                 component={item.content}
+                                props={item.props}
                                 removeElement={this.props.removeElement}
                                 elementToEval={this.props.elementToEval}
                                 elementToRemove={this.props.elementToRemove}

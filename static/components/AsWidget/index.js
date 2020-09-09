@@ -33,8 +33,9 @@ class AsWidget extends React.Component {
 
     // Create the content using the BaseWidget component.
     render() {
-
-        const element = React.createElement(this.props.component, this.props);
+        console.log("CREATING WIDGET: ",this.props.component)
+        console.log("WITH PROPS: ",this.props.props)
+        const element = React.createElement(this.props.component, this.props.props);
         const content = (
             <BaseWidget handleRemove={this.props.handleRemove}>
                 {element}

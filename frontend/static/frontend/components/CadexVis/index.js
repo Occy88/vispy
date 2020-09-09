@@ -118,8 +118,9 @@ class CadexVis extends React.Component {
 
                 </WidgetBody>
                 <Button style={button_style} onClick={() => {
-                    this.removeElement();
-                    this.props.handleRemove()
+                    //call function indicating completion of the task.
+                    this.props.complete()
+                    this.props.removeWidget(this.props.id)
                 }}>Accept</Button>
             </div>
         )

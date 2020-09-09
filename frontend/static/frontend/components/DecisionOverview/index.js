@@ -8,6 +8,7 @@ import "./style.scss"
 import WidgetHeader from "../../../../../static/components/WidgetHeader";
 import WidgetBody from "../../../../../static/components/WidgetBody";
 import Button from "../../../../../static/components/Button";
+import CadexVis from "../CadexVis";
 
 
 class DecisionOverview extends React.Component {
@@ -38,10 +39,6 @@ class DecisionOverview extends React.Component {
         });
     }
 
-    UNSAFE_componentWillReceiveProps(props) {
-        this.removeElement(props.elementToRemove)
-    }
-
 
     render() {
         const button_style = {
@@ -53,7 +50,10 @@ class DecisionOverview extends React.Component {
             textAlign: "unset"
         };
 
-
+        let component = CadexVis
+        let props = {
+            complete: () => this.removeElement(decision.id),
+        }
         return (
             <div className={'DecisionOverview'}>
                 {/* The children contained within the component will be displayed within */}
@@ -79,7 +79,7 @@ class DecisionOverview extends React.Component {
                                 <TableCell>{decision.system}</TableCell>
                                 <TableCell>
                                     <Button style={button_style} onClick={() => {
-                                        this.props.createSpecial(decision.id)
+                                        this.props.createWidget(CadexVis, 5, 4, {complete: () => this.removeElement(decision.id)})
                                     }}>
                                         Review
                                     </Button>
