@@ -12,8 +12,8 @@ class Shapley extends React.Component {
         super(props);
         this.state = {
             analysis_list: [
-                {id:0,str:"Shapley",sort:0,Shapley}
-        ],
+                {id: 0, str: "Shapley", sort: 0, Shapley}
+            ],
             selected_feature: {id: 0, str: 'ex0', sort: 0, feature_list: {n1: 'blonde', n2: 'died'}}
 
         }
@@ -33,26 +33,48 @@ class Shapley extends React.Component {
                     <h5>Feature Visualisation and Selection</h5>
                 </WidgetHeader>
                 <WidgetBody>
-                    <div className={'selection'}>
-                        <div className={'select_feature'}>
-                            <ListSelect handleSelect={this.setFeature.bind(this)} filter={true}
-                                        object_list={this.state.feature_list}/>
-                        </div>
+                    <GraphContainer>
+                        <ResponsiveBarCanvas
+                            data={data}
+                            keys={keys}
+                            minValue="auto"
+                            maxValue="auto"
+                            groupMode="stacked"
+                            layout="horizontal"
+                            reverse={false}
+                            colors={{scheme: 'red_blue'}}
+                            colorBy="id"
+                            borderWidth={0}
+                            borderColor={{from: 'color', modifiers: [['darker', 1.6]]}}
+                            axisTop={{tickSize: 5, tickPadding: 5, tickRotation: 0, legend: '', legendOffset: 36}}
+                            axisRight={null}
+                            axisBottom={{
+                                tickSize: 5,
+                                tickPadding: 5,
+                                tickRotation: 0,
+                                legend: 'country',
+                                legendPosition: 'middle',
+                                legendOffset: 36
+                            }}
+                            axisLeft={{
+                                tickSize: 5,
+                                tickPadding: 5,
+                                tickRotation: 0,
+                                legend: 'food',
+                                legendPosition: 'middle',
+                                legendOffset: -40
+                            }}
+                            enableGridX={true}
+                            enableGridY={false}
+                            enableLabel={true}
+                            labelSkipWidth={12}
+                            labelSkipHeight={12}
+                            labelTextColor={{from: 'color', modifiers: [['darker', 1.6]]}}
+                            isInteractive={true}
+                            indexBy={"probability"}/>
 
-                        <div className={'features'}>
-                        </div>
-                        <Button>
-                        HI
-                        </Button>
-                    </div>
-                    <div className={'visualisation'}>
-                        <div className={'options'}>
-                            Some map function to return a list of options for graph
-                        </div>
-                        <GraphContainer>
-                            THE GRAPH
-                        </GraphContainer>
-                    </div>
+
+                    </GraphContainer>
                 </WidgetBody>
             </div>
         );
