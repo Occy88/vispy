@@ -25,13 +25,10 @@ export default class Routes extends React.Component {
                         {/*<Header/>*/}
                         <Switch {...this.props}>
                             <Route path={app_url_prefix} render={(routeProps) => (
-                                    <WelcomePage {...routeProps} />
+                                    <Demo {...routeProps} />
                             )}/>
                             <Route path={app_url_prefix + "Home"} render={(routeProps) => (
                                     <Demo {...routeProps} />
-                            )}/>
-                            <Route path="*" render={(routeProps) => (
-                                    <WelcomePage {...routeProps} />
                             )}/>
                         </Switch>
                         {/*<Footer/>*/}

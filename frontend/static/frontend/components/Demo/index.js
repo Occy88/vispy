@@ -6,6 +6,7 @@ import DecisionOverview from "../DecisionOverview";
 import Dashboard from "../../../../../static/components/Dashboard";
 import DecisionReviewOverview from "../DecisionReviewOverview";
 import CadexVis from "../CadexVis";
+import FeatureSelection from "../FeatureSelection";
 
 /**
  * An Example of a simple widget to be used in the grid.
@@ -23,9 +24,10 @@ class Home extends React.Component {
         super(props);
         this.state = {
             dashboardComponents: [
-                {component: DecisionReviewOverview, w: 2, h: 4, text: 'Auditability'},
-                {component: DecisionOverview, w: 2, h: 4, text: 'Safety Monitoring'},
-                {component: DeepLearningVis, w: 2, h: 4, text: 'Explainability'},
+                {component: FeatureSelection, w: 2, h: 4, text: 'Feature Analysis'},
+                // {component: DecisionOverview, w: 2, h: 4, text: 'Safety Monitoring'},
+                // {component: DeepLearningVis, w: 2, h: 4, text: 'Explainability'},
+
             ]
         };
         this.dashboard = React.createRef()
