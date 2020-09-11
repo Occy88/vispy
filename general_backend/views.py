@@ -8,6 +8,11 @@ from .helper import query_to_dict_clean
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import generics, permissions, status, viewsets
+from django.views import View
+from django.http.response import HttpResponse, HttpResponseNotFound, JsonResponse
+import json
+from .gradient_boosted_trees import gen_shap, permutation_feature_importance, directional_feature_contribution, \
+    get_results, get_eval_nodes
 
 
 class CheckApiKey(permissions.BasePermission):
@@ -112,3 +117,80 @@ def clear_db(request):
     print("DELTING DATABASE: ")
     Item.objects.all().delete()
     State.objects.all().delete()
+
+
+class Shapley(View):
+    def get(self, request):
+        print(request.META['PATH_INFO'])
+        try:
+            print("GETTING SHAP STUFF :D")
+            # print(request.GET)
+            # print(dir(request.GET))
+            # print(request.GET?)
+            data = query_to_dict_clean(request.GET)
+            print(data)
+            s_data = gen_shap(int(data["id"]))
+            print(s_data)
+            # ret = json.dumps(gen_shap(data["id"]))
+        except Exception as e:
+            print(e)
+            return HttpResponseNotFound('<h1>File not found</h1>')
+        return JsonResponse(s_data)
+
+
+class DirectionalFeatureContribution(View):
+    def get(self, request):
+        print(request.META['PATH_INFO'])
+        try:
+            print("GETTING directional feature contrib :D")
+            # print(request.GET)
+            # print(dir(request.GET))
+            # print(request.GET?)
+            data = query_to_dict_clean(request.GET)
+            print(data)
+            s_data = directional_feature_contribution(data['feature'])
+            print(s_data)
+            # ret = json.dumps(gen_shap(data["id"]))
+        except Exception as e:
+            print(e)
+            return HttpResponseNotFound('<h1>File not found</h1>')
+        return JsonResponse({"data": s_data})
+
+
+class GetNodes(View):
+    def get(self, request):
+        print(request.META['PATH_INFO'])
+        try:
+            print("GETTING RESULTS")
+            s_data = get_eval_nodes()
+            print(s_data)
+        except Exception as e:
+            print(e)
+            return HttpResponseNotFound('<h1>File not found</h1>')
+        return JsonResponse({"data": s_data})
+
+
+class PermutationFeatureImportance(View):
+    def get(self, request):
+        print(request.META['PATH_INFO'])
+        try:
+            print("GETTING PERM FET IMP STUFF :D")
+            s_data = permutation_feature_importance()
+            print(s_data)
+        except Exception as e:
+            print(e)
+            return HttpResponseNotFound('<h1>File not found</h1>')
+        return JsonResponse(s_data)
+
+
+class Results(View):
+    def get(self, request):
+        print(request.META['PATH_INFO'])
+        try:
+            print("GETTING RESULTS")
+            s_data = get_results()
+            print(s_data)
+        except Exception as e:
+            print(e)
+            return HttpResponseNotFound('<h1>File not found</h1>')
+        return JsonResponse(s_data)

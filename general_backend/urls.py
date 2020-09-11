@@ -8,6 +8,13 @@ from . import views
 app_name = 'general_backend'
 urlpatterns = [
     # path('stock_detail/', views.StockList.as_view()),
+    path('shapley', views.Shapley.as_view()),
+    path('permutation_feature_importance', views.PermutationFeatureImportance.as_view()),
+    path('results', views.Results.as_view()),
+    path('get_eval_nodes', views.GetNodes.as_view()),
+
+    path('directional_freature_contribution', views.DirectionalFeatureContribution.as_view()),
+
     path('items', views.ItemList.as_view()),
     path('items/<int:pk>', views.ItemDetail.as_view()),
     path('states', views.StateList.as_view()),

@@ -20,6 +20,7 @@ class ListSelect extends React.Component {
      */
     constructor(props) {
         super(props);
+        console.log(props)
         this.reverse = props.reverse;
         let temp_list = [...props.object_list];
         temp_list = ListSelect.sortList(temp_list);
@@ -27,9 +28,8 @@ class ListSelect extends React.Component {
             temp_list.reverse()
         }
         if (props.default) {
-            temp_list = ListSelect.setDefault(props.default, temp_list);
+            temp_list = ListSelect.setDefault(props.default, temp_list, props.id_key);
         }
-
 
         this.state = {
             object_list: props.object_list,
@@ -49,11 +49,11 @@ class ListSelect extends React.Component {
      * @param arr1
      * @param arr2
      */
-    static test_array_equal(arr1, arr2) {
+    static test_array_equal(arr1, arr2, id_key) {
         if (arr1.length !== arr2.length)
             return false;
         for (var i = arr1.length; i--;) {
-            if (arr1[i].id !== arr2[i].id)
+            if (arr1[i][id_key] !== arr2[i][id_key])
                 return false;
         }
 
@@ -97,10 +97,10 @@ class ListSelect extends React.Component {
         }
     }
 
-    static getIndex(object, list) {
+    static getIndex(object, list, id_key) {
         let index = 0;
         for (var i = 1; i < list.length; i += 1) {
-            if (list[i].id === object.id) {
+            if (list[i][id_key] === object[id_key]) {
                 index = i
             }
         }
@@ -110,9 +110,9 @@ class ListSelect extends React.Component {
     /**
      * If there is a default set it
      */
-    static setDefault(object, list) {
+    static setDefault(object, list, id_key) {
         //  find and remove it from the current list
-        let id_pop = ListSelect.getIndex(object, list);
+        let id_pop = ListSelect.getIndex(object, list, id_key);
 
         list.unshift(object);
         list.splice(id_pop + 1, 1);
@@ -148,7 +148,7 @@ class ListSelect extends React.Component {
      * sort the list into alphabetical by the str attribute
      */
     static sortList(list) {
-        list.sort(ListSelect.dynamicSort("sort"));
+        list.sort(ListSelect.dynamicSort(list));
         return list;
     }
 
@@ -160,7 +160,7 @@ class ListSelect extends React.Component {
      */
     filterList(event) {
         let all_data = this.state.object_list.filter(function (item) {
-            return item.str.toLowerCase().search(
+            return item[this.props.str_key].toLowerCase().search(
                 event.target.value.toLowerCase()) !== -1;
         });
         all_data = ListSelect.sortList(all_data);
@@ -200,7 +200,7 @@ class ListSelect extends React.Component {
                     onChange={(event) => this.handleSelect(event.target.value)}>
                 {
                     this.state.temp_list.map((item, index) => <option value={index}
-                                                                      key={item.id}> {item.str}</option>)
+                                                                      key={item[this.props.id_key]}> {item[this.props.str_key]}</option>)
                 }
             </select>;
 

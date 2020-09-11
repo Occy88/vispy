@@ -53,12 +53,13 @@ export default class LanguageSelect extends React.Component {
                 <ListSelect default={this.state.language} filter={false}
                             object_list={this.state.language_list.map(obj => {
                                 var rObj = {};
-                                rObj = {id: obj[0], code: obj[0], language: obj[1]};
-                                rObj["str"] = obj[1];
-                                rObj["sort"] = obj[1];
-
+                                rObj = { code: obj[0], language: obj[1]};
                                 return rObj;
-                            })} handleSelect={LanguageSelect.changeLanguage}/>
+                            })}
+                            str_key={'language'}
+                            sort_key={'language'}
+                            id_key={'code'}
+                            handleSelect={LanguageSelect.changeLanguage}/>
             </div>
         )
     }

@@ -4,28 +4,37 @@ import GraphContainer from "../../../../../../static/components/GraphContainer";
 import {ResponsiveBar} from "@nivo/bar";
 import FeatureAnalysisService from "../service";
 
-class Shapley extends React.Component {
+class Results extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        }
+        this.state = {}
     };
 
     componentDidMount() {
-        FeatureAnalysisService.getShapley(this.props.node).then((d) => this.setState({data: d.data, keys: d.keys}))
+        FeatureAnalysisService.getResults(this.props.feature).then((d) => {
+            console.log(d)
+            // let global_step = d.data[10]
+            // delete d.data[10]
+            this.setState({
+                data: d.data,
+                keys: d.keys,
+                // global_step: global_step
+            })
+        })
     }
 
     render() {
 
         return (
-            <div className={'Shapley'}>
+            <div className={'Results'}>
+
                 <GraphContainer>
                     {this.state.data ? <ResponsiveBar
                         data={this.state.data}
                         keys={this.state.keys}
-                        minValue="auto"
-                        maxValue="auto"
+                        minValue="0"
+                        maxValue="1"
                         // groupMode="stacked"
                         layout="horizontal"
                         reverse={false}
@@ -49,9 +58,9 @@ class Shapley extends React.Component {
                             tickRotation: 0,
                             legend: 'features',
                             legendPosition: 'middle',
-                            legendOffset: -40
+                            legendOffset: -120
                         }}
-                        margin={{top: 30, right: 30, bottom: 50, left: 50}}
+                        margin={{top: 30, right: 30, bottom: 50, left: 150}}
                         enableGridX={true}
                         enableGridX={true}
                         enableGridY={false}
@@ -70,5 +79,5 @@ class Shapley extends React.Component {
 }
 
 
-export default Shapley;
+export default Results;
 

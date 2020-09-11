@@ -2,7 +2,7 @@
 // this is mainly for :focus and tabbing.
 .GraphContainer {
   width: 100%;
-  height: 100%;
-  position: absolute;
   display: flex;
+  position: relative;
+  height: 100%;
 }

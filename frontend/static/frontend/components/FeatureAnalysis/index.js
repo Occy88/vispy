@@ -6,25 +6,27 @@ import GraphContainer from "../../../../../static/components/GraphContainer";
 import ListSelect from "../../../../../static/components/ListSelect";
 import Button from "../../../../../static/components/Button";
 import Shapley from "./Shapley";
+import PermutationFeatureImportance from "./PermutationFeatureImportance";
+
 class FeatureAnalysis extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             analysis_list: [
-                {id:0,str:"Feature Contribution",sort:0,component:Shapley},
-                {id:1,str:"Permutation Feature Importance",sort:1,component:Shapley},
-        ],
-            selected_feature: {id: 0, str: 'ex0', sort: 0, feature_list: {n1: 'blonde', n2: 'died'}}
+                { name: "Feature Contribution",  component: Shapley},
+            ],
+            analysis: {id: 0, str: "Feature Contribution", sort: 0, component: Shapley},
 
         }
     };
 
-    setFeature(data) {
-        console.log("selected: ", data)
-        this.setState({
-            selected_feature: data
-        })
+    setAnalysis(val) {
+        this.setState(
+            {
+                analysis: val
+            }
+        )
     }
 
     render() {
@@ -36,23 +38,16 @@ class FeatureAnalysis extends React.Component {
                 <WidgetBody>
                     <div className={'selection'}>
                         <div className={'select_feature'}>
-                            <ListSelect  handleSelect={this.setFeature.bind(this)} filter={false}
-                                        object_list={this.state.analysis_list}/>
+                            <ListSelect handleSelect={this.setAnalysis.bind(this)} filter={false}
+                                        object_list={this.state.analysis_list}
+                                        str_key={'name'}
+                                        sort_key={'name'}
+                                        id_key={'name'}
+                            />
                         </div>
-
-                        <div className={'features'}>
-                        </div>
-                        <Button>
-                        HI
-                        </Button>
                     </div>
                     <div className={'visualisation'}>
-                        <div className={'options'}>
-                            Some map function to return a list of options for graph
-                        </div>
-                        <GraphContainer>
-                            THE GRAPH
-                        </GraphContainer>
+                        {React.createElement(this.state.analysis.component, {node: this.props.node})}
                     </div>
                 </WidgetBody>
             </div>

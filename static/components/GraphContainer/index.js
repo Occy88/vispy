@@ -30,11 +30,9 @@ class GraphContainer extends React.Component {
     render() {
 
         return (
-            <div style={{position: 'relative', height: 'inherit'}}>
                 <div className={'GraphContainer'} style={this.props.style}>
                     {this.props.children}
                 </div>
-            </div>
         )
     }
 }

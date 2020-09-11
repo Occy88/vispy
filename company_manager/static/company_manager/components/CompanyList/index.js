@@ -40,14 +40,10 @@ class CompanyList extends React.Component {
         if (!this.state.company_data) return <div style={{display: 'inline-block'}}>N/A</div>;
         return (
             <div>
-                <ListSelect default={DEFAULT_COMPANY} filter={false} object_list={this.state.company_data.map(obj => {
-                    var rObj = {};
-                    rObj = obj;
-                    console.log("in for for companies: ", obj.name);
-                    rObj["str"] = obj.name;
-                    rObj["sort"] = obj.name;
-                    return rObj;
-                })} handleSelect={this.props.changeCompany}/>
+                <ListSelect default={DEFAULT_COMPANY} filter={false} object_list={this.state.company_data}
+                            str_key={'name'}
+                            sort_key={'name'}
+                            id_key={'id'} handleSelect={this.props.changeCompany}/>
             </div>
         )
     }

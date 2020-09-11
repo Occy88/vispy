@@ -8,6 +8,7 @@ from .helper import query_to_dict_clean
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import generics, permissions, status, viewsets
+from django.http.response import HttpResponse, HttpResponseNotFound
 
 
 class CheckApiKey(permissions.BasePermission):

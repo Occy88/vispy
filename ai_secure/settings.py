@@ -22,8 +22,8 @@ MASTER_BASE_DIR = os.path.dirname(__file__)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '<A Random Collection of Characters Here>'
 # SECURITY WARNING: don't run with debug turned on in production!
-ENV_ROLE = 'production'
-# ENV_ROLE = 'development'
+# ENV_ROLE = 'production'
+ENV_ROLE = 'development'
 if ENV_ROLE ==  'production':
     print("PRODUCTION")
     BASE_URL = 'http://localhost:8080/staticfiles/'
