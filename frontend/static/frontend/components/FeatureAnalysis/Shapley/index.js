@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss"
 import GraphContainer from "../../../../../../static/components/GraphContainer";
 import {ResponsiveBar} from "@nivo/bar";
+
 import FeatureAnalysisService from "../service";
 
 class Shapley extends React.Component {
