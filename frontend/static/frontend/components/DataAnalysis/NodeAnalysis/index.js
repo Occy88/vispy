@@ -1,22 +1,20 @@
 import React from "react";
-import WidgetHeader from "../../../../../static/components/WidgetHeader";
-import WidgetBody from "../../../../../static/components/WidgetBody";
+import WidgetHeader from "../../../../../../static/components/WidgetHeader";
+import WidgetBody from "../../../../../../static/components/WidgetBody";
 import "./style.scss"
-import GraphContainer from "../../../../../static/components/GraphContainer";
-import ListSelect from "../../../../../static/components/ListSelect";
-import Button from "../../../../../static/components/Button";
-import Shapley from "./Shapley";
-import PermutationFeatureImportance from "./PermutationFeatureImportance";
+import ListSelect from "../../../../../../static/components/ListSelect";
+import Shapley from "../Shapley";
+import displayNodeAttributes from "../NodeAttributes";
 
-class FeatureAnalysis extends React.Component {
+class NodeAnalysis extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             analysis_list: [
-                { name: "Feature Contribution",  component: Shapley},
+                {name: "Feature Contribution", component: Shapley},
             ],
-            analysis: {id: 0, str: "Feature Contribution", sort: 0, component: Shapley},
+            analysis: {name: "Feature Contribution", component: Shapley},
 
         }
     };
@@ -31,7 +29,7 @@ class FeatureAnalysis extends React.Component {
 
     render() {
         return (
-            <div className={'FeatureAnalysis'}>
+            <div className={'NodeAnalysis'}>
                 <WidgetHeader>
                     <h5>Feature Visualisation and Selection</h5>
                 </WidgetHeader>
@@ -45,6 +43,7 @@ class FeatureAnalysis extends React.Component {
                                         id_key={'name'}
                             />
                         </div>
+                        {displayNodeAttributes(this.props.node)}
                     </div>
                     <div className={'visualisation'}>
                         {React.createElement(this.state.analysis.component, {node: this.props.node})}
@@ -56,5 +55,5 @@ class FeatureAnalysis extends React.Component {
 }
 
 
-export default FeatureAnalysis;
+export default NodeAnalysis;
 

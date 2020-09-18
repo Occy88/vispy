@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss"
 import GraphContainer from "../../../../../../static/components/GraphContainer";
 import {ResponsiveBar} from "@nivo/bar";
-import FeatureAnalysisService from "../service";
+import DataAnalysisService from "../service";
 
 class Results extends React.Component {
 
@@ -12,8 +12,7 @@ class Results extends React.Component {
     };
 
     componentDidMount() {
-        FeatureAnalysisService.getResults(this.props.feature).then((d) => {
-            console.log(d)
+        DataAnalysisService.getResults(this.props.feature).then((d) => {
             // let global_step = d.data[10]
             // delete d.data[10]
             this.setState({

@@ -50,9 +50,8 @@ export default class Dashboard extends React.Component {
         if (posX == null || posY == null) {
             let pos = findSpace(this.state.componentDicts, 13, 13, width, height);
             posX = pos[0];
-            posY = pos[1];
+            posY = Infinity
         }
-        console.log('creating')
         this.setState({
             componentDicts: this.state.componentDicts.concat({
                 component: component,
@@ -74,7 +73,6 @@ export default class Dashboard extends React.Component {
     handleCreateMultiple(componentDicts) {
         let componentsToAdd = [];
         for (let d of componentDicts) {
-            console.log(d);
             // if id not provided generate it now
             if (!d.id) {
                 d.id = uuid()
@@ -85,14 +83,11 @@ export default class Dashboard extends React.Component {
                 d.height = 4;
             }
             //if  position not provided, generate one.
-            console.log(d.posX, d.posY);
-
             if (d.posX == null || d.posY == null) {
                 let pos = findSpace(this.state.componentDicts.concat(componentsToAdd), 13, 13, d.width, d.height);
                 d.posX = pos[0];
                 d.posY = pos[1];
             }
-            console.log(d.posX, d.posY);
             componentsToAdd = componentsToAdd.concat({
                 component: d.component,
                 x: d.posX,
@@ -107,14 +102,14 @@ export default class Dashboard extends React.Component {
             componentDicts: this.state.componentDicts.concat(componentsToAdd)
         })
     }
+
     // componentDidUpdate(prevProps, prevState, snapshot) {
     //     this.scale();
     // }
 
     scale(time) {
-        console.log('resizing: ',time);
         time = time ? time : 0;
-        setTimeout(()=>window.dispatchEvent(new Event('resize')), time);
+        setTimeout(() => window.dispatchEvent(new Event('resize')), time);
     }
 
     /**
@@ -122,19 +117,20 @@ export default class Dashboard extends React.Component {
      * @param {string} id the unique id of the component.
      */
     handleRemove(id) {
+        let new_dicts = _.reject(this.state.componentDicts, {id: id})
         this.setState({
-            componentDicts: _.reject(this.state.componentDicts, {id: id})
+            componentDicts: new_dicts
         })
     };
 
     render() {
         return (
-                <div className='Dashboard'>
-                    <DashboardGrid
-                            handleRemove={this.handleRemove}
-                            handleCreate={this.handleCreate}
-                            componentDicts={this.state.componentDicts}/>
-                </div>
+            <div className='Dashboard'>
+                <DashboardGrid
+                    handleRemove={this.handleRemove}
+                    handleCreate={this.handleCreate}
+                    componentDicts={this.state.componentDicts}/>
+            </div>
         );
     }
 

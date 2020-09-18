@@ -159,15 +159,21 @@ class ListSelect extends React.Component {
      * @param event
      */
     filterList(event) {
+        console.log(event)
+        console.log(this.props)
         let all_data = this.state.object_list.filter(function (item) {
             return item[this.props.str_key].toLowerCase().search(
                 event.target.value.toLowerCase()) !== -1;
         });
+        console.log("here1")
         all_data = ListSelect.sortList(all_data);
+        console.log("here2")
+
         if (this.reverse) {
             all_data.reverse();
         }
         this.setState({temp_list: all_data});
+        console.log("here3")
 
         if (all_data[0]) {
             this.props.handleSelect(all_data[0]);
@@ -177,6 +183,8 @@ class ListSelect extends React.Component {
         } else {
             this.props.handleSelect(null);
         }
+        console.log("here4")
+
 
     }
 

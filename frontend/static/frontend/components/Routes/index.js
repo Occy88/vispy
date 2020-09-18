@@ -18,9 +18,6 @@ export default class Routes extends React.Component {
 
 
     render() {
-        console.log('RENDERINGF')
-        console.log(app_url_prefix)
-        console.log(app_url_prefix+"dashboard")
         return (
                 <div className={'Router'}>
 

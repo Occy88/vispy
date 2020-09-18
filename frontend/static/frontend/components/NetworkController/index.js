@@ -44,7 +44,6 @@ export default class NetworkController extends React.Component {
         for (let dict of selected.k_nearest) {
             let selectedDiv = document.createElement("div");
             selectedDiv.style.display = "inline-block";
-            // console.log(dict);
             selectedDiv.innerText = "K_Nearest Node: " + dict.hash + "\n" + "label:" + dict.label.name + "\n";
             selectedDiv.appendChild(NetworkController.createImage(JSON.parse(dict.data)));
             this.canvases.current.appendChild(selectedDiv);
@@ -63,7 +62,6 @@ export default class NetworkController extends React.Component {
     static createImage(data) {
         let canvas = document.createElement("canvas");
         let context = canvas.getContext("2d");
-        console.log("CREATING IMAGE");
         // Define the image dimensions
         let width = data[0].length * 5;
         let height = data.length * 5;
@@ -103,7 +101,6 @@ export default class NetworkController extends React.Component {
     }
 
     updateNetwork() {
-        console.log("getting data");
         KnnService.getItemsRelations({
             hash: Math.floor(this.state.node),
             API_KEY: 'ti^$0ys%1m0ys%n601$rhk!*q#q1$rhk!6m2#&m0ys%'
@@ -130,8 +127,6 @@ export default class NetworkController extends React.Component {
          * and the id is obviously the hash...
          * @type {*[]}
          */
-        // console.log(data);
-        console.log("DATA RECIEVED:");
         let items = this.state.items;
         for (let dict of data) {
             if (!this.checkItemExists(dict)) {

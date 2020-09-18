@@ -7,7 +7,6 @@ class BaseWidget extends React.Component {
     // Styles
     constructor(props) {
         super(props);
-        console.log('CREATING WIDGET WITH PROPS: ', this.props);
     }
 
     render() {

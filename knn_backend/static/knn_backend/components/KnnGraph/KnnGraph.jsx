@@ -89,9 +89,6 @@ class ForceDirectedGraph extends React.Component {
         const {className, height, width, animation} = this.props;
         const {data} = this.state;
         const {nodes, links} = data;
-        console.log(nodes, links);
-        console.log(width);
-        console.log(height);
         return (
             <XYPlot width={width} height={height} className={className}>
                 {links.map(({source, target}, index) => {

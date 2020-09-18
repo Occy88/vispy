@@ -7,6 +7,8 @@ import {ComponentType as ReactComponentType} from "react";
  */
 export default function WidthProvider(WrappedComponent) {
     return class WidthProvider extends React.Component {
+
+
         constructor(props) {
             super(props);
             this.state = {
@@ -46,9 +48,7 @@ export default function WidthProvider(WrappedComponent) {
         };
 
         render() {
-            console.log(this.state)
             const {...rest} = this.props;
-            console.log('rendering the width provider',{...rest},this.props);
             if (this.mounted) {
                 return (
                     <div className={this.props.className} style={this.props.style}/>

@@ -14,7 +14,7 @@ import csrftoken from '../../../../../static/js/csrf.js'
  */
 const FEATURE_ANALYSIS_API_URL = '/general_backend';
 
-class FeatureAnalysisService extends React.Component {
+class DataAnalysisService extends React.Component {
     /**
      *
      * @param node
@@ -80,4 +80,4 @@ class FeatureAnalysisService extends React.Component {
     }
 }
 
-export default FeatureAnalysisService
+export default DataAnalysisService

@@ -23,11 +23,6 @@ export default class WelcomePage extends React.Component {
     constructor(props) {
         super(props);
         this.mail = React.createRef()
-        console.log("loading welcome page");
-        console.log("lang:");
-        console.log(lang);
-        console.log("end-lang");
-
     }
 
 

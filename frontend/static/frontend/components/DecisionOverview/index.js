@@ -37,8 +37,6 @@ class DecisionOverview extends React.Component {
     }
 
     removeDecision(id) {
-        console.log('clicked remove elemnt', id);
-
         this.setState({
             decisions: _.reject(this.state.decisions, {id: id})
         });

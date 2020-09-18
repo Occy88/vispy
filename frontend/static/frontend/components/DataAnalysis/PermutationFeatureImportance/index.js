@@ -2,30 +2,29 @@ import React from "react";
 import "./style.scss"
 import GraphContainer from "../../../../../../static/components/GraphContainer";
 import {ResponsiveBar} from "@nivo/bar";
+import DataAnalysisService from "../service";
 
-import FeatureAnalysisService from "../service";
-
-class Shapley extends React.Component {
+class PermutationFeatureImportance extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state={
+            data:null
         }
     };
 
     componentDidMount() {
-        FeatureAnalysisService.getShapley(this.props.node).then((d) => this.setState({data: d.data, keys: d.keys}))
+        DataAnalysisService.getPermutationFeatureImportance(this.props.node).then((d) => this.setState({data: d.data,keys:d.keys}))
     }
 
     render() {
 
         return (
-            <div className={'Shapley'}>
+            <div className={'PermutationFeatureImportance'}>
                 <GraphContainer>
                     {this.state.data ? <ResponsiveBar
                         data={this.state.data}
-                        keys={this.state.keys}
-                        minValue="auto"
+                        minValue="0"
                         maxValue="auto"
                         // groupMode="stacked"
                         layout="horizontal"
@@ -36,22 +35,22 @@ class Shapley extends React.Component {
                         borderColor={{from: 'color', modifiers: [['darker', 1.6]]}}
                         axisTop={{tickSize: 5, tickPadding: 5, tickRotation: 0, legend: '', legendOffset: 36}}
                         axisRight={null}
-                        axisBottom={{
-                            tickSize: 5,
-                            tickPadding: 5,
-                            tickRotation: 0,
-                            legend: 'Contribution to predicted probability',
-                            legendPosition: 'middle',
-                            legendOffset: 36
-                        }}
-                        axisLeft={{
-                            tickSize: 5,
-                            tickPadding: 5,
-                            tickRotation: 0,
-                            legend: 'features',
-                            legendPosition: 'middle',
-                            legendOffset: -40
-                        }}
+                        // axisBottom={{
+                        //     tickSize: 5,
+                        //     tickPadding: 5,
+                        //     tickRotation: 0,
+                        //     legend: 'Contribution to predicted probability',
+                        //     legendPosition: 'middle',
+                        //     legendOffset: 36
+                        // }}
+                        // axisLeft={{
+                        //     tickSize: 5,
+                        //     tickPadding: 5,
+                        //     tickRotation: 0,
+                        //     legend: 'features',
+                        //     legendPosition: 'middle',
+                        //     legendOffset: -40
+                        // }}
                         margin={{top: 30, right: 30, bottom: 50, left: 50}}
                         enableGridX={true}
                         enableGridX={true}
@@ -62,7 +61,10 @@ class Shapley extends React.Component {
                         labelTextColor={{from: 'color', modifiers: [['darker', 1.6]]}}
                         // isInteractive={true}
                         groupMode={'grouped'}
-                        indexBy={"feature"}/> : null
+                        indexBy={"feature"}
+                        onClick={(data)=>this.props.handleSelectFeature(data.indexValue)}
+                    /> : null
+
                     }
                 </GraphContainer>
             </div>
@@ -71,5 +73,5 @@ class Shapley extends React.Component {
 }
 
 
-export default Shapley;
+export default PermutationFeatureImportance;
 

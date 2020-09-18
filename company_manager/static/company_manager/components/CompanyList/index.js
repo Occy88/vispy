@@ -21,14 +21,11 @@ class CompanyList extends React.Component {
 
     componentDidMount() {
         this.mounted = true;
-        console.log("GETTING DATA");
         CompanyService.getCompanies({is_active: 'True'}).then(d => {
             if (this.mounted) {
                 this.setState({
                     company_data: d
                 });
-                console.log("GOTTEN DATA: ");
-                console.log(d);
 
 
             }

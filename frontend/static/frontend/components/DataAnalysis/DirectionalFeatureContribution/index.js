@@ -2,18 +2,19 @@ import React from "react";
 import "./style.scss"
 import GraphContainer from "../../../../../../static/components/GraphContainer";
 import {ResponsiveScatterPlot} from '@nivo/scatterplot'
-import FeatureAnalysisService from "../service";
+import DataAnalysisService from "../service";
 
 class DirectionalFeatureContribution extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            feature:this.props.feature
+        }
     };
 
     componentDidMount() {
-        FeatureAnalysisService.getDirectionalFeatureContribution(this.props.feature).then((d) => {
-            console.log(d)
+        DataAnalysisService.getDirectionalFeatureContribution(this.state.feature).then((d) => {
             // let global_step = d.data[10]
             // delete d.data[10]
             this.setState({
@@ -61,6 +62,7 @@ class DirectionalFeatureContribution extends React.Component {
                             legendPosition: 'middle',
                             legendOffset: -60
                         }}
+                        onClick={(data) => this.props.handleSelectNode({id: data.index})}
                         legends={[
                             {
                                 anchor: 'bottom-right',

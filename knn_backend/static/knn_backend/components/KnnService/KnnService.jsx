@@ -76,7 +76,6 @@ export default class KnnService extends React.Component {
      * @return {Promise<any | never>}
      */
     static registerItems(item_list) {
-        console.log("registering");
         return fetch(`${KNN_BACKEND_URL}/items`, {
             method: 'POST',
             credentials: 'include',
@@ -93,7 +92,6 @@ export default class KnnService extends React.Component {
      * @return {Promise<any | never>}
      */
     static registerLabels(item_list) {
-        console.log("registering");
         return fetch(`${KNN_BACKEND_URL}/label`, {
             method: 'POST',
             credentials: 'include',

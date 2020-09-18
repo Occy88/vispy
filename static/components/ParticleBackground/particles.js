@@ -1269,7 +1269,6 @@ var pJS = function (tag_id, params) {
                             pJS.tmp.source_svg = data.currentTarget.response;
                             pJS.fn.vendors.checkBeforeDraw();
                         } else {
-                            console.log('Error pJS - Image not found');
                             pJS.tmp.img_error = true;
                         }
                     }
@@ -1288,7 +1287,6 @@ var pJS = function (tag_id, params) {
             }
 
         } else {
-            console.log('Error pJS - No image.src');
             pJS.tmp.img_error = true;
         }
 
@@ -1339,7 +1337,6 @@ var pJS = function (tag_id, params) {
             if (pJS.tmp.img_type == 'svg' && pJS.tmp.source_svg == undefined) {
                 pJS.tmp.checkAnimFrame = requestAnimFrame(check);
             } else {
-                //console.log('images loaded! cancel check');
                 cancelRequestAnimFrame(pJS.tmp.checkAnimFrame);
                 if (!pJS.tmp.img_error) {
                     pJS.fn.vendors.init();
@@ -1459,7 +1456,6 @@ window.pJSDom = [];
 
 window.particlesJS = function (tag_id, params) {
 
-    //console.log(params);
 
     /* no string id? so it's object params, and set the id with default id */
     if (typeof (tag_id) != 'string') {

@@ -9,7 +9,7 @@ sns_colors = sns.color_palette('colorblind')
 dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv')
 dfeval = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.csv')
 y_train = dftrain.pop('survived')
-dfeval2=dfeval.copy()
+dfeval2 = dfeval.copy()
 y_eval = dfeval.pop('survived')
 
 import tensorflow as tf
@@ -382,17 +382,18 @@ def gen_shap(id):
 
 def directional_feature_contribution(feature_name):
     FEATURE = feature_name
-    feature = pd.Series(df_dfc[FEATURE].values, index=dfeval[FEATURE].values).sort_index()
+    feature = pd.Series(df_dfc[FEATURE].values, index=dfeval[FEATURE].values)
     x_axis = feature.index.values
     print('converting x axis')
     if type(x_axis[0]) == str:
         unique_keys = np.unique(x_axis)
         print(unique_keys)
-        unique_vals = range(1, len(unique_keys)+1)
+        unique_vals = range(1, len(unique_keys) + 1)
         conversion = dict(zip(unique_keys, unique_vals))
         print(conversion)
         x_axis = [conversion[x] for x in x_axis]
     print(x_axis)
+    print(feature.keys())
     y_axis = feature.values
     # ax = sns.regplot(feature.index.values, feature.values, lowess=True)
     # ax.set_ylabel('contribution')
@@ -401,6 +402,7 @@ def directional_feature_contribution(feature_name):
     data = []
     for index, val in enumerate(x_axis):
         data.append({
+            'id': index,
             'x': val,
             'y': y_axis[index]
         })
@@ -410,13 +412,14 @@ def directional_feature_contribution(feature_name):
     }]
     return ret_data
 
+
 def get_eval_nodes():
-    vals=dfeval2.values.tolist()
+    vals = dfeval2.values.tolist()
     for i in range(len(vals)):
-        vals[i].insert(0,i)
-    keys=dfeval2.keys().tolist()
-    keys.insert(0,"id")
-    ret_data=[]
+        vals[i].insert(0, i)
+    keys = dfeval2.keys().tolist()
+    keys.insert(0, "id")
+    ret_data = []
     for i in range(len(vals)):
-        ret_data.append(dict(zip(keys,vals[i])))
+        ret_data.append(dict(zip(keys, vals[i])))
     return ret_data

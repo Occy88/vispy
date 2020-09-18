@@ -5,15 +5,16 @@ import "./style.scss"
 import GraphContainer from "../../../../../static/components/GraphContainer";
 import ListSelect from "../../../../../static/components/ListSelect";
 import Button from "../../../../../static/components/Button";
-import FeatureAnalysis from "../FeatureAnalysis";
+import NodeAnalysis from "./NodeAnalysis";
 import uuid from 'uuid'
-import Shapley from "../FeatureAnalysis/Shapley";
-import PermutationFeatureImportance from "../FeatureAnalysis/PermutationFeatureImportance";
-import Results from "../FeatureAnalysis/Results";
-import DirectionalFeatureContribution from "../FeatureAnalysis/DirectionalFeatureContribution";
-import FeatureAnalysisService from "../FeatureAnalysis/service";
+import Shapley from "./Shapley";
+import PermutationFeatureImportance from "./PermutationFeatureImportance";
+import Results from "./Results";
+import DataAnalysisService from "./service";
+import FeatureAnalysis from "./FeatureAnalysis";
+import displayNodeAttributes from "./NodeAttributes";
 
-class FeatureSelection extends React.Component {
+class DataAnalysis extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,26 +22,43 @@ class FeatureSelection extends React.Component {
             node_list: null,
             node: null,
             analysis_list: [
-                {name: "Results", component: Results},
-                {name: "Permutation Feature Importance", component: PermutationFeatureImportance},
+                {id: 0, name: "Results", component: Results},
+                {id: 1, name: "Permutation Feature Importance", component: PermutationFeatureImportance},
             ],
             analysis: {id: 0, str: "Feature Contribution", sort: 0, component: Shapley},
         }
-        this.setFeature = this.setFeature.bind(this)
-        this.setNode = this.setNode.bind(this)
-
+        this.analyseNode = this.analyseNode.bind(this);
+        this.analyseFeature = this.analyseFeature.bind(this);
     };
 
     setNode(data) {
-        console.log("selected: ", data)
         this.setState({
             node: data
         })
     }
 
-    setFeature(data) {
-        console.log("selected: ", data)
-        this.props.handleCreate(DirectionalFeatureContribution, null, null, null, 2, 4, {feature: data})
+    getNode(node_id) {
+        for (let n of this.state.node_list) {
+            if (n.id === node_id) {
+                return n
+            }
+        }
+    }
+
+    analyseNode(data) {
+        console.log(data)
+        this.analyse(NodeAnalysis, {node: this.getNode(data.id)})
+    }
+
+    analyseFeature(data) {
+        this.analyse(FeatureAnalysis, {feature: data})
+    }
+
+    analyse(component, data) {
+        this.props.handleCreate(component, null, null, null, 2, 4, Object.assign(data, {
+            handleSelectNode: this.analyseNode,
+            handleSelectFeature: this.analyseFeature
+        }))
     }
 
     setAnalysis(val) {
@@ -52,9 +70,7 @@ class FeatureSelection extends React.Component {
     }
 
     componentDidMount() {
-        FeatureAnalysisService.getNodes().then((d) => {
-            console.log(d.data)
-            console.log(d.data[0])
+        DataAnalysisService.getNodes().then((d) => {
             this.setState({
                 node_list: d.data,
                 node: d.data[0]
@@ -64,7 +80,7 @@ class FeatureSelection extends React.Component {
 
     render() {
         return (
-            <div className={'FeatureSelection'}>
+            <div className={'DataAnalysis'}>
                 <WidgetHeader>
                     <h5>Feature Visualisation and Selection</h5>
                 </WidgetHeader>
@@ -79,12 +95,9 @@ class FeatureSelection extends React.Component {
                                         reverse={true}
                             />
                         </div>
-
-                        <div className={'features'}>
-                            {display_node_attributes(this.state.node)}
-                        </div>
+                        {displayNodeAttributes(this.state.node)}
                         <Button
-                            onClick={() => this.props.handleCreate(FeatureAnalysis, uuid(), null, null, 2, 3, {node: this.state.node})}>
+                            onClick={() => this.analyseNode(this.state.node)}>
                             Analyse
                         </Button>
                     </div>,
@@ -93,16 +106,14 @@ class FeatureSelection extends React.Component {
                                 <ListSelect handleSelect={this.setAnalysis.bind(this)} filter={false}
                                             object_list={this.state.analysis_list}
                                             str_key={'name'}
-                                            sort_key={'name'}
-                                            id_key={'name'}
+                                            sort_key={'id'}
+                                            id_key={'id'}
                                 />
                             </div>
                             <GraphContainer>
                                 {React.createElement(this.state.analysis.component, {
-                                    handleSelectFeature: this.setFeature,
-                                    feature: this.state.feature,
-                                    node: this.state.node,
-                                    setNode: this.setNode,
+                                    handleSelectFeature: this.analyseFeature,
+                                    handleSelectNode: this.analyseNode,
                                 })}
                             </GraphContainer>
                         </div>] : "Loading nodes, Please wait."
@@ -115,24 +126,4 @@ class FeatureSelection extends React.Component {
 }
 
 
-export default FeatureSelection;
-
-/**
- *
- * @param feature: {id: id of feature, }
- */
-function display_node_attributes(feature) {
-    console.log(feature)
-    return [
-        Object.keys(feature).map((key, index) => {
-            return display_attribute(key, feature[key])
-        })
-    ]
-
-}
-
-function display_attribute(feature_name, feature_value) {
-    return <div key={feature_name} className={'feature'}>
-        <h6>{feature_name + " -"} </h6> <p>{feature_value}</p>
-    </div>
-}
+export default DataAnalysis;

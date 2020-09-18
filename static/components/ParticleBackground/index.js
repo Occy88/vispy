@@ -12,8 +12,6 @@ export default class ParticleBackground extends React.Component {
     }
 
     componentDidMount() {
-        console.log(config)
-        console.log(this.particles.current.id)
         particlesJS.load(this.particles.current.id, config, function () {
             console.log('callback - particles.js config loaded');
         });
