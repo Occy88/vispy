@@ -1,6 +1,6 @@
 import React from 'react';
 import languages from "./lang.js"
-import ListSelect from "../../../../../static/components/ListSelect";
+import ListSelect from "../../../../../static/remote_components/react_components/components/ListSelect";
 import AccountService from "../AccountService";
 
 let lang = languages[document.documentElement.lang];

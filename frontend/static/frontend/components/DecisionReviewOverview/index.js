@@ -1,7 +1,7 @@
 import React from "react";
-import WidgetHeader from "../../../../../static/components/WidgetHeader";
-import WidgetBody from "../../../../../static/components/WidgetBody";
-import GraphContainer from "../../../../../static/components/GraphContainer";
+import WidgetHeader from "../../../../../static/remote_components/react_components/components/WidgetHeader";
+import WidgetBody from "../../../../../static/remote_components/react_components/components/WidgetBody";
+import GraphContainer from "../../../../../static/remote_components/react_components/components/GraphContainer";
 import {Tab, Tabs} from "react-bootstrap";
 import {ResponsiveLine} from "@nivo/line";
 import "./style.scss"

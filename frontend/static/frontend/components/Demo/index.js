@@ -1,9 +1,9 @@
 import React from "react";
 import './style.scss'
-import Toolbar from "../../../../../static/components/Toolbar";
+import Toolbar from "../../../../../static/remote_components/react_components/components/Toolbar";
 import DeepLearningVis from "../DeepLearningVis";
 import DecisionOverview from "../DecisionOverview";
-import Dashboard from "../../../../../static/components/Dashboard";
+import Dashboard from "../../../../../static/remote_components/react_components/components/Dashboard";
 import DecisionReviewOverview from "../DecisionReviewOverview";
 import CadexVis from "../CadexVis";
 import DataAnalysis from "../DataAnalysis";

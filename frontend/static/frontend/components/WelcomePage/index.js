@@ -2,7 +2,7 @@ import React from "react";
 import './style.scss'
 import languages from "./lang.js";
 import lk_icon from '../../images/linkedin-icon-2.svg'
-import ParticleBackground from '../../../../../static/components/ParticleBackground'
+import ParticleBackground from '../../../../../static/remote_components/react_components/components/ParticleBackground'
 import mail_icon from '../../images/mail.svg'
 
 let lang = languages[document.documentElement.lang];

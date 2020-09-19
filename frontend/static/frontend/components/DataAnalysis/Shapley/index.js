@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.scss"
-import GraphContainer from "../../../../../../static/components/GraphContainer";
+import GraphContainer from "../../../../../../static/remote_components/react_components/components/GraphContainer";
 import {ResponsiveBar} from "@nivo/bar";
 import * as d3 from "d3";
 import DataAnalysisService from "../service";
-import Button from "../../../../../../static/components/Button";
+import Button from "../../../../../../static/remote_components/react_components/components/Button";
 import ReactResizeDetector from 'react-resize-detector';
 
 

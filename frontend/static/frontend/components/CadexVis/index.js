@@ -1,10 +1,10 @@
 import React from "react";
 import {Slider} from "@material-ui/core";
 import './style.scss'
-import WidgetHeader from "../../../../../static/components/WidgetHeader";
-import WidgetBody from "../../../../../static/components/WidgetBody";
-import Button from "../../../../../static/components/Button";
-import RGBStyling from "../../../../../static/components/RGBStyling";
+import WidgetHeader from "../../../../../static/remote_components/react_components/components/WidgetHeader";
+import WidgetBody from "../../../../../static/remote_components/react_components/components/WidgetBody";
+import Button from "../../../../../static/remote_components/react_components/components/Button";
+import RGBStyling from "../../../../../static/remote_components/react_components/components/RGBStyling";
 
 /**
  * An Example of a simple widget to be used in the grid.

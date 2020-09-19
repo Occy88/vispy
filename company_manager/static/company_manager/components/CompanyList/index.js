@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ListSelect from '../../../../../static/components/ListSelect'
+import ListSelect from '../../../../../static/remote_components/react_components/components/ListSelect'
 import CompanyService from '../CompanyService'
 
 /**

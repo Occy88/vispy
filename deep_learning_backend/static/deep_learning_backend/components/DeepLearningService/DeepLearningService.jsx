@@ -1,6 +1,6 @@
 import React from 'react';
 import jQuery from 'jquery';
-import csrftoken from '../../../../../static/js/csrf.js'
+import csrftoken from '../../../../../static/remote_components/react_components/js/csrf.js'
 
 const DEEP_LEARNING_BACKEND_URL = 'http://localhost:5000/api'; // TODO figure out exactly what this will be. Probably
 

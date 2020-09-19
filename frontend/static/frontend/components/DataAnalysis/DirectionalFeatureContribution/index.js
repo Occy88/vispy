@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss"
-import GraphContainer from "../../../../../../static/components/GraphContainer";
+import GraphContainer from "../../../../../../static/remote_components/react_components/components/GraphContainer";
 import {ResponsiveScatterPlot} from '@nivo/scatterplot'
 import DataAnalysisService from "../service";
 

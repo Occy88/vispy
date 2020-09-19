@@ -1,10 +1,10 @@
 import React from "react";
-import WidgetHeader from "../../../../../static/components/WidgetHeader";
-import WidgetBody from "../../../../../static/components/WidgetBody";
+import WidgetHeader from "../../../../../static/remote_components/react_components/components/WidgetHeader";
+import WidgetBody from "../../../../../static/remote_components/react_components/components/WidgetBody";
 import "./style.scss"
-import GraphContainer from "../../../../../static/components/GraphContainer";
-import ListSelect from "../../../../../static/components/ListSelect";
-import Button from "../../../../../static/components/Button";
+import GraphContainer from "../../../../../static/remote_components/react_components/components/GraphContainer";
+import ListSelect from "../../../../../static/remote_components/react_components/components/ListSelect";
+import Button from "../../../../../static/remote_components/react_components/components/Button";
 import NodeAnalysis from "./NodeAnalysis";
 import uuid from 'uuid'
 import Shapley from "./Shapley";

@@ -1,8 +1,8 @@
 import React from "react";
-import WidgetHeader from "../../../../../../static/components/WidgetHeader";
-import WidgetBody from "../../../../../../static/components/WidgetBody";
+import WidgetHeader from "../../../../../../static/remote_components/react_components/components/WidgetHeader";
+import WidgetBody from "../../../../../../static/remote_components/react_components/components/WidgetBody";
 import "./style.scss"
-import ListSelect from "../../../../../../static/components/ListSelect";
+import ListSelect from "../../../../../../static/remote_components/react_components/components/ListSelect";
 import DirectionalFeatureContribution from "../DirectionalFeatureContribution";
 
 class FeatureAnalysis extends React.Component {

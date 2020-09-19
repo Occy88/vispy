@@ -1,10 +1,10 @@
 import React from "react";
 import {ResponsiveHeatMap} from "@nivo/heatmap"
 import {ResponsiveBar} from "@nivo/bar";
-import WidgetHeader from "../../../../../static/components/WidgetHeader";
-import WidgetBody from "../../../../../static/components/WidgetBody";
+import WidgetHeader from "../../../../../static/remote_components/react_components/components/WidgetHeader";
+import WidgetBody from "../../../../../static/remote_components/react_components/components/WidgetBody";
 import "./style.scss"
-import GraphContainer from "../../../../../static/components/GraphContainer";
+import GraphContainer from "../../../../../static/remote_components/react_components/components/GraphContainer";
 
 class DeepLearningVis extends React.Component {
 

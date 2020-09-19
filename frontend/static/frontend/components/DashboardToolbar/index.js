@@ -1,7 +1,7 @@
 import React from "react";
 import './style.scss'
-import Button from "../../../../../static/components/Button";
-import AsWidget from "../../../../../static/components/AsWidget";
+import Button from "../../../../../static/remote_components/react_components/components/Button";
+import AsWidget from "../../../../../static/remote_components/react_components/components/AsWidget";
 
 /**
  * Button toolbar that handles user adding a widget to the grid
