@@ -22,8 +22,9 @@ class DataAnalysis extends React.Component {
             node_list: null,
             node: null,
             analysis_list: [
-                {id: 0, name: "Results", component: Results},
-                {id: 1, name: "Permutation Feature Importance", component: PermutationFeatureImportance},
+                {id: 2, name: "Permutation Feature Importance", component: PermutationFeatureImportance},
+
+                {id: 1, name: "Results", component: Results},
             ],
             analysis: {id: 0, str: "Feature Contribution", sort: 0, component: Shapley},
         }
@@ -46,16 +47,15 @@ class DataAnalysis extends React.Component {
     }
 
     analyseNode(data) {
-        console.log(data)
         this.analyse(NodeAnalysis, {node: this.getNode(data.id)})
     }
 
     analyseFeature(data) {
-        this.analyse(FeatureAnalysis, {feature: data})
+        this.analyse(FeatureAnalysis, data)
     }
 
     analyse(component, data) {
-        this.props.handleCreate(component, null, null, null, 2, 4, Object.assign(data, {
+        this.props.handleCreate(component, null, null, null, 2, 2, Object.assign(data, {
             handleSelectNode: this.analyseNode,
             handleSelectFeature: this.analyseFeature
         }))

@@ -28,7 +28,7 @@ class DirectionalFeatureContribution extends React.Component {
 
         return (
             <div className={'DirectionalFeatureContribution'}>
-                <h4>Directional Feature Contribution</h4>
+                {/*<h4>Directional Feature Contribution</h4>*/}
                 <GraphContainer>
                     {this.state.data ? <ResponsiveScatterPlot
                         data={this.state.data}

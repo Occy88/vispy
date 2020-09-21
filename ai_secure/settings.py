@@ -24,7 +24,7 @@ SECRET_KEY = '<A Random Collection of Characters Here>'
 # SECURITY WARNING: don't run with debug turned on in production!
 # ENV_ROLE = 'production'
 ENV_ROLE = 'development'
-if ENV_ROLE ==  'production':
+if ENV_ROLE == 'production':
     print("PRODUCTION")
     BASE_URL = 'http://localhost:8080/staticfiles/'
     DEBUG = False
@@ -167,10 +167,12 @@ STAFF_URLS = {
     r'^accounts/manager/[\s\S]*',
 }
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/Home'
+LOGIN_REDIRECT_URL = '/home/dashboard'
 LOGIN_EXEMPT_URLS = {
     '/',
-    '',
+    'sw.js',
+    'manifest.webmanifest',
+    'icons/*'
 }
 
 REST_FRAMEWORK = {
@@ -192,11 +194,6 @@ COMPANY_IN_APP_PERMISSION = "company_employee"
 COMPANY_MODEL = "company_manager.Company"
 COMPANY_INSTANCE = "company_manager.models.Company"
 
-
-
-
-
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'some_email@gmail.com'
@@ -214,4 +211,4 @@ STATICFILES_DIRS = ['dist']
 STATIC_URL = BASE_URL
 if HEROKU:
     print("HEROKU  ")
-    django_heroku.settings(locals(),logging=True)
+    django_heroku.settings(locals(), logging=True)

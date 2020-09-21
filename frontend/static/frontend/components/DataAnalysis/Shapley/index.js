@@ -6,7 +6,7 @@ import * as d3 from "d3";
 import DataAnalysisService from "../service";
 import Button from "../../../../../../static/remote_components/react_components/components/Button";
 import ReactResizeDetector from 'react-resize-detector';
-
+import drawGraphShap from './graphing'
 
 class Shapley extends React.Component {
 
@@ -16,95 +16,26 @@ class Shapley extends React.Component {
             data: null
         }
         this.chart = React.createRef()
-        this.genShapley = this.genShapley.bind(this)
     };
 
     componentDidMount() {
         DataAnalysisService.getShapley(this.props.node).then((d) => {
-            this.genShapley(d.data)
+            drawGraphShap(this.chart.current, d.data.reverse())
+            // this.genShapley(d.data.reverse())
             this.setState({
                 data: d.data,
-                keys: d.keys
+                keys: d.keys.reverse()
             })
         })
-    }
-
-
-    genShapley(chart_data) {
-        let data = this.state.data === null ? chart_data : this.state.data
-        // console.log(this.chart.current.children)
-        // console.log(this.state.data)
-        while (this.chart.current.firstChild) {
-            this.chart.current.removeChild(this.chart.current.firstChild)
-        }
-        let margin = ({top: 30, right: 60, bottom: 10, left: 60})
-        let barHeight = 25
-        let height = this.chart.current.clientHeight
-        let width = this.chart.current.clientWidth
-        // console.log(this.chart.current)
-        // console.log(width, height)
-        let y = d3.scaleBand()
-            .domain(d3.range(data.length))
-            .rangeRound([margin.top, height - margin.bottom])
-            .padding(0.1)
-        let x = d3.scaleLinear()
-            .domain(d3.extent(data, d => d.value))
-            .rangeRound([margin.left, width - margin.right])
-        let yAxis = g => g
-            .attr("transform", `translate(${x(0)},0)`)
-            .call(d3.axisLeft(y).tickFormat(i => data[i].feature).tickSize(0).tickPadding(6))
-            .call(g => g.selectAll(".tick text").filter(i => data[i].value < 0)
-                .attr("text-anchor", "start")
-                .attr("x", 6))
-        let xAxis = g => g
-            .attr("transform", `translate(0,${margin.top})`)
-            .call(d3.axisTop(x).ticks(width / 80))
-            .call(g => g.select(".domain").remove())
-        const svg = d3.select(this.chart.current)
-            .attr("viewBox", [0, 0, width, height])
-            .attr("width", "100%")
-            .attr("height", "100%")
-            .classed("svg-content-responsive", true)
-
-        svg.append("g")
-            .selectAll("rect")
-            .data(data)
-            .join("rect")
-            .attr("fill", d => d3.schemeSet1[d.value > 0 ? 1 : 0])
-            .attr("x", d => x(Math.min(d.value, 0)))
-            .attr("y", (d, i) => y(i))
-            .attr("width", d => Math.abs(x(d.value) - x(0)))
-            .attr("height", y.bandwidth());
-
-        svg.append("g")
-            .attr("font-family", "sans-serif")
-            .attr("font-size", 10)
-            .selectAll("text")
-            .data(data)
-            .join("text")
-            .attr("text-anchor", d => d.value < 0 ? "end" : "start")
-            .attr("x", d => x(d.value) + Math.sign(d.value - 0) * 4)
-            .attr("y", (d, i) => y(i) + y.bandwidth() / 2)
-            .attr("dy", "0.35")
-            .text(d => d.value);
-
-        svg.append("g")
-            .call(xAxis);
-
-        svg.append("g")
-            .call(yAxis);
-        // console.log(svg)
-        let node = svg.node();
-        // console.log(node)
-        return node;
     }
 
 
     render() {
         return (
             <div className={'Shapley'}>
-                <Button onClick={this.genShapley} text={"refresh"}/>
-                <ReactResizeDetector refreshMode={"throttle"} refreshRate={200} onResize={() => this.genShapley()}/>
+                {/*<Button onClick={this.genShapley} text={"refresh"}/>*/}
+                <ReactResizeDetector refreshMode={"throttle"} refreshRate={200}
+                                     onResize={() => drawGraphShap(this.chart.current, this.state.data)}/>
                 <svg className={'chart'} ref={this.chart}/>
 
                 {/*<GraphContainer>*/}

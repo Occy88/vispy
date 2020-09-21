@@ -24,54 +24,16 @@ class Results extends React.Component {
     }
 
     render() {
-
+        console.log(this.state.data)
         return (
             <div className={'Results'}>
 
-                <GraphContainer>
-                    {this.state.data ? <ResponsiveBar
-                        data={this.state.data}
-                        keys={this.state.keys}
-                        minValue="0"
-                        maxValue="1"
-                        // groupMode="stacked"
-                        layout="horizontal"
-                        reverse={false}
-                        colors={{scheme: 'nivo'}}
-                        colorBy="id"
-                        borderWidth={0}
-                        borderColor={{from: 'color', modifiers: [['darker', 1.6]]}}
-                        axisTop={{tickSize: 5, tickPadding: 5, tickRotation: 0, legend: '', legendOffset: 36}}
-                        axisRight={null}
-                        axisBottom={{
-                            tickSize: 5,
-                            tickPadding: 5,
-                            tickRotation: 0,
-                            legend: 'Contribution to predicted probability',
-                            legendPosition: 'middle',
-                            legendOffset: 36
-                        }}
-                        axisLeft={{
-                            tickSize: 5,
-                            tickPadding: 5,
-                            tickRotation: 0,
-                            legend: 'features',
-                            legendPosition: 'middle',
-                            legendOffset: -120
-                        }}
-                        margin={{top: 30, right: 30, bottom: 50, left: 150}}
-                        enableGridX={true}
-                        enableGridX={true}
-                        enableGridY={false}
-                        enableLabel={true}
-                        labelSkipWidth={12}
-                        labelSkipHeight={12}
-                        labelTextColor={{from: 'color', modifiers: [['darker', 1.6]]}}
-                        // isInteractive={true}
-                        groupMode={'grouped'}
-                        indexBy={"feature"}/> : null
+                    {this.state.data ?
+                        this.state.data.map((d) => <div className={'results_row'}>
+                            <div className={'name'}>{d.feature}</div>
+                            <div className={'value'}>{d.value}</div>
+                        </div>) : null
                     }
-                </GraphContainer>
             </div>
         );
     }

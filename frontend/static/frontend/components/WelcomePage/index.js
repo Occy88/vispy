@@ -4,7 +4,8 @@ import languages from "./lang.js";
 import lk_icon from '../../images/linkedin-icon-2.svg'
 import ParticleBackground from '../../../../../static/remote_components/react_components/components/ParticleBackground'
 import mail_icon from '../../images/mail.svg'
-
+import logo from '../../images/logo.png'
+import logo_black from '../../images/logo_black.png'
 let lang = languages[document.documentElement.lang];
 
 

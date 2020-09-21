@@ -30,7 +30,7 @@ class FeatureAnalysis extends React.Component {
         return (
             <div className={'FeatureAnalysis'}>
                 <WidgetHeader>
-                    <h5>Feature Visualisation and Selection</h5>
+                    <h5>Feature Analysis</h5>
                 </WidgetHeader>
                 <WidgetBody>
                     <div className={'selection'}>

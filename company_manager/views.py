@@ -17,6 +17,7 @@ from .helper import query_to_dict_clean
 
 class CompanyPermissions(permissions.BasePermission):
     def has_permission(self, request, view):
+        print(view.kwargs["pk"])
         if request.user.has_perm(settings.COMPANY_OBJECT_PERMISSION, Company.objects.get(pk=int(view.kwargs["pk"]))):
             return True
         else:

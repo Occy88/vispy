@@ -4,8 +4,8 @@ from pydoc import locate
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import serializers
-from django.http.response import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.http.response import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework import generics
 
@@ -15,6 +15,10 @@ from .serializers import ToolSerializer
 
 
 # Create your views here.
+class RedirectHome(View):
+    def get(self, request):
+        return redirect('frontend:home')
+
 
 class ServeApp(View):
     def get(self, request):

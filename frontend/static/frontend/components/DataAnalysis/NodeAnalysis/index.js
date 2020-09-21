@@ -31,7 +31,7 @@ class NodeAnalysis extends React.Component {
         return (
             <div className={'NodeAnalysis'}>
                 <WidgetHeader>
-                    <h5>Feature Visualisation and Selection</h5>
+                    <h5>Node Analysis</h5>
                 </WidgetHeader>
                 <WidgetBody>
                     <div className={'selection'}>

@@ -19,22 +19,25 @@ export default class Routes extends React.Component {
 
     render() {
         return (
+            <Router>
+                <Header
+                    logoUrl={'https://cdn.shopifycloud.com/hatchful-web/assets/6fcc76cfd1c59f44d43a485167fb3139.png'}
+                    fluid={true} company={DEFAULT_COMPANY}/>
                 <div className={'Router'}>
 
-                    <Router>
-                        {/*<Header/>*/}
-                        <Switch {...this.props}>
-                             <Route path={app_url_prefix + "/dashboard"} render={(routeProps) => (
-                                    <Demo {...routeProps} />
-                            )}/>
-                            <Route path={app_url_prefix} render={(routeProps) => (
-                                    <WelcomePage {...routeProps} />
-                            )}/>
+                    {/*<Header/>*/}
+                    <Switch {...this.props}>
+                        <Route path={app_url_prefix + "/dashboard"} render={(routeProps) => (
+                            <Demo {...routeProps} />
+                        )}/>
+                        <Route path={app_url_prefix} render={(routeProps) => (
+                            <WelcomePage {...routeProps} />
+                        )}/>
 
-                        </Switch>
-                        {/*<Footer/>*/}
-                    </Router>
+                    </Switch>
+                    {/*<Footer/>*/}
                 </div>
+            </Router>
         )
     }
 }

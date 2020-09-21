@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from . import views
-
+app_name='ai_secure'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('company_manager/', include('company_manager.urls')),

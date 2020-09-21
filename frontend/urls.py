@@ -19,5 +19,6 @@ urlpatterns = [
     path('tools/', views.ToolList.as_view()),
     path('tools/<int:pk>', views.ToolDetail.as_view()),
     re_path('.*', views.ServeApp.as_view(), name='home'),
+    # path('',views.RedirectHome.as_view(),)
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

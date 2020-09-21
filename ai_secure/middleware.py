@@ -30,7 +30,6 @@ if hasattr(settings, 'STAFF_URLS'):
 #
 
 
-
 # ---PREVENT USER FROM ACCESSING UNWANTED PAGES IF NOT LOGGED IN
 class LoginRequiredMiddleware:
     def __init__(self, get_response):
@@ -46,15 +45,15 @@ class LoginRequiredMiddleware:
         # if not request.user.is_authenticated:
         #     if not any(url.match(path) for url in EXEMPT_URLS):
         #         return redirect(settings.LOGIN_URL)
-
-
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
         url_is_for_staff_only = any(url.match(path) for url in STAFF_URLS)
-
         if path == reverse('accounts:logout').lstrip('/'):
             logout(request)
         # if not request.user.is_staff and url_is_for_staff_only:
         #     return views.company_manager_redirect(request)
 
-        if not request.user.is_authenticated and not url_is_exempt:
-            return views.login_redirect(request)
+        if not request.user.is_authenticated:
+            if not url_is_exempt:
+                print("URL NOT EXEMPT: ",path)
+                return views.login_redirect(request)
+
