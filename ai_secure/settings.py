@@ -170,6 +170,7 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/home/dashboard'
 LOGIN_EXEMPT_URLS = {
     '/',
+    '',
     'sw.js',
     'manifest.webmanifest',
     'icons/*'
