@@ -43,14 +43,9 @@ class ServeApp(View):
             company_obj = json.loads(serializers.serialize('json', [profile.company, ]))[0]
             company_obj.update({'id': company_obj['pk']})
 
-        serve_scan_page_only = request.user.groups.all().filter(name="Scan Group").__len__() is not 0
-        if serve_scan_page_only:
-            serve_scan_page_only = 'true'
-        else:
-            serve_scan_page_only = 'false'
         return render(request, '../templates/index.html',
                       context={
-                          "serve_scan_page_only": serve_scan_page_only,
+
                           "language": json.dumps(request.user.profile.language),
                           "choices": json.dumps(settings.LANGUAGES),
                           "company": json.dumps(company_obj)})
