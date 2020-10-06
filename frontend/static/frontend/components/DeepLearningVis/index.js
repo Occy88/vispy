@@ -354,7 +354,7 @@ class DeepLearningVis extends React.Component {
         this.state = {
             heatmap_data: heatmap_data,
             timeline_pos_data: timeline_pos_data,
-            timeline_posneg_data: timeline_posneg_data
+            timeline_posneg_data: timeline_posneg_data.reverse()
         }
     };
 
@@ -372,7 +372,7 @@ class DeepLearningVis extends React.Component {
                         </div>
                         <GraphContainer>
                             <ResponsiveBar
-                                data={this.state.timeline_posneg_data.reverse()}
+                                data={this.state.timeline_posneg_data}
                                 keys={['pos', 'neg']}
                                 indexBy="minibatch"
                                 groupMode={'grouped'}
