@@ -8,7 +8,7 @@ try:
     seclea = company_model.objects.get_or_create(name="Seclea")
     print(seclea)
     print(seclea[0].logo)
-    seclea[0].logo = 'company_manager/static/company_manager/logo/seclea.png'
+    seclea[0].logo = 'company_manager/logo/seclea.png'
     seclea[0].save()
     print("CREATING DEFAULT GROUPS")
     from django.db.models import Q

@@ -1,9 +1,11 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from IPython.display import clear_output
-import matplotlib.pyplot as plt
 import seaborn as sns
-
+from IPython.display import clear_output
+f = open("data.csv")
+f.readline()  # skip the header
+data = np.loadtxt(f)
 sns_colors = sns.color_palette('colorblind')
 # Load dataset.
 dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv')
@@ -165,122 +167,6 @@ def _add_feature_values(feature_values, ax):
     font.set_weight('bold')
     t = plt.text(x_coord, y_coord + 1 - OFFSET, 'feature\nvalue',
                  fontproperties=font, size=12)
-
-
-#
-# def plot_example(example):
-#     TOP_N = 8  # View top 8 features.
-#     sorted_ix = example.abs().sort_values()[-TOP_N:].index  # Sort by magnitude.
-#     example = example[sorted_ix]
-#     colors = example.map(_get_color).tolist()
-#     ax = example.to_frame().plot(kind='barh',
-#                                  color=[colors],
-#                                  legend=None,
-#                                  alpha=0.75,
-#                                  figsize=(10, 6))
-#     ax.grid(False, axis='y')
-#     ax.set_yticklabels(ax.get_yticklabels(), size=14)
-#
-#     # Add feature values.
-#     _add_feature_values(dfeval.iloc[ID][sorted_ix], ax)
-#     return ax
-
-
-# Plot results.
-# ID = 182
-# example = df_dfc.iloc[ID]  # Choose ith example from evaluation set.
-# TOP_N = 8  # View top 8 features.
-# sorted_ix = example.abs().sort_values()[-TOP_N:].index
-# ax = plot_example(example)
-# ax.set_title('Feature contributions for example {}\n pred: {:1.2f}; label: {}'.format(ID, probs[ID], labels[ID]))
-# ax.set_xlabel('Contribution to predicted probability', size=14)
-# plt.show()
-#
-
-# Boilerplate plotting code.
-# def dist_violin_plot(df_dfc, ID):
-#     # Initialize plot.
-#     fig, ax = plt.subplots(1, 1, figsize=(10, 6))
-#
-#     # Create example dataframe.
-#     TOP_N = 8  # View top 8 features.
-#     example = df_dfc.iloc[ID]
-#     ix = example.abs().sort_values()[-TOP_N:].index
-#     example = example[ix]
-#     example_df = example.to_frame(name='dfc')
-#
-#     # Add contributions of entire distribution.
-#     parts = ax.violinplot([df_dfc[w] for w in ix],
-#                           vert=False,
-#                           showextrema=False,
-#                           widths=0.7,
-#                           positions=np.arange(len(ix)))
-#     face_color = sns_colors[0]
-#     alpha = 0.15
-#     for pc in parts['bodies']:
-#         pc.set_facecolor(face_color)
-#         pc.set_alpha(alpha)
-#
-#     # Add feature values.
-#     _add_feature_values(dfeval.iloc[ID][sorted_ix], ax)
-#
-#     # Add local contributions.
-#     ax.scatter(example,
-#                np.arange(example.shape[0]),
-#                color=sns.color_palette()[2],
-#                s=100,
-#                marker="s",
-#                label='contributions for example')
-#
-#     # Legend
-#     # Proxy plot, to show violinplot dist on legend.
-#     ax.plot([0, 0], [1, 1], label='eval set contributions\ndistributions',
-#             color=face_color, alpha=alpha, linewidth=10)
-#     legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large',
-#                        frameon=True)
-#     legend.get_frame().set_facecolor('white')
-#
-#     # Format plot.
-#     ax.set_yticks(np.arange(example.shape[0]))
-#     ax.set_yticklabels(example.index)
-#     ax.grid(False, axis='y')
-#     ax.set_xlabel('Contribution to predicted probability', size=14)
-#
-
-#
-# dist_violin_plot(df_dfc, ID)
-# plt.title('Feature contributions for example {}\n pred: {:1.2f}; label: {}'.format(ID, probs[ID], labels[ID]))
-# plt.show()
-#
-# importances = est.experimental_feature_importances(normalize=True)
-# df_imp = pd.Series(importances)
-#
-# # Visualize importances.
-# N = 8
-# ax = (df_imp.iloc[0:N][::-1]
-#       .plot(kind='barh',
-#             color=sns_colors[0],
-#             title='Gain feature importances',
-#             figsize=(10, 6)))
-# ax.grid(False, axis='y')
-#
-# # Plot.
-# dfc_mean = df_dfc.abs().mean()
-# N = 8
-# sorted_ix = dfc_mean.abs().sort_values()[-N:].index  # Average and sort by absolute.
-# ax = dfc_mean[sorted_ix].plot(kind='barh',
-#                               color=sns_colors[1],
-#                               title='Mean |directional feature contributions|',
-#                               figsize=(10, 6))
-# ax.grid(False, axis='y')
-
-# FEATURE = 'fare'
-# feature = pd.Series(df_dfc[FEATURE].values, index=dfeval[FEATURE].values).sort_index()
-# ax = sns.regplot(feature.index.values, feature.values, lowess=True)
-# ax.set_ylabel('contribution')
-# ax.set_xlabel(FEATURE)
-# ax.set_xlim(0, 100)
-# plt.show()
 
 
 def permutation_importances(est, X_eval, y_eval, metric, features):

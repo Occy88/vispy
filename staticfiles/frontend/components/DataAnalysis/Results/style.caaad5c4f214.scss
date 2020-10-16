@@ -1,0 +1,19 @@
+.Results {
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  max-width: 300px;
+  width: inherit;
+  height: inherit;
+
+  .results_row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .name{
+      font-weight: bold;
+      padding: 2px;
+    }
+
+  }
+}
