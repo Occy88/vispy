@@ -29,4 +29,4 @@ seaborn==0.11.0
 pandas==1.1.2
 notebook==6.1.4
 matplotlib==3.3.2
-ipython==7.18.1
+
