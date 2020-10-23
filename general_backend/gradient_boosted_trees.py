@@ -3,12 +3,11 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from IPython.display import clear_output
-from sklearn import
 f = open("data.csv")
 f.readline()  # skip the header
 data = np.loadtxt(f)
 sns_colors = sns.color_palette('colorblind')
-# Load dataset.
+# Load dataset.se
 dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv')
 dfeval = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.csv')
 y_train = dftrain.pop('survived')
