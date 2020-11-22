@@ -11,8 +11,9 @@ from rest_framework import generics, permissions, status, viewsets
 from django.views import View
 from django.http.response import HttpResponse, HttpResponseNotFound, JsonResponse
 import json
-# from .gradient_boosted_trees import gen_shap, permutation_feature_importance, directional_feature_contribution, \
-#     get_results, get_eval_nodes
+
+from .gradient_boosted_trees import gen_shap, permutation_feature_importance, directional_feature_contribution, \
+    get_results, get_eval_nodes
 
 
 

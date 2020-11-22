@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from IPython.display import clear_output
-f = open("data.csv")
-f.readline()  # skip the header
-data = np.loadtxt(f)
+# f = open("data.csv")
+# f.readline()  # skip the header
+# data = np.loadtxt(f)
 sns_colors = sns.color_palette('colorblind')
 # Load dataset.
 dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv')
