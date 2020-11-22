@@ -5,8 +5,8 @@ import lk_icon from '../../images/linkedin-icon-2.svg'
 import mail_icon from '../../images/mail.svg'
 import logo from '../../images/logo.png'
 import logo_black from '../../images/logo_black.png'
-import ParticleBackground3D
-    from "../../../../../static/remote_components/react_components/components/ParticleBackground3D";
+// import ParticleBackground3D
+//     from "../../../../../static/remote_components/react_components/components/ParticleBackground3D";
 
 let lang = languages[document.documentElement.lang];
 
@@ -32,7 +32,7 @@ export default class WelcomePage extends React.Component {
     render() {
         return (
             <div className={'WelcomePage'}>
-                <ParticleBackground3D/>
+                {/*<ParticleBackground3D/>*/}
                 <div className={'Container'}>
                     <div className={'Title'}>
                         {lang.title}
