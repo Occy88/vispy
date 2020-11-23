@@ -1,7 +1,5 @@
 import React from "react";
 import "./style.scss"
-import GraphContainer from "../../../../../../static/remote_components/react_components/components/GraphContainer";
-import {ResponsiveBar} from "@nivo/bar";
 import DataAnalysisService from "../service";
 
 class Results extends React.Component {

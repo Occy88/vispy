@@ -3,7 +3,6 @@ import WidgetHeader from "../../../../../static/remote_components/react_componen
 import WidgetBody from "../../../../../static/remote_components/react_components/components/WidgetBody";
 import GraphContainer from "../../../../../static/remote_components/react_components/components/GraphContainer";
 import {Tab, Tabs} from "react-bootstrap";
-import {ResponsiveLine} from "@nivo/line";
 import "./style.scss"
 
 class DecisionReviewOverview extends React.Component {

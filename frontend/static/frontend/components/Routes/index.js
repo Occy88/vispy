@@ -6,6 +6,7 @@ import './style.scss'
 import Header from "../Header";
 import Demo from "../Demo";
 import WelcomePage from '../WelcomePage'
+import AceExample from "../../../../../code_env_manager/static/code_env_manager/components/AceExample";
 
 let lang = languages[document.documentElement.lang];
 
@@ -29,6 +30,9 @@ export default class Routes extends React.Component {
                     <Switch {...this.props}>
                         <Route path={app_url_prefix + "/dashboard"} render={(routeProps) => (
                             <Demo {...routeProps} />
+                        )}/>
+                        <Route path={app_url_prefix + '/code'} render={(routeProps) => (
+                            <AceExample {...routeProps} />
                         )}/>
                         <Route path={app_url_prefix} render={(routeProps) => (
                             <WelcomePage {...routeProps} />

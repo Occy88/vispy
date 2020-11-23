@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class GeneralBackendConfig(AppConfig):
-    name = 'general_backend'
+class CodeEnvManager(AppConfig):
+    name = 'code_env_manager'

@@ -25,8 +25,6 @@ class Home extends React.Component {
         this.state = {
             dashboardComponents: [
                 {component: DataAnalysis, w: 2, h: 3, text: 'Feature Analysis'},
-                {component: DecisionOverview, w: 2, h: 4, text: 'Safety Monitoring'},
-                {component: DeepLearningVis, w: 2, h: 4, text: 'Explainability'},
 
             ]
         };
