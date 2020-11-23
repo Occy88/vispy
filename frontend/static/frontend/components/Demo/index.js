@@ -1,12 +1,9 @@
 import React from "react";
 import './style.scss'
 import Toolbar from "../../../../../static/remote_components/react_components/components/Toolbar";
-import DeepLearningVis from "../DeepLearningVis";
-import DecisionOverview from "../DecisionOverview";
 import Dashboard from "../../../../../static/remote_components/react_components/components/Dashboard";
-import DecisionReviewOverview from "../DecisionReviewOverview";
-import CadexVis from "../CadexVis";
 import DataAnalysis from "../DataAnalysis";
+import Button from "../../../../../static/remote_components/react_components/components/Button";
 
 /**
  * An Example of a simple widget to be used in the grid.
@@ -47,11 +44,17 @@ class Home extends React.Component {
     }
 
     render() {
+        let components = this.state.dashboardComponents.map((d, index) => {
+            return <Button key={index} text={d.text}
+                           onClick={() => this.generateWidget(d)}/>
+
+        })
+
         return (
                 <div className={'Home'}>
                     <Toolbar onToggle={(time) => {
                         this.dashboard.current.scale(time)
-                    }} componentDicts={this.state.dashboardComponents} onClick={this.generateWidget.bind(this)}/>
+                    }} component={components}/>
                     <Dashboard ref={this.dashboard}/>
                 </div>
         )
