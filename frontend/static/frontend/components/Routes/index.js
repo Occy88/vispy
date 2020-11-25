@@ -6,7 +6,7 @@ import './style.scss'
 import Header from "../Header";
 import Demo from "../Demo";
 import WelcomePage from '../WelcomePage'
-import AceExample from "../../../../../code_env_manager/static/code_env_manager/components/AceExample";
+import Index from "../../../../../code_env_manager/static/code_env_manager/components/CodeStateManager";
 
 let lang = languages[document.documentElement.lang];
 
@@ -32,7 +32,7 @@ export default class Routes extends React.Component {
                             <Demo {...routeProps} />
                         )}/>
                         <Route path={app_url_prefix + '/code'} render={(routeProps) => (
-                            <AceExample {...routeProps} />
+                            <Index {...routeProps} />
                         )}/>
                         <Route path={app_url_prefix} render={(routeProps) => (
                             <WelcomePage {...routeProps} />

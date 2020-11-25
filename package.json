@@ -45,6 +45,7 @@
     "react-dom": "^16.13.1",
     "react-grid-layout": "^0.17.1",
     "react-hot-loader": "^4.12.21",
+    "react-idle-timer": "^4.5.0",
     "react-native-make": "^1.0.1",
     "react-resizable": "^1.11.0",
     "react-resize-detector": "^5.2.0",

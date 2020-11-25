@@ -58,6 +58,6 @@ class FileDetail(generics.UpdateAPIView):
         JsonResponse({'success': True})
         print(data)
 
-        return Response(status=status.HTTP_200_OK)
+        return JsonResponse({"success": True})
         # else:
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
