@@ -18,7 +18,7 @@ export default class CodeStateManager extends React.Component {
             file: this.props.file,
             sync: false
         }
-        this.push=this.push.bind(this)
+        this.push = this.push.bind(this)
     }
 
     componentDidMount() {
@@ -36,6 +36,8 @@ export default class CodeStateManager extends React.Component {
             console.log("=======response=========")
             console.log(d)
 
+            console.log("======= ====== ======")
+
             this.setState({
                 sync: false,
                 code: d.file
@@ -52,10 +54,13 @@ export default class CodeStateManager extends React.Component {
             'path': '/home/caramel/PycharmProjects/ai_secure',
             'data': this.state.code
         }).then((d) => {
+            console.log("======= PUSH CODE RESPONSE ======")
             console.log(d)
             this.setState({
                 sync: false
             })
+            console.log("======= ====== ======")
+
         })
     }
 
