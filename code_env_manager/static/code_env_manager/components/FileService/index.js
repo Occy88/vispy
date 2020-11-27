@@ -30,7 +30,7 @@ export default class FileService extends React.Component {
      * @return {Promise<any | never>}
      */
     static getFile(filter_param_dict) {
-        console.log("GETTING FILE: ", filter_param_dict)
+        // console.log("GETTING FILE: ", filter_param_dict)
         return fetch(`${URL}file_manager?${jQuery.param(filter_param_dict)}`, {
             method: 'GET',
             headers: HEADERS,
@@ -46,7 +46,7 @@ export default class FileService extends React.Component {
      */
     static updateFile(data) {
         let d = JSON.stringify(data)
-        console.log("SENDING D : ", d)
+        // console.log("SENDING D : ", d)
         return fetch(`${URL}file_manager`, {
             method: 'POST',
             credentials: 'include',

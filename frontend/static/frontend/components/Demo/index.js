@@ -4,7 +4,11 @@ import Toolbar from "../../../../../static/remote_components/react_components/co
 import Dashboard from "../../../../../static/remote_components/react_components/components/Dashboard";
 import DataAnalysis from "../DataAnalysis";
 import Button from "../../../../../static/remote_components/react_components/components/Button";
+<<<<<<< HEAD
 import CodeDisplay from '../../../../../code_env_manager/static/code_env_manager/components/CodeDisplay'
+=======
+import Index from '../../../../../code_env_manager/static/code_env_manager/components/CodeStateManager'
+>>>>>>> b297e6efba7cd3b835d905a71105e5c2c285f6fd
 
 /**
  * An Example of a simple widget to be used in the grid.
@@ -23,7 +27,11 @@ class Home extends React.Component {
         this.state = {
             dashboardComponents: [
                 {component: DataAnalysis, w: 2, h: 3, text: 'Feature Analysis'},
+<<<<<<< HEAD
                 {component: CodeDisplay, w: 2, h: 3, text: 'Code'}
+=======
+                {component: Index, w: 2, h: 3, text: 'Code'}
+>>>>>>> b297e6efba7cd3b835d905a71105e5c2c285f6fd
             ]
         };
         this.dashboard = React.createRef()
