@@ -1,7 +1,10 @@
 import React from 'react'
-import AceEditorCustom from '../../../../static/remote_components/react_components/components/AceEditorCustom'
-import FileService from './FileService'
+import AceEditorCustom from '../../../../../static/remote_components/react_components/components/AceEditorCustom'
+import FileService from '../FileService'
+import FileBrowser from '../FileBrowser'
 import './style.scss'
+import Toolbar from '../../../../../static/remote_components/react_components/components/Toolbar'
+
 /**
  *  Manages an instance of code for editing only
  *  i.e. one file open in provided area
@@ -34,7 +37,7 @@ export default class AceExample extends React.Component {
     }
 
     onChange(args) {
-        // console.log("CHANGED: ",args)
+        console.log("CHANGED: ", args)
         this.setState({
             code: args
         })
@@ -42,7 +45,7 @@ export default class AceExample extends React.Component {
             'file': 'bots/testing.py',
             'path': '/home/caramel/PycharmProjects/ai_secure',
             'data': args
-        }).then((d)=>{
+        }).then((d) => {
             console.log(d)
         })
     }
@@ -50,11 +53,14 @@ export default class AceExample extends React.Component {
     render() {
         return (
                 <div className={'AceExample'}>
+                    <Toolbar component={
+                        <FileBrowser/>
+                    }/>
                     <AceEditorCustom
-                        value={this.state.code}
-                        onLoad={this.onLoad.bind(this)}
-                        onChange={this.onChange.bind(this)}
-                />
+                            value={this.state.code}
+                            onLoad={this.onLoad.bind(this)}
+                            onChange={this.onChange.bind(this)}
+                    />
                 </div>
 
         )

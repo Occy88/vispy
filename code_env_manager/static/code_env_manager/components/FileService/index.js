@@ -36,6 +36,7 @@ export default class FileService extends React.Component {
             headers: HEADERS,
 
         }).then(d => d.json())
+
     }
 
     /**

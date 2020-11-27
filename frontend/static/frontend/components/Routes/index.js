@@ -6,7 +6,7 @@ import './style.scss'
 import Header from "../Header";
 import Demo from "../Demo";
 import WelcomePage from '../WelcomePage'
-import AceExample from "../../../../../code_env_manager/static/code_env_manager/components/AceExample";
+import AceExample from "../../../../../code_env_manager/static/code_env_manager/components/CodeDisplay";
 
 let lang = languages[document.documentElement.lang];
 
