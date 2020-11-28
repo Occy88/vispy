@@ -69,13 +69,11 @@ export default class FileBrowser extends React.Component {
 
     render() {
         return (
-                <div className={'FileBrowser'}>
-                    <Toolbar component={
-                        <TreeDirectoryViewer
-                                data={this.state.directory_tree}/>
-                    }/>
+            <div className={'FileBrowser'}>
+                <TreeDirectoryViewer
+                    data={this.state.directory_tree}/>
 
-                </div>
+            </div>
 
         )
     }

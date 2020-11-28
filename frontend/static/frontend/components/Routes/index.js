@@ -6,11 +6,7 @@ import './style.scss'
 import Header from "../Header";
 import Demo from "../Demo";
 import WelcomePage from '../WelcomePage'
-<<<<<<< HEAD
-import AceExample from "../../../../../code_env_manager/static/code_env_manager/components/CodeDisplay";
-=======
-import Index from "../../../../../code_env_manager/static/code_env_manager/components/CodeStateManager";
->>>>>>> b297e6efba7cd3b835d905a71105e5c2c285f6fd
+import CodeDisplay from "../../../../../code_env_manager/static/code_env_manager/components/CodeDisplay";
 
 let lang = languages[document.documentElement.lang];
 
@@ -36,7 +32,7 @@ export default class Routes extends React.Component {
                             <Demo {...routeProps} />
                         )}/>
                         <Route path={app_url_prefix + '/code'} render={(routeProps) => (
-                            <Index {...routeProps} />
+                            <CodeDisplay {...routeProps} />
                         )}/>
                         <Route path={app_url_prefix} render={(routeProps) => (
                             <WelcomePage {...routeProps} />

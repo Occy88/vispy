@@ -9,7 +9,7 @@ import Toolbar from '../../../../../static/remote_components/react_components/co
  *  Manages an instance of code for editing only
  *  i.e. one file open in provided area
  */
-export default class AceExample extends React.Component {
+export default class CodeDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +52,7 @@ export default class AceExample extends React.Component {
 
     render() {
         return (
-                <div className={'AceExample'}>
+                <div className={'CodeDisplay'}>
                     <Toolbar component={
                         <FileBrowser/>
                     }/>
