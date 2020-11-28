@@ -1,8 +1,10 @@
+# from bots.ImageProcessing.conv import load_model
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from IPython.display import clear_output
+
 # f = open("data.csv")
 # f.readline()  # skip the header
 # data = np.loadtxt(f)
@@ -73,11 +75,10 @@ params = {
     # using cross entropy loss).
     'center_bias': True
 }
-
 est = tf.estimator.BoostedTreesClassifier(feature_columns, **params)
+
 # Train model.
 est.train(train_input_fn, max_steps=100)
-
 # Evaluation.
 results = est.evaluate(eval_input_fn)
 clear_output()
