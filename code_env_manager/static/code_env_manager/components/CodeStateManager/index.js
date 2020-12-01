@@ -82,9 +82,9 @@ export default class CodeStateManager extends React.Component {
                 <LoadingIndicator loading={this.state.sync}/>
                 <IdleTimerCustom
                     timeout={1000 * 2}
-                    throttle={250}
+                    throttle={1000}
                     onIdle={this.push}
-                    setResetCalback={(func) => {
+                    resetFunction={(func) => {
                         this.setState({resetTimer: func})
                     }}
                 /><AceEditorCustom

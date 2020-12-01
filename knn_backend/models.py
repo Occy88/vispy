@@ -26,3 +26,4 @@ class Item(models.Model):
     # Data can be whatever the person decides, just made it text for now
     # but it can be an image e.t.c.
     data = models.TextField(max_length=5000)
+    models.
