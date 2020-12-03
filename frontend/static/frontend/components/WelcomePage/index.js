@@ -8,7 +8,6 @@ import logo_black from '../../images/logo_black.png'
 // import ParticleBackground3D
 //     from "../../../../../static/remote_components/react_components/components/ParticleBackground3D";
 
-let lang = languages[document.documentElement.lang];
 
 
 /**
@@ -30,6 +29,8 @@ export default class WelcomePage extends React.Component {
 
 
     render() {
+        let lang = languages[document.documentElement.lang];
+
         return (
             <div className={'WelcomePage'}>
                 {/*<ParticleBackground3D/>*/}

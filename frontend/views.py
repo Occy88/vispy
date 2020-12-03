@@ -28,8 +28,6 @@ class ServeApp(View):
         if type(request.user == AnonymousUser):
             return render(request, '../templates/index.html',
                           context={
-                              "language": json.dumps('en-us'),
-                              "choices": json.dumps(settings.LANGUAGES),
                               "company": json.dumps(default_company_obj)})
         try:
             profile = request.user.profile
@@ -45,9 +43,6 @@ class ServeApp(View):
 
         return render(request, '../templates/index.html',
                       context={
-
-                          "language": json.dumps(request.user.profile.language),
-                          "choices": json.dumps(settings.LANGUAGES),
                           "company": json.dumps(company_obj)})
 
 

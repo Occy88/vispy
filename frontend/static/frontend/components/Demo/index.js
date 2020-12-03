@@ -22,7 +22,7 @@ class Home extends React.Component {
         super(props);
         this.state = {
             dashboardComponents: [
-                {component: DataAnalysis, w: 5, h: 4, text: 'Feature Analysis'},
+                {component: DataAnalysis, w: 10, h: 5, text: 'Feature Analysis'},
                 {component: CodeDisplay, w: 4, h: 5, text: 'Code'}
 
             ]

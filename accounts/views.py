@@ -125,19 +125,25 @@ class LanguageChoices(View):
 
 class CurrentLanguage(View):
     def get(self, request):
-        for choice in settings.LANGUAGES:
-            if request.user.profile.language == choice[0]:
-                return JsonResponse({"language": choice})
+        try:
+            for choice in settings.LANGUAGES:
+                if request.user.profile.language == choice[0]:
+                    return JsonResponse( choice)
+        except Exception as e:
+            return JsonResponse(settings.LANGUAGES[0])
 
     def post(self, request):
-        data = json.loads(request.body)
-        if "language" in data and "code" in data:
-            for choice in settings.LANGUAGES:
-                if data["code"] == choice[0]:
-                    request.user.profile.language = choice[0]
-                    request.user.profile.save()
-                    return JsonResponse(SUCCESSFUL_RESPONSE)
-        return JsonResponse(UNSUCCESSFUL_RESPONSE)
+        try:
+            data = json.loads(request.body)
+            if "language" in data and "code" in data:
+                for choice in settings.LANGUAGES:
+                    if data["code"] == choice[0]:
+                        request.user.profile.language = choice[0]
+                        request.user.profile.save()
+                        return JsonResponse(SUCCESSFUL_RESPONSE)
+            return JsonResponse(UNSUCCESSFUL_RESPONSE)
+        except Exception as e:
+            return JsonResponse(UNSUCCESSFUL_RESPONSE)
 
 
 class CurrentCompany(View):
@@ -157,7 +163,6 @@ class CurrentCompany(View):
                                         "company_pk": data['id']})
 
         return JsonResponse(UNSUCCESSFUL_RESPONSE)
-
 
 # SendUserEmails view class
 # class SendUserEmails(IsStaff, FormView):

@@ -7,7 +7,7 @@
 {% load static %}
 {% load render_bundle from webpack_loader %}
 {#add a supplier, add a truck, generate the codes.#}
-<html style='margin:0;height:100%;width:100%' lang={{ language|safe }}>
+<html style='margin:0;height:100%;width:100%' lang="en-us">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +31,6 @@
 <script>
     {#    DECLARE THE STATIC URL TO BE USED WITHIN THE APPLICATION WHEN LOADING SERVER SAVED PERMANENT MEDIA (Not much for this project so it's enough#}
     let STATIC_URL = "{% get_static_prefix %}";
-    let languages = {{ choices|safe }};
     let DEFAULT_COMPANY = {{ company|safe }};
     if (DEFAULT_COMPANY !== null) {
         DEFAULT_COMPANY['str'] = DEFAULT_COMPANY.fields.name;

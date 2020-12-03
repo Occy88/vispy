@@ -55,7 +55,7 @@ class DataAnalysis extends React.Component {
     }
 
     analyse(component, data) {
-        this.props.handleCreate(component, null, null, null, 2, 2, Object.assign(data, {
+        this.props.handleCreate(component, null, null, null,10,5, Object.assign(data, {
             handleSelectNode: this.analyseNode,
             handleSelectFeature: this.analyseFeature
         }))
