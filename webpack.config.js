@@ -1,7 +1,6 @@
 var path = require("path");
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -13,14 +12,6 @@ module.exports = {
     },
     plugins: [
         new BundleTracker({filename: './webpack-stats.json'}),
-        new CompressionPlugin({
-            cache: true,
-            filename: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: /\.js$|\.jsx$|\.scss$|\.css$|\.html$\.(mp3|png|jpe?g|gif|svg)$/,
-            threshold: 10240,
-            minRatio: 0.8,
-        }),
     ],
     module: {
         rules: [
@@ -33,7 +24,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(mp3|png|jpeg|gif|svg|mp4)$/,
+                test: /\.(mp3|png|jpg|gif|svg|mp4)$/,
                 loader: 'file-loader'
             },
             {
@@ -50,13 +41,15 @@ module.exports = {
                 test: /.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-                query: {
-                    presets: ['@babel/preset-env', '@babel/preset-react']
-                }
+                // query: {
+                //     presets: ['@babel/preset-env', '@babel/preset-react']
+                // }
             }
-        ],
+        ]
     },
+
     devServer: {
+        inline: false,
         headers: {
             'Access-Control-Allow-Origin': '*',
         }

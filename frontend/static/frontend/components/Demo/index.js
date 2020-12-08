@@ -55,7 +55,9 @@ class Home extends React.Component {
         return (
                 <div className={'Home'}>
                     <Toolbar component={components}/>
-                    <Dashboard ref={this.dashboard}/>
+                    <Dashboard
+                            grid_config={{margin: [10, 10], vertical_compact: true}}
+                            ref={this.dashboard}/>
                 </div>
         )
     }
