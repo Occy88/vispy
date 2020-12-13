@@ -215,6 +215,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = ['dist']
 STATIC_URL = BASE_URL
+
+# PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 if HEROKU:
     print("HEROKU  ")
     django_heroku.settings(locals(), logging=True)

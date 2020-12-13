@@ -82,7 +82,7 @@
   "scripts": {
     "start": "nodemon -w webpack.config.js -x webpack serve --env mode",
     "build": "webpack",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
   },

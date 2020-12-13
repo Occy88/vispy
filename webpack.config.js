@@ -8,7 +8,11 @@ module.exports = {
         main: './frontend/static/frontend/components/App/App.jsx',
     },
     output: {
-        publicPath: ""
+        publicPath: '',
+        // path:'dist'
+        // filename: "[name].js",
+        // chunkFilename: "[id]-[chunkhash].js",
+
     },
     plugins: [
         new BundleTracker({filename: './webpack-stats.json'}),
@@ -49,6 +53,8 @@ module.exports = {
     },
 
     devServer: {
+          writeToDisk: true, // Write files to disk in dev mode, so Django can serve the assets
+
         inline: false,
         headers: {
             'Access-Control-Allow-Origin': '*',
