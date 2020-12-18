@@ -8,30 +8,6 @@ from rest_framework import generics, permissions, status, viewsets
 from .helper import query_to_dict_clean
 
 
-#
-# class FileDetail(generics.RetrieveUpdateDestroyAPIView):
-#     def get(self, request):
-#         print("FILE REQUESTED")
-#         data = query_to_dict_clean(request.GET)
-#         print(data)
-#         file = data['file']
-#         path = data['path']
-#         full = path + '/' + file
-#         if not os.path.exists(path):
-#             os.makedirs(path)
-#         f = open(full, 'r').read()
-#         return JsonResponse({'file': f, 'path': path})
-#
-#     def post(self, request):
-#         data = request.data
-#         file = data['file']
-#         data = data['data']
-#         path = data['path']
-#         f = open(path + '/' + file, 'w+')
-#         f.write(data)
-#         JsonResponse({'success': True})
-#         print(data)
-
 
 class FileDetail(generics.UpdateAPIView):
     def get(self, request, *args, **kwargs):

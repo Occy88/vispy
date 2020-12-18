@@ -66,6 +66,7 @@
     "react-vis": "*",
     "react-webcam": "^5.2.2",
     "recharts": "^1.8.5",
+    "reconnecting-websocket": "^4.4.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "underscore": "*",

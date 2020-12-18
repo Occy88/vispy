@@ -39,8 +39,8 @@ export default class FileBrowser extends React.Component {
     componentDidMount() {
         console.log("COMPONENT MOUNTED GETTING FILE :")
         FileService.getFile({
-            'path': '/home/caramel/PycharmProjects/ai_secure',
-            'file': 'bots/testing.py'
+            'path': '/home/caramel/PycharmProjects/',
+            'file': 'bots/playground.py'
         }).then((d) => {
             console.log("=======response=========")
             console.log(d)
