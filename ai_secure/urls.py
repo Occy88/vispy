@@ -23,7 +23,6 @@ urlpatterns = [
     path('company_manager/', include('company_manager.urls')),
     path('code_env_manager/', include('code_env_manager.urls')),
     path('accounts/', include('accounts.urls')),  # new
-    path('knn_backend/', include('knn_backend.urls')),
     path('general_backend/', include('general_backend.urls')),
     path('', include('frontend.urls')),
 

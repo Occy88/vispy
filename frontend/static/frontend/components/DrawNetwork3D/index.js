@@ -1,5 +1,4 @@
 import React from "react";
-// import ForceDirectedGraph from "../../../../knn_backend/static/knn_backend/js/KnnGraph.jsx";
 import vis from 'vis'
 
 export default class DrawNetwork extends React.Component {

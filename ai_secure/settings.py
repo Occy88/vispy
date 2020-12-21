@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'company_manager.apps.CompanyManagerConfig',
     'code_env_manager.apps.CodeEnvManager',
     'frontend.apps.VisualizerConfig',
-    'knn_backend.apps.StockManagerConfig',
     'general_backend.apps.GeneralBackendConfig',
     'django.contrib.admin',
     'django.contrib.auth',

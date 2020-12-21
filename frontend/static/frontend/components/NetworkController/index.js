@@ -1,6 +1,5 @@
 import React from "react";
 import DrawNetwork from "../DrawNetwork";
-import KnnService from '../../../../../knn_backend/static/knn_backend/components/KnnService/KnnService.jsx'
 import './style.css'
 
 export default class NetworkController extends React.Component {
